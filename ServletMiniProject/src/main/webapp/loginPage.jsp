@@ -19,5 +19,6 @@
   <input type="submit" value="Log In">
    <input type="reset" value="Reset">
  </form>
+ <c:out value="${MessageOp}"/>
 </body>
 </html>

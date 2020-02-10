@@ -43,6 +43,8 @@ public class LoginServlet extends HttpServlet {
             ArrayList<Product> products = ProductService.getProducts();
             req.getSession().setAttribute("listOfProducts",products);
             req.getSession().setAttribute("currentSessionUser",u);
+            String s = "Last operation recorded: 0";
+            req.getSession().setAttribute("MessageOp",s);
             UserService.addUser(u);
             resp.sendRedirect("userLogged.jsp");
         }

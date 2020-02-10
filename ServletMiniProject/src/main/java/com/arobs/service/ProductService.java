@@ -36,4 +36,22 @@ public class ProductService {
         products.add(product);
     }
 
+    public static ArrayList<Product> updateGlobalProducts(String flag, ArrayList<Product> products, String product, int amount) {
+        if (flag.equals("add")) {
+            for (Product p : products) {
+                if (p.getType().equals(product)) {
+                    p.setStorageAmount(p.getStorageAmount() - amount);
+                }
+                break;
+            }
+            return products;
+        } else {
+            for (Product p : products) {
+                if (p.getType().equals(product)) {
+                    p.setStorageAmount(p.getStorageAmount() + amount);
+                }
+            }
+            return products;
+        }
+    }
 }

@@ -1,10 +1,10 @@
 package com.arobs.service;
 
+import com.arobs.model.Product;
+import com.arobs.model.ShoppingCart;
 import com.arobs.model.User;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class UserService {
     private static ArrayList<User> users = new ArrayList<>();
@@ -56,5 +56,24 @@ public class UserService {
             }
         }
         return null;
+    }
+
+    public static void addProductToCart(User u,Product p){
+        ShoppingCart s = u.getCart();
+        if(s == null){
+            s = new ShoppingCart();
+        }
+        ArrayList<Product> prods;
+        if(s.getContent()!=null) {
+            prods = s.getContent();
+            CartService.checkIfExists(prods,p);
+            //prods.add(p);//vf
+        }
+        else {
+            prods = new ArrayList<>();
+            prods.add(p);
+        }
+        s.setContent(prods);
+        u.setCart(s);
     }
 }
