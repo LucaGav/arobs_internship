@@ -5,6 +5,7 @@ com\arobs\model\User.class
 com\arobs\service\CartService.class
 com\arobs\Main.class
 com\arobs\model\Product.class
+com\arobs\service\OrderService.class
 com\arobs\servlet\LoginServlet.class
+com\arobs\model\Order.class
 com\arobs\servlet\CartServlet.class
-com\arobs\service\ProductService.class

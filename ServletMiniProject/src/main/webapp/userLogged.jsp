@@ -23,11 +23,11 @@ th, td {
          <tr>
              <th>Type</th>
              <th>Amount</th>
-         <c:forEach var="product" items="${listOfCartProducts}">
+         <c:forEach var="order" items="${listOfCartProducts}">
              <tr>
-                 <td><c:out value="${product.type}"></c:out></td>
-                 <td><c:out value="${product.storageAmount}"></c:out></td>
-                 <td><a data-confirm="Are you sure?" href="${pageContext.request.contextPath }/CartServlet?action=delete&ProductType=${product.type}">Remove</a>
+                 <td><c:out value="${order.product.type}"></c:out></td>
+                 <td><c:out value="${order.storageAmount}"></c:out></td>
+                 <td><a data-confirm="Are you sure?" href="${pageContext.request.contextPath }/CartServlet?action=delete&ProductType=${order.product.type}">Remove</a>
              </tr>
          </c:forEach>
          </table>
@@ -47,31 +47,18 @@ th, td {
         <th>Type</th>
         <th>Amount</th>
         <th>Choose amount</th>
-    <c:forEach var="product" items="${listOfProducts}">
+    <c:forEach var="order" items="${listOfProducts}">
     <form action="CartServlet" method="POST">
         <tr>
-            <td><c:out value="${product.type}"></c:out></td>
-            <td><c:out value="${product.storageAmount}"></c:out></td>
+            <td><c:out value="${order.product.type}"></c:out></td>
+            <td><c:out value="${order.storageAmount}"></c:out></td>
             <td><input style = "border:none; outline:none;" type="text" name="amountI" size="4"></td>
             <td><input type="submit" value="Add"></td>
-             <input type="hidden" name="ProductType" value="${product.type}">
+             <input type="hidden" name="ProductType" value="${order.product.type}">
         </tr>
         </form>
     </c:forEach>
     </table>
-
-
-   <h2>Add product to cart: </h2>
-    <p></p>
-     <form action="CartServlet" method="post">
-      Product: <input type="text" name="type">
-      <br> <br>
-      Amount: <input type="text" name="amount"><br>
-      <br>
-      <input type="submit" value="Add">
-      <input type="reset" value="Reset">
-     </form>
-
 
 
      <br><br>

@@ -1,10 +1,10 @@
 package com.arobs.servlet;
 
 
+import com.arobs.model.Order;
 import com.arobs.model.Product;
-import com.arobs.model.ShoppingCart;
 import com.arobs.model.User;
-import com.arobs.service.ProductService;
+import com.arobs.service.OrderService;
 import com.arobs.service.UserService;
 
 import javax.servlet.ServletException;
@@ -12,10 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.security.ProtectionDomain;
 import java.util.ArrayList;
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/LoginServlet")
@@ -25,7 +22,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         UserService.addUsers();
-        ProductService.addProducts();
+        OrderService.addOrders();
         super.init();
     }
 
@@ -40,8 +37,8 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
         if(UserService.validateUser(username,password)){
             User u = UserService.getUserByUserName(username);
-            ArrayList<Product> products = ProductService.getProducts();
-            req.getSession().setAttribute("listOfProducts",products);
+            ArrayList<Order> orders = OrderService.getAvailableOrders();
+            req.getSession().setAttribute("listOfProducts",orders);
             req.getSession().setAttribute("currentSessionUser",u);
             String s = "Last operation recorded: 0";
             req.getSession().setAttribute("MessageOp",s);

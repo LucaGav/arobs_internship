@@ -1,10 +1,11 @@
 package com.arobs.servlet;
 
 
+import com.arobs.model.Order;
 import com.arobs.model.Product;
 import com.arobs.model.User;
 import com.arobs.service.CartService;
-import com.arobs.service.ProductService;
+import com.arobs.service.OrderService;
 import com.arobs.service.UserService;
 
 import javax.servlet.RequestDispatcher;
@@ -37,15 +38,16 @@ public class CartServlet extends HttpServlet {
         PrintWriter pr = resp.getWriter();
         pr.println(req.getParameter("amountI"));
         pr.println(req.getParameter("ProductType"));
-        Product p = new Product(type,Integer.parseInt(amount));
+        Product p = new Product(type);
+        Order o = new Order(p,Integer.parseInt(amount));
         User u = (User) req.getSession().getAttribute("currentSessionUser");
-        UserService.addProductToCart(u,p);
-        ArrayList<Product> prods = (ArrayList<Product>) req.getSession().getAttribute("listOfProducts");
-        prods = ProductService.updateGlobalProducts("add",prods,p.getType(),p.getStorageAmount());
+        UserService.addOrderToCart(u,o);
+        ArrayList<Order> orders = (ArrayList<Order>) req.getSession().getAttribute("listOfProducts");
+        orders = OrderService.updateGlobalOrders("add",orders,p.getType(),o.getStorageAmount());
         req.getSession().setAttribute("listOfCartProducts",u.getCart().getContent());
-        req.getSession().setAttribute("listOfProducts",prods);
+        req.getSession().setAttribute("listOfProducts",orders);
         req.getSession().setAttribute("MessageOp","Last operation recorded: User " +
-                u.getUsername() + " added product: " + p.getType() + " of amount: " + p.getStorageAmount());
+                u.getUsername() + " added product: " + p.getType() + " of amount: " + o.getStorageAmount());
         RequestDispatcher rd = req.getRequestDispatcher("userLogged.jsp");
         rd.forward(req,resp);
 
@@ -56,10 +58,10 @@ public class CartServlet extends HttpServlet {
         User u = (User) req.getSession().getAttribute("currentSessionUser");
         String type = (String) req.getParameter("ProductType");
         int backAmount = CartService.removeProduct(u.getCart(),type);
-        ArrayList<Product> prods = (ArrayList<Product>) req.getSession().getAttribute("listOfProducts");
-        prods = ProductService.updateGlobalProducts("delete",prods,type,backAmount);
+        ArrayList<Order> orders = (ArrayList<Order>) req.getSession().getAttribute("listOfProducts");
+        orders = OrderService.updateGlobalOrders("delete",orders,type,backAmount);
         req.getSession().setAttribute("listOfCartProducts",u.getCart().getContent());
-        req.getSession().setAttribute("listOfProducts",prods);
+        req.getSession().setAttribute("listOfProducts",orders);
         req.getSession().setAttribute("MessageOp","Last operation recorded: User " +
                 u.getUsername() + " removed product: " + type);
         RequestDispatcher rd = req.getRequestDispatcher("userLogged.jsp");

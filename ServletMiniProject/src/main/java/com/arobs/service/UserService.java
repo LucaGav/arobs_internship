@@ -1,5 +1,6 @@
 package com.arobs.service;
 
+import com.arobs.model.Order;
 import com.arobs.model.Product;
 import com.arobs.model.ShoppingCart;
 import com.arobs.model.User;
@@ -58,22 +59,22 @@ public class UserService {
         return null;
     }
 
-    public static void addProductToCart(User u,Product p){
+    public static void addOrderToCart(User u,Order o){
         ShoppingCart s = u.getCart();
         if(s == null){
             s = new ShoppingCart();
         }
-        ArrayList<Product> prods;
+        ArrayList<Order> orders;
         if(s.getContent()!=null) {
-            prods = s.getContent();
-            CartService.checkIfExists(prods,p);
+            orders = s.getContent();
+            CartService.checkIfExists(orders,o);
             //prods.add(p);//vf
         }
         else {
-            prods = new ArrayList<>();
-            prods.add(p);
+            orders = new ArrayList<>();
+            orders.add(o);
         }
-        s.setContent(prods);
+        s.setContent(orders);
         u.setCart(s);
     }
 }
