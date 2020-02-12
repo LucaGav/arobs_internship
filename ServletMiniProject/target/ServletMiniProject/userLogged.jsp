@@ -27,39 +27,19 @@ th, td {
              <tr>
                  <td><c:out value="${order.product.type}"></c:out></td>
                  <td><c:out value="${order.storageAmount}"></c:out></td>
-                 <td><a data-confirm="Are you sure?" href="${pageContext.request.contextPath }/CartServlet?action=delete&ProductType=${order.product.type}">Remove</a>
+                 <td td style='border-right:none;border-left:none;border-bottom:none;border-top:none'><a data-confirm="Are you sure?" href="${pageContext.request.contextPath }/CartServlet?action=delete&ProductType=${order.product.type}">Remove</a>
              </tr>
          </c:forEach>
          </table>
       </div>
 
-<%
+    <%
     User user = (User) session.getAttribute("currentSessionUser");
- %>
- <h1>
+     %>
+    <h1>
     Welcome <%= user.getUsername() %>
     </h1>
-    <h2>List of available products:</h2>
-
-
-    <table width="300">
-    <tr>
-        <th>Type</th>
-        <th>Amount</th>
-        <th>Choose amount</th>
-    <c:forEach var="order" items="${listOfProducts}">
-    <form action="CartServlet" method="POST">
-        <tr>
-            <td><c:out value="${order.product.type}"></c:out></td>
-            <td><c:out value="${order.storageAmount}"></c:out></td>
-            <td><input style = "border:none; outline:none;" type="text" name="amountI" size="4"></td>
-            <td><input type="submit" value="Add"></td>
-             <input type="hidden" name="ProductType" value="${order.product.type}">
-        </tr>
-        </form>
-    </c:forEach>
-    </table>
-
+    <jsp:include page = 'globalProducts.jsp'/>
 
      <br><br>
      <c:out value="${MessageOp}"/>

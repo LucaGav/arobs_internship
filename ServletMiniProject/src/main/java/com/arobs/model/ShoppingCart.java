@@ -1,26 +1,24 @@
 package com.arobs.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ShoppingCart {
 
-    private ArrayList<Order> content;
+    private ArrayList<Item> content;
 
     public ShoppingCart() {
         content = new ArrayList<>();
     }
 
-    public ShoppingCart(ArrayList<Order> content) {
+    public ShoppingCart(ArrayList<Item> content) {
         this.content = content;
     }
 
-    public ArrayList<Order> getContent() {
+    public ArrayList<Item> getContent() {
         return content;
     }
 
-    public void setContent(ArrayList<Order> content) {
+    public void setContent(ArrayList<Item> content) {
         this.content = content;
     }
 }

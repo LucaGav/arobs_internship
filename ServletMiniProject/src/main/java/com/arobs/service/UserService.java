@@ -1,36 +1,30 @@
 package com.arobs.service;
 
-import com.arobs.model.Order;
-import com.arobs.model.Product;
+import com.arobs.dao.UserDaoJDBC;
+import com.arobs.model.Item;
 import com.arobs.model.ShoppingCart;
 import com.arobs.model.User;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserService {
     private static ArrayList<User> users = new ArrayList<>();
 
-    public static User getUser(int id){
-        switch(id){
-            case 1:
-                return new User("Marius","Marius",null);
-            case 2:
-                return new User("Marco","Polo",null);
-            case 3:
-                return new User("Hayden","Hayden",null);
-            case 4:
-                return new User("Jacob","Jacob",null);
-            default:
-                return null;
-        }
-    }
     public static void addUser(User user){
         users.add(user);
     }
 
     public static void addUsers(){
-        for(int i = 1 ; i <=4 ; i++){
-            users.add(getUser(i));
+        List<User> usersAux = new ArrayList<>();
+        try {
+            usersAux = UserDaoJDBC.selectUsers();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for(User u: usersAux){
+            users.add(u);
         }
     }
 
@@ -59,22 +53,22 @@ public class UserService {
         return null;
     }
 
-    public static void addOrderToCart(User u,Order o){
+    public static void addOrderToCart(User u, Item o){
         ShoppingCart s = u.getCart();
         if(s == null){
             s = new ShoppingCart();
         }
-        ArrayList<Order> orders;
+        ArrayList<Item> items;
         if(s.getContent()!=null) {
-            orders = s.getContent();
-            CartService.checkIfExists(orders,o);
+            items = s.getContent();
+            CartService.checkIfExists(items,o);
             //prods.add(p);//vf
         }
         else {
-            orders = new ArrayList<>();
-            orders.add(o);
+            items = new ArrayList<>();
+            items.add(o);
         }
-        s.setContent(orders);
+        s.setContent(items);
         u.setCart(s);
     }
 }

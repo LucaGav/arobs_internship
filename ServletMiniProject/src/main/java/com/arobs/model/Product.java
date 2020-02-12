@@ -1,6 +1,8 @@
 package com.arobs.model;
 
 public class Product {
+
+
     private String type;
     public Product() {
     }

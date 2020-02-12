@@ -1,15 +1,26 @@
 package com.arobs.model;
 
-public class Order {
+public class Item {
+
     private Product product;
     private int storageAmount;
+    private boolean isGlobal;
 
-    public Order() {
+    public Item() {
     }
 
-    public Order(Product product, int storageAmount) {
+    public Item(Product product, int storageAmount, boolean isGlobal) {
         this.product = product;
         this.storageAmount = storageAmount;
+        this.isGlobal = isGlobal;
+    }
+
+    public boolean isGlobal() {
+        return isGlobal;
+    }
+
+    public void setGlobal(boolean global) {
+        isGlobal = global;
     }
 
     public Product getProduct() {
