@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @WebServlet(name = "UserServlet", urlPatterns = "/UserServlet")
@@ -40,9 +41,17 @@ public class UserServlet extends HttpServlet {
         Product p = new Product(type);
         Item o = new Item(p,Integer.parseInt(amount),false);
         User u = (User) req.getSession().getAttribute("currentSessionUser");
-        UserService.addOrderToCart(u,o);
+        try {
+            UserService.addOrderToCart(u,o);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         ArrayList<Item> items = (ArrayList<Item>) req.getSession().getAttribute("listOfProducts");
-        items = StorageService.updateGlobalOrders("add", items,p.getType(),o.getStorageAmount());
+        try {
+            items = StorageService.updateGlobalOrder("add", items,p.getType(),o.getStorageAmount());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         req.getSession().setAttribute("listOfCartProducts",u.getCart().getContent());
         req.getSession().setAttribute("listOfProducts", items);
         req.getSession().setAttribute("MessageOp","Last operation recorded: User " +

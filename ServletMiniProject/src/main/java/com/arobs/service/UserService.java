@@ -1,5 +1,7 @@
 package com.arobs.service;
 
+import com.arobs.dao.CartDaoJDBC;
+import com.arobs.dao.ItemDaoJDBC;
 import com.arobs.dao.UserDaoJDBC;
 import com.arobs.model.Item;
 import com.arobs.model.ShoppingCart;
@@ -53,20 +55,21 @@ public class UserService {
         return null;
     }
 
-    public static void addOrderToCart(User u, Item o){
+    public static void addOrderToCart(User u, Item o) throws SQLException {
         ShoppingCart s = u.getCart();
         if(s == null){
-            s = new ShoppingCart();
+            s = CartDaoJDBC.createCart(u);
         }
         ArrayList<Item> items;
         if(s.getContent()!=null) {
             items = s.getContent();
-            CartService.checkIfExists(items,o);
+            CartService.updateExistingOrder(items,o,s);
             //prods.add(p);//vf
         }
         else {
             items = new ArrayList<>();
             items.add(o);
+            ItemDaoJDBC.addOrder(s,o);
         }
         s.setContent(items);
         u.setCart(s);

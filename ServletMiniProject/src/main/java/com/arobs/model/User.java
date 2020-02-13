@@ -3,6 +3,7 @@ package com.arobs.model;
 public class User {
 
 
+    private int userID;
     private String username;
     private String password;
     private ShoppingCart cart;
@@ -14,6 +15,14 @@ public class User {
         this.username = username;
         this.password = password;
         this.cart = cart;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public String getUsername() {

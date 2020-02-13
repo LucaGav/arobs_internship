@@ -34,7 +34,7 @@ public class JDBCHelper {
         }
     }
 
-    public static void closePrepaerdStatement( PreparedStatement stmt ) throws SQLException
+    public static void closePreparedStatement( PreparedStatement stmt ) throws SQLException
     {
         if ( stmt != null )
         {

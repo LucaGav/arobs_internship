@@ -1,8 +1,12 @@
+com\arobs\dao\helper\DataSource.class
+com\arobs\dao\ItemDaoJDBC.class
 com\arobs\model\User.class
+com\arobs\dao\ProductDaoJDBC.class
 com\arobs\servlet\CartServlet.class
 com\arobs\servlet\UserServlet.class
 com\arobs\dao\UserDaoJDBC.class
 com\arobs\filter\LoginFilter.class
+com\arobs\dao\CartDaoJDBC.class
 com\arobs\model\ShoppingCart.class
 com\arobs\service\UserService.class
 com\arobs\service\CartService.class

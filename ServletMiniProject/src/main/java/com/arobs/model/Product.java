@@ -3,6 +3,7 @@ package com.arobs.model;
 public class Product {
 
 
+    private int productID;
     private String type;
     public Product() {
     }
@@ -19,4 +20,11 @@ public class Product {
         this.type = type;
     }
 
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
 }

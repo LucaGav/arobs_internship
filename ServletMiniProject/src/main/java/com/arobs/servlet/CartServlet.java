@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @WebServlet(name = "CartServlet", urlPatterns = "/CartServlet")
@@ -33,7 +34,11 @@ public class CartServlet extends HttpServlet {
         String type = (String) req.getParameter("ProductType");
         int backAmount = CartService.removeProduct(u.getCart(),type);
         ArrayList<Item> items = (ArrayList<Item>) req.getSession().getAttribute("listOfProducts");
-        items = StorageService.updateGlobalOrders("delete", items,type,backAmount);
+        try {
+            items = StorageService.updateGlobalOrder("delete", items,type,backAmount);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         req.getSession().setAttribute("listOfCartProducts",u.getCart().getContent());
         req.getSession().setAttribute("listOfProducts", items);
         req.getSession().setAttribute("MessageOp","Last operation recorded: User " +

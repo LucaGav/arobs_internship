@@ -16,8 +16,8 @@
       <change afterPath="$PROJECT_DIR$/../ProgramData/Kaspersky Lab/KES/Bases/WEBAV/log2" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ProgramData/Kaspersky Lab/KES/Bases/WF/log2" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ProgramData/Kaspersky Lab/KES/Bases/WMUF/log2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProgramData/Kaspersky Lab/KES/Data/updater/Temporary Files/temporaryFolder/updates/blst/bl0051.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProgramData/Kaspersky Lab/KES/Data/updater/Temporary Files/temporaryFolder/updates/blst/blst2-1313g.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProgramData/Kaspersky Lab/KES/Data/updater/Temporary Files/temporaryFolder/updates/cdb2/cdb2-1313g.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ProgramData/Kaspersky Lab/KES/Data/updater/Temporary Files/temporaryFolder/updates/cdb2/certdb_v2.dat" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ServletBasic/.idea/misc.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ServletBasic/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ServletBasic/ServletBasic.iml" afterDir="false" />
@@ -32,7 +32,10 @@
       <change afterPath="$PROJECT_DIR$/ServletMiniProject.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/dao/CartDaoJDBC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/dao/ItemDaoJDBC.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/dao/UserDaoJDBC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/dao/helper/DataSource.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/dao/helper/JDBCHelper.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/model/Product.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/model/ShoppingCart.java" afterDir="false" />
@@ -1940,10 +1943,10 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.jsp" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2365" y="205" key="#com.intellij.ide.util.MemberChooser" timestamp="1581503918402">
+    <state x="2365" y="205" key="#com.intellij.ide.util.MemberChooser" timestamp="1581573041904">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state x="2365" y="205" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581503918402" />
+    <state x="2365" y="205" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581573041904" />
     <state x="2084" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1581501639926">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
@@ -1952,38 +1955,51 @@
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
     <state x="2290" y="268" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581503873060" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1581506908383">
+    <state width="1877" height="293" key="GridCell.Tab.0.bottom" timestamp="1581588075235">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581506908383" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1581506908383">
+    <state width="1877" height="293" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581588075235" />
+    <state width="1877" height="293" key="GridCell.Tab.0.center" timestamp="1581588075235">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581506908383" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1581506908382">
+    <state width="1877" height="293" key="GridCell.Tab.0.center/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581588075235" />
+    <state width="1877" height="293" key="GridCell.Tab.0.left" timestamp="1581588075235">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581506908382" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1581506908383">
+    <state width="1877" height="293" key="GridCell.Tab.0.left/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581588075235" />
+    <state width="1877" height="293" key="GridCell.Tab.0.right" timestamp="1581588075235">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581506908383" />
-    <state x="2281" y="261" width="540" height="524" key="StructurePopup" timestamp="1580969939960">
-      <screen x="1600" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2281" y="261" width="540" height="524" key="StructurePopup/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1580969939960" />
-    <state x="758" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1581491742286">
+    <state width="1877" height="293" key="GridCell.Tab.0.right/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581588075235" />
+    <state x="1028" y="261" width="570" height="524" key="StructurePopup" timestamp="1581585037823">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="758" y="257" key="com.intellij.ide.util.TipDialog/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581491742286" />
-    <state x="535" y="0" width="909" height="945" maximized="true" key="dock-window-1" timestamp="1581492028848">
+    <state x="1028" y="261" width="570" height="524" key="StructurePopup/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581585037823" />
+    <state x="758" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1581572846614">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="535" y="0" width="909" height="945" maximized="true" key="dock-window-1/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581492028848" />
-    <state x="2216" y="240" width="672" height="677" key="run.anything.popup" timestamp="1581506827737">
+    <state x="758" y="257" key="com.intellij.ide.util.TipDialog/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581572846614" />
+    <state x="601" y="107" width="904" height="715" maximized="true" key="dock-window-1" timestamp="1581582029933">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="601" y="107" width="904" height="715" key="dock-window-1/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1581580589471" />
+    <state x="601" y="107" width="904" height="715" maximized="true" key="dock-window-1/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581582029933" />
+    <state x="545" y="132" width="904" height="715" key="dock-window-2" timestamp="1581580651471">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="545" y="132" width="904" height="715" key="dock-window-2/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581580651471" />
+    <state x="502" y="335" width="1104" height="704" key="dock-window-3" timestamp="1581586745196">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="502" y="335" width="1104" height="704" key="dock-window-3/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581586745196" />
+    <state x="618" y="433" width="1104" height="704" maximized="true" key="dock-window-4" timestamp="1581587876358">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="618" y="433" width="1104" height="704" maximized="true" key="dock-window-4/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581587876358" />
+    <state x="2216" y="240" width="672" height="677" key="run.anything.popup" timestamp="1581587893122">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state x="2216" y="240" width="672" height="677" key="run.anything.popup/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581506827737" />
+    <state x="2216" y="240" width="672" height="677" key="run.anything.popup/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581587893122" />
     <state x="2223" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1581336562174">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
