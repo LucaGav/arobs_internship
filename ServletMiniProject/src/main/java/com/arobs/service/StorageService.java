@@ -80,12 +80,12 @@ public class StorageService {
         items.add(item);
     }
 
-    public static ArrayList<Item> updateGlobalOrder(String flag, ArrayList<Item> items, String productType, int amount) throws SQLException {
+    public static ArrayList<Item> updateGlobalItem(String flag, ArrayList<Item> items, String productType, int amount) throws SQLException {
         if (flag.equals("add")) {
             for (Item o : items) {
                 if (o.getProduct().getType().equals(productType)) {
                     o.setStorageAmount(o.getStorageAmount() - amount);
-                    ItemDaoJDBC.updateGlobalOrderDao(o);
+                    ItemDaoJDBC.updateGlobalItemDao(o);
                 }
                 break;
             }
@@ -94,7 +94,7 @@ public class StorageService {
             for (Item o : items) {
                 if (o.getProduct().getType().equals(productType)) {
                     o.setStorageAmount(o.getStorageAmount() + amount);
-                    ItemDaoJDBC.updateGlobalOrderDao(o);
+                    ItemDaoJDBC.updateGlobalItemDao(o);
                 }
             }
             return items;

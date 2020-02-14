@@ -5,6 +5,7 @@ com\arobs\dao\ProductDaoJDBC.class
 com\arobs\servlet\CartServlet.class
 com\arobs\servlet\UserServlet.class
 com\arobs\dao\UserDaoJDBC.class
+com\arobs\listener\SessionListener.class
 com\arobs\filter\LoginFilter.class
 com\arobs\dao\CartDaoJDBC.class
 com\arobs\model\ShoppingCart.class
@@ -16,3 +17,4 @@ com\arobs\servlet\LoginServlet.class
 com\arobs\service\StorageService.class
 com\arobs\dao\helper\JDBCHelper.class
 com\arobs\model\Item.class
+com\arobs\service\ProductService.class

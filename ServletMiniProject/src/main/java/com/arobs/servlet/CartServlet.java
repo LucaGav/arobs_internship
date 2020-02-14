@@ -32,10 +32,15 @@ public class CartServlet extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User u = (User) req.getSession().getAttribute("currentSessionUser");
         String type = (String) req.getParameter("ProductType");
-        int backAmount = CartService.removeProduct(u.getCart(),type);
+        int backAmount = 0;
+        try {
+            backAmount = CartService.removeOrder(u.getCart(),type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         ArrayList<Item> items = (ArrayList<Item>) req.getSession().getAttribute("listOfProducts");
         try {
-            items = StorageService.updateGlobalOrder("delete", items,type,backAmount);
+            items = StorageService.updateGlobalItem("delete", items,type,backAmount);
         } catch (SQLException e) {
             e.printStackTrace();
         }

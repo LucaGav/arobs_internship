@@ -4,6 +4,7 @@ package com.arobs.servlet;
 import com.arobs.model.Item;
 import com.arobs.model.Product;
 import com.arobs.model.User;
+import com.arobs.service.ProductService;
 import com.arobs.service.StorageService;
 import com.arobs.service.UserService;
 
@@ -35,10 +36,8 @@ public class UserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String type = (String) req.getParameter("ProductType");
         String amount = (String) req.getParameter("amountI");
-        PrintWriter pr = resp.getWriter();
-        pr.println(req.getParameter("amountI"));
-        pr.println(req.getParameter("ProductType"));
-        Product p = new Product(type);
+        ArrayList<Item> items = (ArrayList<Item>) req.getSession().getAttribute("listOfProducts");
+        Product p = ProductService.getProductByType(items,type);
         Item o = new Item(p,Integer.parseInt(amount),false);
         User u = (User) req.getSession().getAttribute("currentSessionUser");
         try {
@@ -46,9 +45,8 @@ public class UserServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        ArrayList<Item> items = (ArrayList<Item>) req.getSession().getAttribute("listOfProducts");
         try {
-            items = StorageService.updateGlobalOrder("add", items,p.getType(),o.getStorageAmount());
+            items = StorageService.updateGlobalItem("add", items,type,o.getStorageAmount());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -58,7 +56,6 @@ public class UserServlet extends HttpServlet {
                 u.getUsername() + " added product: " + p.getType() + " of amount: " + o.getStorageAmount());
         RequestDispatcher rd = req.getRequestDispatcher("userLogged.jsp");
         rd.forward(req,resp);
-
     }
 
     @Override

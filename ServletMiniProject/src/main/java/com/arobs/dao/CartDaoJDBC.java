@@ -33,4 +33,12 @@ public class CartDaoJDBC {
         u.setCart(cart);
         return cart;
     }
+
+    public static void deleteCartDao(ShoppingCart shoppingCart) throws SQLException {
+        try(Connection connection = DataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM shoppingcart WHERE cartID = ?")){
+            preparedStatement.setInt(1,shoppingCart.getCartID());
+            preparedStatement.executeUpdate();
+        }
+    }
 }

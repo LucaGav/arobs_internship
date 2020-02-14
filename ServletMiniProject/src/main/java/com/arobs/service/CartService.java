@@ -1,8 +1,10 @@
 package com.arobs.service;
 
+import com.arobs.dao.CartDaoJDBC;
 import com.arobs.dao.ItemDaoJDBC;
 import com.arobs.model.Item;
 import com.arobs.model.ShoppingCart;
+import com.arobs.model.User;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,15 +26,24 @@ public class CartService {
         }
     }
 
-    public static int removeProduct(ShoppingCart s, String prType){
+    public static int removeOrder(ShoppingCart s, String prType) throws SQLException {
         for(Item o : s.getContent()){
             if(o.getProduct().getType().equals(prType)){
                 int amount = o.getStorageAmount();
+                ItemDaoJDBC.removeOrderDao(o);
                 s.getContent().remove(o);
                 return amount;
             }
         }
         return 0;
+    }
+
+    public static void deleteUserCart(User user) throws SQLException {
+        ShoppingCart s = user.getCart();
+        for(Item i: s.getContent()){
+            StorageService.updateGlobalItem("delete",s.getContent(),i.getProduct().getType(),i.getStorageAmount());
+        }
+        CartDaoJDBC.deleteCartDao(s);
     }
 
 }

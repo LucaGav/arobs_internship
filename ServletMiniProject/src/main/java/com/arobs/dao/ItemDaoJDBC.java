@@ -51,23 +51,31 @@ public class ItemDaoJDBC {
         }
     }
 
+    public static void removeOrderDao(Item item) throws SQLException {
+        try(Connection connection = DataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM item WHERE itemID = ?")){
+            preparedStatement.setInt(1,item.getItemID());
+            preparedStatement.executeUpdate();
+        }
+    }
+
     public static void updateExistingOrderDao(Item item) throws SQLException {
         try(Connection connection = DataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE item set storageAmount = ? WHERE itemID = ?")){
             preparedStatement.setInt(1,item.getStorageAmount());
             preparedStatement.setInt(2,item.getItemID());
-            preparedStatement.executeQuery();
+            preparedStatement.executeUpdate();
         }
     }
 
-    public static void updateGlobalOrderDao(Item item) throws SQLException {
+
+    public static void updateGlobalItemDao(Item item) throws SQLException {
         try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("UPDATE item set storageAmount = ? WHERE itemID = ? AND isGlobal = ?")) {
             preparedStatement.setInt(1, item.getStorageAmount());
             preparedStatement.setInt(2, item.getItemID());
             preparedStatement.setBoolean(3, true);
-            preparedStatement.executeQuery();
+            preparedStatement.executeUpdate();
         }
     }
 }
-

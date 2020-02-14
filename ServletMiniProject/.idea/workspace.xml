@@ -37,10 +37,12 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/dao/UserDaoJDBC.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/dao/helper/DataSource.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/dao/helper/JDBCHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/listener/SessionListener.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/model/Product.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/model/ShoppingCart.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/model/User.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/service/CartService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/service/ProductService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/service/StorageService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/service/UserService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/servlet/CartServlet.java" afterDir="false" />
@@ -1890,7 +1892,7 @@
       <change afterPath="$MAVEN_REPOSITORY$/xmlpull/xmlpull/1.1.3.1/xmlpull-1.1.3.1.pom" afterDir="false" />
       <change afterPath="$MAVEN_REPOSITORY$/xmlpull/xmlpull/1.1.3.1/xmlpull-1.1.3.1.pom.sha1" afterDir="false" />
       <change afterPath="$USER_HOME$/.m2/settings.xml" afterDir="false" />
-      <change afterPath="$USER_HOME$/AppData/Local/Packages/Microsoft.YourPhone_8wekyb3d8bbwe/AC/INetCache/06RLPNGG/ab[1].json" afterDir="false" />
+      <change afterPath="$USER_HOME$/AppData/Local/Packages/Microsoft.YourPhone_8wekyb3d8bbwe/AC/INetCache/7ZEC6K2H/ab[1].json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../testproj/testproj.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -1943,10 +1945,14 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.jsp" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2365" y="205" key="#com.intellij.ide.util.MemberChooser" timestamp="1581573041904">
+    <state x="2365" y="205" key="#com.intellij.ide.util.MemberChooser" timestamp="1581666693099">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state x="2365" y="205" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581573041904" />
+    <state x="2365" y="205" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581666693099" />
+    <state x="2356" y="406" width="408" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1581667189166">
+      <screen x="1600" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2356" y="406" width="408" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581667189166" />
     <state x="2084" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1581501639926">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
@@ -1955,51 +1961,51 @@
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
     <state x="2290" y="268" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581503873060" />
-    <state width="1877" height="293" key="GridCell.Tab.0.bottom" timestamp="1581588075235">
+    <state width="1877" height="293" key="GridCell.Tab.0.bottom" timestamp="1581668732171">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="293" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581588075235" />
-    <state width="1877" height="293" key="GridCell.Tab.0.center" timestamp="1581588075235">
+    <state width="1877" height="293" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581668732171" />
+    <state width="1877" height="293" key="GridCell.Tab.0.center" timestamp="1581668732170">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="293" key="GridCell.Tab.0.center/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581588075235" />
-    <state width="1877" height="293" key="GridCell.Tab.0.left" timestamp="1581588075235">
+    <state width="1877" height="293" key="GridCell.Tab.0.center/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581668732170" />
+    <state width="1877" height="293" key="GridCell.Tab.0.left" timestamp="1581668732170">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="293" key="GridCell.Tab.0.left/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581588075235" />
-    <state width="1877" height="293" key="GridCell.Tab.0.right" timestamp="1581588075235">
+    <state width="1877" height="293" key="GridCell.Tab.0.left/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581668732170" />
+    <state width="1877" height="293" key="GridCell.Tab.0.right" timestamp="1581668732171">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="293" key="GridCell.Tab.0.right/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581588075235" />
+    <state width="1877" height="293" key="GridCell.Tab.0.right/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581668732171" />
     <state x="1028" y="261" width="570" height="524" key="StructurePopup" timestamp="1581585037823">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="1028" y="261" width="570" height="524" key="StructurePopup/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581585037823" />
-    <state x="758" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1581572846614">
+    <state x="758" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1581664597752">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="758" y="257" key="com.intellij.ide.util.TipDialog/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581572846614" />
-    <state x="601" y="107" width="904" height="715" maximized="true" key="dock-window-1" timestamp="1581582029933">
+    <state x="758" y="257" key="com.intellij.ide.util.TipDialog/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581664597752" />
+    <state x="291" y="79" width="1099" height="945" key="dock-window-1" timestamp="1581664809168">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="601" y="107" width="904" height="715" key="dock-window-1/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1581580589471" />
-    <state x="601" y="107" width="904" height="715" maximized="true" key="dock-window-1/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581582029933" />
-    <state x="545" y="132" width="904" height="715" key="dock-window-2" timestamp="1581580651471">
+    <state x="291" y="79" width="1099" height="945" key="dock-window-1/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581664809168" />
+    <state x="380" y="0" width="1099" height="945" key="dock-window-2" timestamp="1581664809168">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="545" y="132" width="904" height="715" key="dock-window-2/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581580651471" />
-    <state x="502" y="335" width="1104" height="704" key="dock-window-3" timestamp="1581586745196">
+    <state x="380" y="0" width="1099" height="945" key="dock-window-2/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581664809168" />
+    <state x="517" y="100" width="1099" height="704" maximized="true" key="dock-window-3" timestamp="1581665438920">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="502" y="335" width="1104" height="704" key="dock-window-3/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581586745196" />
-    <state x="618" y="433" width="1104" height="704" maximized="true" key="dock-window-4" timestamp="1581587876358">
+    <state x="517" y="100" width="1099" height="704" maximized="true" key="dock-window-3/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581665438920" />
+    <state x="227" y="111" width="1099" height="704" maximized="true" key="dock-window-4" timestamp="1581666301225">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="618" y="433" width="1104" height="704" maximized="true" key="dock-window-4/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581587876358" />
-    <state x="2216" y="240" width="672" height="677" key="run.anything.popup" timestamp="1581587893122">
+    <state x="227" y="111" width="1099" height="704" maximized="true" key="dock-window-4/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581666301225" />
+    <state x="2216" y="240" width="672" height="677" key="run.anything.popup" timestamp="1581668732222">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state x="2216" y="240" width="672" height="677" key="run.anything.popup/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581587893122" />
+    <state x="2216" y="240" width="672" height="677" key="run.anything.popup/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581668732222" />
     <state x="2223" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1581336562174">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
