@@ -7,6 +7,8 @@ import com.arobs.model.User;
 import com.arobs.service.ProductService;
 import com.arobs.service.StorageService;
 import com.arobs.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,6 +24,8 @@ import java.util.ArrayList;
 @WebServlet(name = "UserServlet", urlPatterns = "/UserServlet")
 public class UserServlet extends HttpServlet {
 
+    private static Logger logger = LoggerFactory.getLogger(LoginServlet.class);
+
     @Override
     public void init() throws ServletException {
         super.init();
@@ -34,19 +38,23 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        logger.info("Reached add order to cart, Post method");
+        ProductService productService = new ProductService();
+        StorageService storageService = new StorageService();
+        UserService userService = new UserService();
         String type = (String) req.getParameter("ProductType");
         String amount = (String) req.getParameter("amountI");
         ArrayList<Item> items = (ArrayList<Item>) req.getSession().getAttribute("listOfProducts");
-        Product p = ProductService.getProductByType(items,type);
+        Product p = productService.getProductByType(items,type);
         Item o = new Item(p,Integer.parseInt(amount),false);
         User u = (User) req.getSession().getAttribute("currentSessionUser");
         try {
-            UserService.addOrderToCart(u,o);
+            userService.addOrderToCart(u,o);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         try {
-            items = StorageService.updateGlobalItem("add", items,type,o.getStorageAmount());
+            items = storageService.updateGlobalItem("add", items,type,o.getStorageAmount());
         } catch (SQLException e) {
             e.printStackTrace();
         }

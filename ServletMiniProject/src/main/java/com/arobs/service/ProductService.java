@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class ProductService {
 
-    public static Product getProductByType(ArrayList<Item> items, String type){
+    public Product getProductByType(ArrayList<Item> items, String type){
         for(Item i : items){
             if(i.getProduct().getType().equals(type)){
                 return i.getProduct();

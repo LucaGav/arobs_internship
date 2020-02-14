@@ -6,12 +6,13 @@ import com.arobs.model.Item;
 import com.arobs.model.ShoppingCart;
 import com.arobs.model.User;
 
+import java.security.Provider;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CartService {
 
-    public static void updateExistingOrder(ArrayList<Item> items, Item o, ShoppingCart s) throws SQLException {
+    public void updateExistingOrder(ArrayList<Item> items, Item o, ShoppingCart s) throws SQLException {
         int ok = 0;
         for(Item oo: items){
             if(oo.getProduct().getType().equals(o.getProduct().getType())){
@@ -26,7 +27,7 @@ public class CartService {
         }
     }
 
-    public static int removeOrder(ShoppingCart s, String prType) throws SQLException {
+    public int removeOrder(ShoppingCart s, String prType) throws SQLException {
         for(Item o : s.getContent()){
             if(o.getProduct().getType().equals(prType)){
                 int amount = o.getStorageAmount();
@@ -38,10 +39,13 @@ public class CartService {
         return 0;
     }
 
-    public static void deleteUserCart(User user) throws SQLException {
+    public void deleteUserCart(User user, ArrayList<Item> items) throws SQLException {
+        StorageService storageService = new StorageService();
+        CartService cartService = new CartService();
         ShoppingCart s = user.getCart();
         for(Item i: s.getContent()){
-            StorageService.updateGlobalItem("delete",s.getContent(),i.getProduct().getType(),i.getStorageAmount());
+            cartService.removeOrder(s,i.getProduct().getType());
+            storageService.updateGlobalItem("delete",items,i.getProduct().getType(),i.getStorageAmount());
         }
         CartDaoJDBC.deleteCartDao(s);
     }

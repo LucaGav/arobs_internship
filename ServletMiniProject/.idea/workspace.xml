@@ -16,8 +16,6 @@
       <change afterPath="$PROJECT_DIR$/../ProgramData/Kaspersky Lab/KES/Bases/WEBAV/log2" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ProgramData/Kaspersky Lab/KES/Bases/WF/log2" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ProgramData/Kaspersky Lab/KES/Bases/WMUF/log2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProgramData/Kaspersky Lab/KES/Data/updater/Temporary Files/temporaryFolder/updates/cdb2/cdb2-1313g.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProgramData/Kaspersky Lab/KES/Data/updater/Temporary Files/temporaryFolder/updates/cdb2/certdb_v2.dat" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ServletBasic/.idea/misc.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ServletBasic/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ServletBasic/ServletBasic.iml" afterDir="false" />
@@ -48,6 +46,7 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/servlet/CartServlet.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/servlet/LoginServlet.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/arobs/servlet/UserServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/globalProducts.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/invalidLogin.jsp" afterDir="false" />
@@ -1949,10 +1948,10 @@
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
     <state x="2365" y="205" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581666693099" />
-    <state x="2356" y="406" width="408" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1581667189166">
+    <state x="2356" y="406" width="408" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1581673250280">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state x="2356" y="406" width="408" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581667189166" />
+    <state x="2356" y="406" width="408" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581673250280" />
     <state x="2084" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1581501639926">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
@@ -1961,29 +1960,34 @@
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
     <state x="2290" y="268" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581503873060" />
-    <state width="1877" height="293" key="GridCell.Tab.0.bottom" timestamp="1581668732171">
+    <state width="1877" height="293" key="GridCell.Tab.0.bottom" timestamp="1581676795626">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="293" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581668732171" />
-    <state width="1877" height="293" key="GridCell.Tab.0.center" timestamp="1581668732170">
+    <state width="1557" height="293" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1581676757069" />
+    <state width="1877" height="293" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581676795626" />
+    <state width="1877" height="293" key="GridCell.Tab.0.center" timestamp="1581676795626">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="293" key="GridCell.Tab.0.center/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581668732170" />
-    <state width="1877" height="293" key="GridCell.Tab.0.left" timestamp="1581668732170">
+    <state width="1557" height="293" key="GridCell.Tab.0.center/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1581676757069" />
+    <state width="1877" height="293" key="GridCell.Tab.0.center/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581676795626" />
+    <state width="1877" height="293" key="GridCell.Tab.0.left" timestamp="1581676795626">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="293" key="GridCell.Tab.0.left/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581668732170" />
-    <state width="1877" height="293" key="GridCell.Tab.0.right" timestamp="1581668732171">
+    <state width="1557" height="293" key="GridCell.Tab.0.left/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1581676757069" />
+    <state width="1877" height="293" key="GridCell.Tab.0.left/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581676795626" />
+    <state width="1877" height="293" key="GridCell.Tab.0.right" timestamp="1581676795626">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="293" key="GridCell.Tab.0.right/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581668732171" />
+    <state width="1557" height="293" key="GridCell.Tab.0.right/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1581676757069" />
+    <state width="1877" height="293" key="GridCell.Tab.0.right/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581676795626" />
     <state x="1028" y="261" width="570" height="524" key="StructurePopup" timestamp="1581585037823">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="1028" y="261" width="570" height="524" key="StructurePopup/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581585037823" />
-    <state x="758" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1581664597752">
+    <state x="758" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1581674873946">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
+    <state x="758" y="257" key="com.intellij.ide.util.TipDialog/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1581674873946" />
     <state x="758" y="257" key="com.intellij.ide.util.TipDialog/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581664597752" />
     <state x="291" y="79" width="1099" height="945" key="dock-window-1" timestamp="1581664809168">
       <screen x="0" y="0" width="1600" height="860" />
@@ -2002,10 +2006,11 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="227" y="111" width="1099" height="704" maximized="true" key="dock-window-4/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581666301225" />
-    <state x="2216" y="240" width="672" height="677" key="run.anything.popup" timestamp="1581668732222">
+    <state x="2216" y="240" width="672" height="677" key="run.anything.popup" timestamp="1581676795673">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state x="2216" y="240" width="672" height="677" key="run.anything.popup/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581668732222" />
+    <state x="513" y="198" width="672" height="560" key="run.anything.popup/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1581676757131" />
+    <state x="2216" y="240" width="672" height="677" key="run.anything.popup/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1581676795673" />
     <state x="2223" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1581336562174">
       <screen x="1600" y="0" width="1920" height="1040" />
     </state>

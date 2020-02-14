@@ -9,13 +9,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class StorageService {
-    private static ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<Item> items = new ArrayList<>();
 
-    public static ArrayList<Item> getAvailableOrders() {
+    public ArrayList<Item> getAvailableOrders() {
         return items;
     }
 
-    public static Item getOrder(int id){
+    public Item getOrder(int id){
         Product p = new Product();
         switch(id){
             case 1:
@@ -71,16 +71,16 @@ public class StorageService {
         }
     }
 
-    public static void addOrders(){
+    public void addOrders(){
         for(int i = 1 ; i <=4 ; i++){
-            items.add(getOrder(i));
+            this.items.add(getOrder(i));
         }
     }
-    public static void addOrder(Item item){
-        items.add(item);
+    public void addOrder(Item item){
+        this.items.add(item);
     }
 
-    public static ArrayList<Item> updateGlobalItem(String flag, ArrayList<Item> items, String productType, int amount) throws SQLException {
+    public ArrayList<Item> updateGlobalItem(String flag, ArrayList<Item> items, String productType, int amount) throws SQLException {
         if (flag.equals("add")) {
             for (Item o : items) {
                 if (o.getProduct().getType().equals(productType)) {

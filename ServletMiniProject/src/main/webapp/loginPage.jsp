@@ -49,10 +49,8 @@ p { display: table-row;  }
 </style>
 </head>
 <body>
-
  <form action="LoginServlet" method="post">
   <p>
-  <h1>User Login</h1>
   </p>
    <p>
   <label for="user">Username:</label>
