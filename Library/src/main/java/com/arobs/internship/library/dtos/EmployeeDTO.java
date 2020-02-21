@@ -1,33 +1,12 @@
-package com.arobs.internship.library.entities;
+package com.arobs.internship.library.dtos;
 
-public class Employee {
+public class EmployeeDTO {
 
-    private int employeeID;
     private String firstName;
     private String lastName;
     private String role;
     private String password;
     private String email;
-
-    public Employee() {
-    }
-
-    public Employee(int employeeID, String firstName, String lastName, String role, String password, String email) {
-        this.employeeID = employeeID;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.role = role;
-        this.password = password;
-        this.email = email;
-    }
-
-    public int getEmployeeID() {
-        return employeeID;
-    }
-
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -68,4 +47,8 @@ public class Employee {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    /*public boolean checkNull(EmployeeDTO employeeDTO){
+        if(employeeDTO.getEmail().equals(null) || employeeDTO.getFirstName().equals(null))
+    }*/
 }

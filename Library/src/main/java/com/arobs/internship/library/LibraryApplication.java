@@ -1,7 +1,6 @@
 package com.arobs.internship.library;
 
-import com.arobs.internship.library.dao.JdbcEmployeeDao;
-import javafx.scene.web.HTMLEditorSkin;
+import com.arobs.internship.library.dao.factory.DaoFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,7 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LibraryApplication implements CommandLineRunner {
 
 	@Autowired
-	private JdbcEmployeeDao employeeDao;
+	private DaoFactory daoFactory;
+
 	public static void main(String[] args) {
 
 		SpringApplication.run(LibraryApplication.class, args);
@@ -24,7 +24,14 @@ public class LibraryApplication implements CommandLineRunner {
 	}
 
 	void runJDBC(){
-		employeeDao.save();
+
+		System.out.println("runJDBC");
+		/*DaoFactory factory = daoFactory.getInstance();
+		EmployeeDao employeeDao = factory.getEmployeeDao();
+		employeeDao.returnSmth();
+		employeeDao.save();*/
+
+		//employeeDao.save();
 	}
 
 }

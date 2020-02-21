@@ -1,26 +1,37 @@
 package com.arobs.internship.library.dao.factory;
 
 import com.arobs.internship.library.dao.EmployeeDao;
+import com.arobs.internship.library.dao.factory.hibernate.HibernateDaoFactory;
+import com.arobs.internship.library.dao.factory.jdbc.JdbcDaoFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 public abstract class DaoFactory {
-    private static final DaoFactory HIBERNATE_DAO_FACTORY = new HibernateDaoFactory();
-    private static final DaoFactory JDBC_DAO_FACTORY = new JdbcDaoFactory();
+    @Value("${datasource.type}")
+    private String type;
 
-    public enum Type {
-        HIBERNATE,
-        JDBC
+    @Autowired
+    private HibernateDaoFactory hibernateDaoFactory;
+
+    @Autowired
+    private JdbcDaoFactory jdbcDaoFactory;
+
+
+    public String getType() {
+        return type;
     }
+
 
     public DaoFactory() {
 
     }
 
-    public static DaoFactory getInstance(Type factoryType) {
-        switch (factoryType) {
-            case HIBERNATE:
-                return HIBERNATE_DAO_FACTORY;
-            case JDBC:
-                return JDBC_DAO_FACTORY;
+    public DaoFactory getInstance() {
+        switch (getType()) {
+            case "HIBERNATE":
+                return hibernateDaoFactory;
+            case "JDBCTemplate":
+                return jdbcDaoFactory;
             default:
                 throw new IllegalArgumentException("Invalid factory");
         }
