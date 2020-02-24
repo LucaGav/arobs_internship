@@ -1,4 +1,4 @@
-package com.arobs.internship.library.dao.impl;
+package com.arobs.internship.library.dao.impl.jdbc;
 
 import com.arobs.internship.library.dao.EmployeeDao;
 import com.arobs.internship.library.entities.Employee;
@@ -15,10 +15,6 @@ public class JdbcEmployeeDao implements EmployeeDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-
-    public void returnSmth(){
-        System.out.println("i am here");
-    }
 
     @Override
     public int save(Employee employee) {

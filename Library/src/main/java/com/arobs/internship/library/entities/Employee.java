@@ -1,12 +1,30 @@
 package com.arobs.internship.library.entities;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="employee")
 public class Employee {
 
+    @Id
+    @Column(name="employeeID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int employeeID;
+
+    @Column(name="firstName")
     private String firstName;
+
+    @Column(name="lastName")
     private String lastName;
+
+    @Column(name="role")
     private String role;
+
+    @Column(name="password")
     private String password;
+
+    @Column(name="email")
     private String email;
 
     public Employee() {

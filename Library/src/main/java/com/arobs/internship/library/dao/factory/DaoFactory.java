@@ -29,6 +29,7 @@ public abstract class DaoFactory {
     public DaoFactory getInstance() {
         switch (getType()) {
             case "HIBERNATE":
+                System.out.println("Ajuns la hibernate");
                 return hibernateDaoFactory;
             case "JDBCTemplate":
                 return jdbcDaoFactory;
