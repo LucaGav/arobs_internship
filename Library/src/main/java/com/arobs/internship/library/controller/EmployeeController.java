@@ -45,17 +45,12 @@ public class EmployeeController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/updateEmployee/{id}")
-    public ResponseEntity<String> updateEmployee(@RequestBody EmployeeDTO employeeDTO, @PathVariable int id) {
-        Employee employee = employeeService.findEmployeeById(id);
-        if (employee == null) {
-            employee = employeeService.dtoToEmployee(employeeDTO);
-            employeeService.insertEmployee(employee);
-        } else {
-            employee.setEmail(employeeDTO.getEmail());
-            employee.setFirstName(employeeDTO.getFirstName());
-            employee.setLastName(employeeDTO.getLastName());
-            employeeService.updateEmployee(employee);
+    @PatchMapping("/updateEmployee/{id}")
+    public ResponseEntity<String> updateEmployee(@RequestParam("email") String email, @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
+                                                 @PathVariable int id) {
+        EmployeeDTO employeeDTO= employeeService.updateEmployee(email,firstName,lastName,id);
+        if(employeeDTO == null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }

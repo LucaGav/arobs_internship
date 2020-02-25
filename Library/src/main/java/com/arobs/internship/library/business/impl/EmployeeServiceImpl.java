@@ -54,8 +54,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void updateEmployee(Employee employee) {
-        employeeDao.update(employee);
+    public EmployeeDTO updateEmployee(String email, String firstName, String lastName, int id) {
+        Employee employee = this.findEmployeeById(id);
+        if(!email.equals(employee.getEmail()) || !firstName.equals(employee.getFirstName()) || !lastName.equals(employee.getLastName())){
+            employee.setEmail(email);
+            employee.setFirstName(firstName);
+            employee.setLastName(lastName);
+            employeeDao.update(employee);
+        }
+        return this.employeeToDto(employee);
     }
 
     @Override

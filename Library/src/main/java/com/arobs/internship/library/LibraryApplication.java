@@ -5,9 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 
-@SpringBootApplication
-public class LibraryApplication implements CommandLineRunner {
+@SpringBootApplication(exclude = HibernateJpaAutoConfiguration.class)
+public class LibraryApplication{
 
 	@Autowired
 	private DaoFactory daoFactory;
@@ -17,15 +18,4 @@ public class LibraryApplication implements CommandLineRunner {
 		SpringApplication.run(LibraryApplication.class, args);
 
 	}
-
-	@Override
-	public void run(String... args) {
-		runJDBC();
-	}
-
-	void runJDBC() {
-
-		System.out.println("runJDBC");
-	}
-
 }

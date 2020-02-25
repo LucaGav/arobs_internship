@@ -13,7 +13,7 @@ public interface EmployeeService {
 
     Employee findEmployeeById(int id);
 
-    void updateEmployee(Employee employee);
+    EmployeeDTO updateEmployee(String email,String firstName, String lastName, int id);
 
     int deleteEmployee(String email);
 
