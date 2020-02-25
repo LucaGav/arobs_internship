@@ -4,27 +4,27 @@ package com.arobs.internship.library.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name="employee")
+@Table(name = "employee")
 public class Employee {
 
     @Id
-    @Column(name="employeeID")
+    @Column(name = "employeeID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int employeeID;
 
-    @Column(name="firstName")
+    @Column(name = "firstName")
     private String firstName;
 
-    @Column(name="lastName")
+    @Column(name = "lastName")
     private String lastName;
 
-    @Column(name="role")
+    @Column(name = "role")
     private String role;
 
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
 
-    @Column(name="email")
+    @Column(name = "email")
     private String email;
 
     public Employee() {

@@ -20,23 +20,22 @@ public class JdbcEmployeeDao implements EmployeeDao {
     public int save(Employee employee) {
         return jdbcTemplate.update("insert into employee (firstName,lastName,role,password,email) " +
                         "values(?,?,?,?,?)",
-                employee.getFirstName(),employee.getLastName(),
-                employee.getRole(),employee.getPassword(),employee.getEmail());
+                employee.getFirstName(), employee.getLastName(),
+                employee.getRole(), employee.getPassword(), employee.getEmail());
     }
 
     @Override
     public List<Employee> findEmployees() {
-        List<Employee> employees = jdbcTemplate.query("SELECT * FROM employee",
-                (rs,rowNum)-> new Employee(
-                                rs.getInt("employeeID"),
-                                rs.getString("firstName"),
-                                rs.getString("lastName"),
-                                rs.getString("role"),
-                                rs.getString("password"),
-                                rs.getString("email")
-                             )
-                 );
-        return employees;
+        return jdbcTemplate.query("SELECT * FROM employee",
+                (rs, rowNum) -> new Employee(
+                        rs.getInt("employeeID"),
+                        rs.getString("firstName"),
+                        rs.getString("lastName"),
+                        rs.getString("role"),
+                        rs.getString("password"),
+                        rs.getString("email")
+                )
+        );
     }
 
     @Override
@@ -61,14 +60,14 @@ public class JdbcEmployeeDao implements EmployeeDao {
 
     @Override
     public int delete(String email) {
-        return jdbcTemplate.update("DELETE FROM employee WHERE email = ?",new Object[]{email}
-                );
+        return jdbcTemplate.update("DELETE FROM employee WHERE email = ?", new Object[]{email}
+        );
     }
 
     @Override
     public int update(Employee employee) {
         return jdbcTemplate.update("UPDATE employee set firstName = ?, lastName = ?, email = ? WHERE employeeID = ?",
-                employee.getFirstName(),employee.getLastName(),employee.getEmail(),employee.getEmployeeID());
+                employee.getFirstName(), employee.getLastName(), employee.getEmail(), employee.getEmployeeID());
     }
 
 

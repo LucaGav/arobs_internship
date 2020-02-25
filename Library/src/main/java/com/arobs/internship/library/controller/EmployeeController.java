@@ -12,38 +12,36 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="/employee")
+@RequestMapping(path = "/employee")
 public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
 
     @PostMapping("/addEmployee")
-    public ResponseEntity<String> addEmployee(@RequestBody @Valid EmployeeDTO employeeDTO){
+    public ResponseEntity<String> addEmployee(@RequestBody @Valid EmployeeDTO employeeDTO) {
         Employee employee = employeeService.dtoToEmployee(employeeDTO);
         employeeService.insertEmployee(employee);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/employees")
-    public List<EmployeeDTO> findEmployees(){
+    public List<EmployeeDTO> findEmployees() {
         return employeeService.findEmployees();
     }
 
     @GetMapping
-    public ResponseEntity<EmployeeDTO> getEmployee(@RequestParam("employeeID")int id){
+    public ResponseEntity<EmployeeDTO> getEmployee(@RequestParam("employeeID") int id) {
         Employee employee = employeeService.findEmployeeById(id);
-        if(employee == null){
+        if (employee == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(employeeService.employeeToDto(employee),HttpStatus.OK);
+        return new ResponseEntity<>(employeeService.employeeToDto(employee), HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteEmployee")
-    public ResponseEntity<String> deleteEmployee(@RequestParam("email")String email){
-        if(employeeService.deleteEmployee(email)==0){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
+    public ResponseEntity<String> deleteEmployee(@RequestParam("email") String email) {
+        if (employeeService.deleteEmployee(email) == 0) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -53,14 +51,12 @@ public class EmployeeController {
         if (employee == null) {
             employee = employeeService.dtoToEmployee(employeeDTO);
             employeeService.insertEmployee(employee);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-        else {
+        } else {
             employee.setEmail(employeeDTO.getEmail());
             employee.setFirstName(employeeDTO.getFirstName());
             employee.setLastName(employeeDTO.getLastName());
             employeeService.updateEmployee(employee);
-            return new ResponseEntity<>(HttpStatus.OK);
         }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

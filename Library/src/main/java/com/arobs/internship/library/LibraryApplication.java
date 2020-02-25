@@ -23,15 +23,9 @@ public class LibraryApplication implements CommandLineRunner {
 		runJDBC();
 	}
 
-	void runJDBC(){
+	void runJDBC() {
 
 		System.out.println("runJDBC");
-		/*DaoFactory factory = daoFactory.getInstance();
-		EmployeeDao employeeDao = factory.getEmployeeDao();
-		employeeDao.returnSmth();
-		employeeDao.save();*/
-
-		//employeeDao.save();
 	}
 
 }

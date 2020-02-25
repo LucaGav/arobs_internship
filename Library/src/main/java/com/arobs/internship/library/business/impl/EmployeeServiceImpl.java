@@ -26,7 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeDao employeeDao;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         DaoFactory factory = daoFactory.getInstance();
         employeeDao = factory.getEmployeeDao();
     }
@@ -41,7 +41,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<EmployeeDTO> findEmployees() {
         List<EmployeeDTO> employeeDTOS = new ArrayList<>();
         List<Employee> employees = employeeDao.findEmployees();
-        for(Employee e: employees){
+        for (Employee e : employees) {
             EmployeeDTO dto = employeeToDto(e);
             employeeDTOS.add(dto);
         }
@@ -50,8 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee findEmployeeById(int id) {
-        Employee employee = employeeDao.findById(id);
-        return employee;
+        return employeeDao.findById(id);
     }
 
     @Override
@@ -67,14 +66,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee dtoToEmployee(EmployeeDTO employeeDTO) {
         ModelMapper modelMapper = objectMapper.getMapper();
-        Employee employee = modelMapper.map(employeeDTO, Employee.class);
-        return employee;
+        return modelMapper.map(employeeDTO, Employee.class);
     }
 
     @Override
     public EmployeeDTO employeeToDto(Employee employee) {
         ModelMapper modelMapper = objectMapper.getMapper();
-        EmployeeDTO employeeDTO = modelMapper.map(employee, EmployeeDTO.class);
-        return employeeDTO;
+        return modelMapper.map(employee, EmployeeDTO.class);
     }
 }
