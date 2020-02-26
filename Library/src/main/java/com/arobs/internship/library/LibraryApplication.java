@@ -8,14 +8,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 
 @SpringBootApplication(exclude = HibernateJpaAutoConfiguration.class)
-public class LibraryApplication{
+public class LibraryApplication {
 
-	@Autowired
-	private DaoFactory daoFactory;
+    @Autowired
+    private DaoFactory daoFactory;
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		SpringApplication.run(LibraryApplication.class, args);
+        SpringApplication.run(LibraryApplication.class, args);
 
-	}
+    }
 }

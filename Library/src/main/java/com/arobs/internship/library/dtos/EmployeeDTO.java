@@ -48,7 +48,4 @@ public class EmployeeDTO {
         this.email = email;
     }
 
-    /*public boolean checkNull(EmployeeDTO employeeDTO){
-        if(employeeDTO.getEmail().equals(null) || employeeDTO.getFirstName().equals(null))
-    }*/
 }

@@ -1,6 +1,8 @@
 package com.arobs.internship.library.dao.factory;
 
+import com.arobs.internship.library.dao.BookDao;
 import com.arobs.internship.library.dao.EmployeeDao;
+import com.arobs.internship.library.dao.TagDao;
 import com.arobs.internship.library.dao.factory.hibernate.HibernateDaoFactory;
 import com.arobs.internship.library.dao.factory.jdbc.JdbcDaoFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,4 +41,8 @@ public abstract class DaoFactory {
 
 
     public abstract EmployeeDao getEmployeeDao();
+
+    public abstract BookDao getBookDao();
+
+    public abstract TagDao getTagDao();
 }

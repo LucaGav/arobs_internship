@@ -1,10 +1,18 @@
 package com.arobs.internship.library.entities;
 
 
+import com.arobs.internship.library.entities.operations.BookRequest;
+import com.arobs.internship.library.entities.operations.RentRequest;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "employee",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})}
+)
 public class Employee {
 
     @Id
@@ -12,20 +20,37 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int employeeID;
 
+    @NotNull
     @Column(name = "firstName")
     private String firstName;
 
+    @NotNull
     @Column(name = "lastName")
     private String lastName;
 
+    @NotNull
     @Column(name = "role")
     private String role;
 
+    @NotNull
     @Column(name = "password")
     private String password;
 
+    @NotNull
     @Column(name = "email")
     private String email;
+
+    @OneToMany(
+            mappedBy = "employee",
+            cascade = CascadeType.ALL
+    )
+    private Set<BookRequest> bookRequests = new HashSet<>();
+
+    @OneToMany(
+            mappedBy = "employee",
+            cascade = CascadeType.ALL
+    )
+    private Set<RentRequest> rentRequests = new HashSet<>();
 
     public Employee() {
     }
@@ -41,10 +66,6 @@ public class Employee {
 
     public int getEmployeeID() {
         return employeeID;
-    }
-
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
     }
 
     public String getFirstName() {
@@ -85,5 +106,21 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<BookRequest> getBookRequests() {
+        return bookRequests;
+    }
+
+    public void setBookRequests(Set<BookRequest> bookRequests) {
+        this.bookRequests = bookRequests;
+    }
+
+    public Set<RentRequest> getRentRequests() {
+        return rentRequests;
+    }
+
+    public void setRentRequests(Set<RentRequest> rentRequests) {
+        this.rentRequests = rentRequests;
     }
 }

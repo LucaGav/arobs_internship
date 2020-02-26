@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -21,6 +20,7 @@ public class HibernateEmployeeDao implements EmployeeDao {
 
     @Autowired
     private SessionFactory sessionFactory;
+
 
     public void setSessionFactory(SessionFactory sf) {
         this.sessionFactory = sf;
@@ -87,7 +87,7 @@ public class HibernateEmployeeDao implements EmployeeDao {
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public int delete(String email) {
         //Session session = this.entityManager.unwrap(Session.class);
         Transaction transaction = null;
@@ -109,14 +109,14 @@ public class HibernateEmployeeDao implements EmployeeDao {
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public int update(Employee employee) {
         //Session session = this.entityManager.unwrap(Session.class);
         Transaction transaction = null;
         try {
             Session session = this.sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.update(employee);
+            session.merge(employee);
             transaction.commit();
             return 1;
         } catch (Exception e) {
@@ -124,6 +124,7 @@ public class HibernateEmployeeDao implements EmployeeDao {
                 transaction.rollback();
                 System.out.println("Rollback");
             }
+            e.printStackTrace();
         }
         return 0;
     }

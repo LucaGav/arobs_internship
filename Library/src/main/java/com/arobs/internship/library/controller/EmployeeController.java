@@ -3,12 +3,14 @@ package com.arobs.internship.library.controller;
 import com.arobs.internship.library.business.EmployeeService;
 import com.arobs.internship.library.dtos.EmployeeDTO;
 import com.arobs.internship.library.entities.Employee;
+import com.arobs.internship.library.handler.MyCustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.ValidationException;
 import java.util.List;
 
 @RestController
@@ -19,39 +21,53 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @PostMapping("/addEmployee")
-    public ResponseEntity<String> addEmployee(@RequestBody @Valid EmployeeDTO employeeDTO) {
-        Employee employee = employeeService.dtoToEmployee(employeeDTO);
-        employeeService.insertEmployee(employee);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<?> addEmployee(@RequestBody @Valid EmployeeDTO employeeDTO) {
+        try {
+            employeeService.insertEmployee(employeeService.dtoToEmployee(employeeDTO));
+            return new ResponseEntity<>("Employee inserted successfully", HttpStatus.OK);
+        } catch (ValidationException ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/employees")
-    public List<EmployeeDTO> findEmployees() {
-        return employeeService.findEmployees();
+    public ResponseEntity<?> findEmployees() {
+        List<EmployeeDTO> employees = employeeService.findEmployees();
+        if (employees == null) {
+            return new ResponseEntity<>("No employees present in the db", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<EmployeeDTO> getEmployee(@RequestParam("employeeID") int id) {
-        Employee employee = employeeService.findEmployeeById(id);
-        if (employee == null) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<?> getEmployee(@RequestParam("employeeID") int id) {
+        EmployeeDTO employeeDTO;
+        try {
+            employeeDTO = employeeService.findEmployeeById(id);
+        } catch (MyCustomException ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(employeeService.employeeToDto(employee), HttpStatus.OK);
+        return new ResponseEntity<>(employeeDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteEmployee")
-    public ResponseEntity<String> deleteEmployee(@RequestParam("email") String email) {
-        if (employeeService.deleteEmployee(email) == 0) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<?> deleteEmployee(@RequestParam("email") String email) {
+        try {
+            employeeService.deleteEmployee(email);
+        } catch (MyCustomException ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>("User with email: " + email + " deleted successfully.", HttpStatus.OK);
     }
 
     @PatchMapping("/updateEmployee/{id}")
-    public ResponseEntity<String> updateEmployee(@RequestParam("email") String email, @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
-                                                 @PathVariable int id) {
-        EmployeeDTO employeeDTO= employeeService.updateEmployee(email,firstName,lastName,id);
-        if(employeeDTO == null){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<?> updateEmployee(@RequestParam("email") String email, @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
+                                            @PathVariable int id) {
+        try {
+            employeeService.updateEmployee(email, firstName, lastName, id);
+        } catch (MyCustomException ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("User with email: " + email + " updated successfully.", HttpStatus.OK);
     }
 }

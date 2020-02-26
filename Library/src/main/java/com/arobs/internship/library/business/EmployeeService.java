@@ -11,11 +11,11 @@ public interface EmployeeService {
 
     List<EmployeeDTO> findEmployees();
 
-    Employee findEmployeeById(int id);
+    EmployeeDTO findEmployeeById(int id);
 
-    EmployeeDTO updateEmployee(String email,String firstName, String lastName, int id);
+    void updateEmployee(String email, String firstName, String lastName, int id);
 
-    int deleteEmployee(String email);
+    void deleteEmployee(String email);
 
     Employee dtoToEmployee(EmployeeDTO employeeDTO);
 

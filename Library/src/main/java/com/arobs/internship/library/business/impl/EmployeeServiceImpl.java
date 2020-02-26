@@ -5,6 +5,7 @@ import com.arobs.internship.library.dao.EmployeeDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
 import com.arobs.internship.library.dtos.EmployeeDTO;
 import com.arobs.internship.library.entities.Employee;
+import com.arobs.internship.library.handler.MyCustomException;
 import com.arobs.internship.library.util.ObjectMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void insertEmployee(Employee employee) {
+        List<EmployeeDTO> employees = this.findEmployees();
+        for(EmployeeDTO e : employees){
+            if(e.getEmail().equals(employee.getEmail())){
+                throw new MyCustomException("Account associated with this email already exists");
+            }
+        }
         employeeDao.save(employee);
     }
 
@@ -49,25 +56,40 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee findEmployeeById(int id) {
-        return employeeDao.findById(id);
-    }
-
-    @Override
-    public EmployeeDTO updateEmployee(String email, String firstName, String lastName, int id) {
-        Employee employee = this.findEmployeeById(id);
-        if(!email.equals(employee.getEmail()) || !firstName.equals(employee.getFirstName()) || !lastName.equals(employee.getLastName())){
-            employee.setEmail(email);
-            employee.setFirstName(firstName);
-            employee.setLastName(lastName);
-            employeeDao.update(employee);
+    public EmployeeDTO findEmployeeById(int id) {
+        Employee employee = employeeDao.findById(id);
+        if(employee == null){
+            throw new MyCustomException("No employee with id: " + id + " found in the database");
         }
         return this.employeeToDto(employee);
     }
 
     @Override
-    public int deleteEmployee(String email) {
-        return employeeDao.delete(email);
+    public void updateEmployee(String email, String firstName, String lastName, int id) {
+        EmployeeDTO employeeDTO = this.findEmployeeById(id);
+        if (!email.equals(employeeDTO.getEmail()) || !firstName.equals(employeeDTO.getFirstName()) || !lastName.equals(employeeDTO.getLastName())) {
+            employeeDTO.setEmail(email);
+            employeeDTO.setFirstName(firstName);
+            employeeDTO.setLastName(lastName);
+            Employee employee = this.dtoToEmployee(employeeDTO);
+            employeeDao.update(employee);
+        }
+    }
+
+    @Override
+    public void deleteEmployee(String email) {
+        boolean foundEmail = false;
+        List<EmployeeDTO> employees = this.findEmployees();
+        for(EmployeeDTO employeeDTO: employees){
+            if(employeeDTO.getEmail().equals(email)){
+                foundEmail = true;
+                break;
+            }
+        }
+        if(!foundEmail){
+            throw new MyCustomException("Email is invalid");
+        }
+            employeeDao.delete(email);
     }
 
     @Override

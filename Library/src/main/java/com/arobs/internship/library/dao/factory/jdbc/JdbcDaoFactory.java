@@ -1,5 +1,6 @@
 package com.arobs.internship.library.dao.factory.jdbc;
 
+import com.arobs.internship.library.dao.BookDao;
 import com.arobs.internship.library.dao.EmployeeDao;
 import com.arobs.internship.library.dao.impl.jdbc.JdbcEmployeeDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
@@ -17,5 +18,10 @@ public class JdbcDaoFactory extends DaoFactory {
     @Override
     public EmployeeDao getEmployeeDao() {
         return employeeDao;
+    }
+
+    @Override
+    public BookDao getBookDao() {
+        return null;
     }
 }
