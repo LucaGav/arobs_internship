@@ -11,6 +11,8 @@ public interface EmployeeDao {
 
     Employee findById(int id);
 
+    Employee findByEmail(String email);
+
     int delete(String email);
 
     int update(Employee employee);

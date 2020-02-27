@@ -21,5 +21,5 @@ public interface EmployeeService {
 
     EmployeeDTO employeeToDto(Employee employee);
 
-
+    void updateEmployeePassoword(String email, String oldPassword, String newPassword);
 }

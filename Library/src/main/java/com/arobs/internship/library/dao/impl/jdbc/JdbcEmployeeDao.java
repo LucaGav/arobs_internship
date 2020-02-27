@@ -59,6 +59,11 @@ public class JdbcEmployeeDao implements EmployeeDao {
     }
 
     @Override
+    public Employee findByEmail(String email) {
+        return null;
+    }
+
+    @Override
     public int delete(String email) {
         return jdbcTemplate.update("DELETE FROM employee WHERE email = ?", new Object[]{email}
         );

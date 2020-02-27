@@ -14,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +48,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 throw new MyCustomException("Account associated with this email already exists");
             }
         }
+        employee.setPassword(this.passwordEncryption(employee.getPassword()));
         employeeDao.save(employee);
     }
 
@@ -106,5 +110,39 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeDTO employeeToDto(Employee employee) {
         ModelMapper modelMapper = objectMapper.getMapper();
         return modelMapper.map(employee, EmployeeDTO.class);
+    }
+
+    @Override
+    public void updateEmployeePassoword(String email, String oldPassword, String newPassword) {
+        Employee employee = employeeDao.findByEmail(email);
+        if(employee == null){
+            throw new MyCustomException("Email is invalid");
+        }
+        if(oldPassword.equals(newPassword)){
+            throw new MyCustomException("Old password equals new password");
+        }
+        String oldEncrypt = this.passwordEncryption(oldPassword);
+        if(!oldEncrypt.equals(employee.getPassword())){
+            throw new MyCustomException("Old password does not correspond");
+        }
+        employee.setPassword(this.passwordEncryption(newPassword));
+        employeeDao.update(employee);
+    }
+
+    private String passwordEncryption(String password) {
+        MessageDigest messageDigest = null;
+        try{
+            messageDigest = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e){
+            e.printStackTrace();
+        }
+        assert messageDigest != null;
+        byte[] hashInBytes = messageDigest.digest(password.getBytes(StandardCharsets.UTF_8));
+
+        StringBuilder sb = new StringBuilder();
+        for (byte b : hashInBytes) {
+            sb.append(String.format("%02x", b));
+        }
+        return sb.toString();
     }
 }

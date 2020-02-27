@@ -70,4 +70,14 @@ public class EmployeeController {
         }
         return new ResponseEntity<>("User with email: " + email + " updated successfully.", HttpStatus.OK);
     }
+
+    @PatchMapping("/updatePassword")
+    public ResponseEntity<?> updateEmployeePassword(@RequestParam("email") String email, @RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword){
+        try{
+            employeeService.updateEmployeePassoword(email,oldPassword,newPassword);
+        } catch (MyCustomException ex) {
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>("Password of user with email: " + email + " successfully updated", HttpStatus.OK);
+    }
 }

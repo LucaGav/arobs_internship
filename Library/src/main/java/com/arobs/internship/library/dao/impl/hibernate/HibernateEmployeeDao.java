@@ -90,6 +90,29 @@ public class HibernateEmployeeDao implements EmployeeDao {
     }
 
     @Override
+    public Employee findByEmail(String email) {
+        Transaction transaction = null;
+        Employee employee = null;
+        try{
+            Session session = this.sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("FROM Employee WHERE email =: email");
+            query.setParameter("email",email);
+            List<?> results = query.getResultList();
+            if(!results.isEmpty()){
+                employee = (Employee) results.get(0);
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+                logger.warn("Rollback");
+            }
+        }
+        return employee;
+    }
+
+    @Override
     //@Transactional
     public int delete(String email) {
         //Session session = this.entityManager.unwrap(Session.class);
