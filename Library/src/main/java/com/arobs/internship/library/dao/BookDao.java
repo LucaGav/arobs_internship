@@ -11,7 +11,7 @@ public interface BookDao {
 
     Book findById(int id);
 
-    int delete(String email);
+    int delete(String title, String author);
 
     int update(Book book);
 }

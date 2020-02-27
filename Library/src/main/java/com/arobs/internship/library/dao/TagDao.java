@@ -13,5 +13,5 @@ public interface TagDao {
 
     int delete(String description);
 
-    int update(Tag tag);
+   // int update(Tag tag);
 }

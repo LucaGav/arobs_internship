@@ -10,11 +10,11 @@ public interface TagService {
 
     List<TagDTO> findTags();
 
-    TagDTO findTagByDescription(String description);
+    Tag findTagByDescription(String description);
 
-    void updateTag(String description, int id);
+    //void updateTag(String description, int id);
 
-    void deleteTag(String title);
+    void deleteTag(String description);
 
     Tag dtoToTag(TagDTO tagDTO);
 

@@ -10,9 +10,6 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 @SpringBootApplication(exclude = HibernateJpaAutoConfiguration.class)
 public class LibraryApplication {
 
-    @Autowired
-    private DaoFactory daoFactory;
-
     public static void main(String[] args) {
 
         SpringApplication.run(LibraryApplication.class, args);

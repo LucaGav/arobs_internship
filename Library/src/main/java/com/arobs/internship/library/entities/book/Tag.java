@@ -8,7 +8,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "tag")
+@Table(name = "tag",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"tagDescription"})}
+    )
 public class Tag {
     @Id
     @Column(name = "tagID")
@@ -16,7 +18,7 @@ public class Tag {
     private int tagID;
 
     @NotNull
-    @Column
+    @Column(name = "tagDescription")
     private String tagDescription;
 
     @ManyToMany(mappedBy = "tags")

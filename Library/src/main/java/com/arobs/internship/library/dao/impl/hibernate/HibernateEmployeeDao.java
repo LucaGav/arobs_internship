@@ -5,6 +5,8 @@ import com.arobs.internship.library.entities.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,10 +23,11 @@ public class HibernateEmployeeDao implements EmployeeDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-
     public void setSessionFactory(SessionFactory sf) {
         this.sessionFactory = sf;
     }
+
+    private static final Logger logger = LoggerFactory.getLogger(HibernateEmployeeDao.class);
 
     @Override
     public int save(Employee employee) {
@@ -39,7 +42,7 @@ public class HibernateEmployeeDao implements EmployeeDao {
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
-                System.out.println("Rollback");
+                logger.warn("Rollback");
             }
         }
         return 0;
@@ -60,7 +63,7 @@ public class HibernateEmployeeDao implements EmployeeDao {
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
-                System.out.println("Rollback");
+                logger.warn("Rollback");
             }
         }
         return null;
@@ -80,7 +83,7 @@ public class HibernateEmployeeDao implements EmployeeDao {
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
-                System.out.println("Rollback");
+                logger.warn("Rollback");
             }
         }
         return null;
@@ -102,7 +105,7 @@ public class HibernateEmployeeDao implements EmployeeDao {
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
-                System.out.println("Rollback");
+                logger.warn("Rollback");
             }
         }
         return 0;
@@ -122,7 +125,7 @@ public class HibernateEmployeeDao implements EmployeeDao {
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
-                System.out.println("Rollback");
+                logger.warn("Rollback");
             }
             e.printStackTrace();
         }

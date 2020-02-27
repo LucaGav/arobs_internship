@@ -14,7 +14,7 @@ public interface BookService {
 
     void updateBook(String description, int id);
 
-    void deleteBook(String title);
+    void deleteBook(String title, String author);
 
     Book dtoToBook(BookDTO bookDTO);
 

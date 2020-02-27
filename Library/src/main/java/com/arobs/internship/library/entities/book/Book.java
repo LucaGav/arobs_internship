@@ -124,8 +124,4 @@ public class Book {
     public void setRentRequests(Set<RentRequest> rentRequests) {
         this.rentRequests = rentRequests;
     }
-
-    public void addNewTag(String description) {
-            this.getTags().add(new Tag(description));
-    }
 }
