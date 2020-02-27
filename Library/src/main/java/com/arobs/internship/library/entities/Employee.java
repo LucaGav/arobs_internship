@@ -64,6 +64,10 @@ public class Employee {
         this.email = email;
     }
 
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
+    }
+
     public int getEmployeeID() {
         return employeeID;
     }

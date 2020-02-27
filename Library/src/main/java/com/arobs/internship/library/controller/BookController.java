@@ -2,6 +2,7 @@ package com.arobs.internship.library.controller;
 
 import com.arobs.internship.library.business.BookService;
 import com.arobs.internship.library.dtos.BookDTO;
+import com.arobs.internship.library.dtos.TagDTO;
 import com.arobs.internship.library.entities.book.Book;
 import com.arobs.internship.library.handler.MyCustomException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.ValidationException;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping(path = "/book")
@@ -40,9 +42,9 @@ public class BookController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getBook(@RequestParam("bookID") int id){
+    public ResponseEntity<?> getBook(@RequestParam("bookID") int id) {
         BookDTO bookDTO;
-        try{
+        try {
             bookDTO = bookService.findBookById(id);
         } catch (MyCustomException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
@@ -53,10 +55,20 @@ public class BookController {
     @DeleteMapping("/deleteBook")
     public ResponseEntity<?> deleteBook(@RequestParam("title") String title, @RequestParam("author") String author) {
         try {
-            bookService.deleteBook(title,author);
+            bookService.deleteBook(title, author);
         } catch (MyCustomException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>("Book " + title + " of author: " + author + " deleted successfully.", HttpStatus.OK);
+    }
+
+    @PatchMapping("/updateBook/{id}")
+    public ResponseEntity<?> updateBook(@RequestParam("bookDescription") String description, @RequestBody Set<TagDTO> tagDTOSet, @PathVariable int id) {
+        try {
+            bookService.updateBook(description, tagDTOSet, id);
+        } catch (MyCustomException ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>("Book with id: " + id + " updated successfully", HttpStatus.OK);
     }
 }

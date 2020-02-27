@@ -109,6 +109,20 @@ public class HibernateBookDao implements BookDao {
 
     @Override
     public int update(Book book) {
+        Transaction transaction = null;
+        try {
+            Session session = this.sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.merge(book);
+            transaction.commit();
+            return 1;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+                logger.warn("Rollback");
+            }
+            e.printStackTrace();
+        }
         return 0;
     }
 }

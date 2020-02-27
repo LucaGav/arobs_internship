@@ -65,6 +65,10 @@ public class Book {
         this.addedDate = addDate;
     }
 
+    public void setBookID(int bookID) {
+        this.bookID = bookID;
+    }
+
     public int getBookID() {
         return bookID;
     }

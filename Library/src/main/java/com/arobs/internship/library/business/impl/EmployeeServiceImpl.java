@@ -75,12 +75,19 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void updateEmployee(String email, String firstName, String lastName, int id) {
         EmployeeDTO employeeDTO = this.findEmployeeById(id);
+        if(employeeDTO == null){
+            throw new MyCustomException("No employee with this id found");
+        }
         if (!email.equals(employeeDTO.getEmail()) || !firstName.equals(employeeDTO.getFirstName()) || !lastName.equals(employeeDTO.getLastName())) {
             employeeDTO.setEmail(email);
             employeeDTO.setFirstName(firstName);
             employeeDTO.setLastName(lastName);
             Employee employee = this.dtoToEmployee(employeeDTO);
+            employee.setEmployeeID(id);
             employeeDao.update(employee);
+        }
+        else {
+            throw new MyCustomException("No updated fields");
         }
     }
 
@@ -100,17 +107,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeDao.delete(email);
     }
 
-    @Override
-    public Employee dtoToEmployee(EmployeeDTO employeeDTO) {
-        ModelMapper modelMapper = objectMapper.getMapper();
-        return modelMapper.map(employeeDTO, Employee.class);
-    }
-
-    @Override
-    public EmployeeDTO employeeToDto(Employee employee) {
-        ModelMapper modelMapper = objectMapper.getMapper();
-        return modelMapper.map(employee, EmployeeDTO.class);
-    }
 
     @Override
     public void updateEmployeePassoword(String email, String oldPassword, String newPassword) {
@@ -127,6 +123,18 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         employee.setPassword(this.passwordEncryption(newPassword));
         employeeDao.update(employee);
+    }
+
+    @Override
+    public Employee dtoToEmployee(EmployeeDTO employeeDTO) {
+        ModelMapper modelMapper = objectMapper.getMapper();
+        return modelMapper.map(employeeDTO, Employee.class);
+    }
+
+    @Override
+    public EmployeeDTO employeeToDto(Employee employee) {
+        ModelMapper modelMapper = objectMapper.getMapper();
+        return modelMapper.map(employee, EmployeeDTO.class);
     }
 
     private String passwordEncryption(String password) {

@@ -42,8 +42,8 @@ public class BookServiceImpl implements BookService {
     @Override
     public void insertBook(Book book) {
         List<BookDTO> books = this.findBooks();
-        for(BookDTO b: books){
-            if(b.getAuthor().equals(book.getAuthor()) && b.getTitle().equals(book.getTitle())){
+        for (BookDTO b : books) {
+            if (b.getAuthor().equals(book.getAuthor()) && b.getTitle().equals(book.getTitle())) {
                 throw new MyCustomException("Book having the same title and author already exists");
             }
         }
@@ -54,7 +54,7 @@ public class BookServiceImpl implements BookService {
     public List<BookDTO> findBooks() {
         List<BookDTO> bookDTOS = new ArrayList<>();
         List<Book> books = bookDao.findBooks();
-        for(Book b: books){
+        for (Book b : books) {
             BookDTO dto = bookToDto(b);
             bookDTOS.add(dto);
         }
@@ -64,31 +64,43 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookDTO findBookById(int id) {
         Book book = bookDao.findById(id);
-        if(book == null){
+        if (book == null) {
             throw new MyCustomException("No book with id: " + id + "found in the database");
         }
         return this.bookToDto(book);
     }
 
     @Override
-    public void updateBook(String description, int id) {
-
+    public void updateBook(String description, Set<TagDTO> tagDTOSet, int id) {
+        BookDTO bookDTO = this.findBookById(id);
+        if (bookDTO == null) {
+            throw new MyCustomException("No book with this id found");
+        }
+        if (!description.equals(bookDTO.getDescription()) || !bookDTO.getTags().equals(tagDTOSet)) {
+            bookDTO.setTags(tagDTOSet);
+            bookDTO.setDescription(description);
+            Book book = this.dtoToBook(bookDTO);
+            book.setBookID(id);
+            bookDao.update(book);
+        } else {
+            throw new MyCustomException("No updated fields");
+        }
     }
 
     @Override
     public void deleteBook(String title, String author) {
         boolean foundBook = false;
         List<BookDTO> books = this.findBooks();
-        for(BookDTO bookDTO: books){
-            if(bookDTO.getTitle().equals(title) && bookDTO.getAuthor().equals(author)){
+        for (BookDTO bookDTO : books) {
+            if (bookDTO.getTitle().equals(title) && bookDTO.getAuthor().equals(author)) {
                 foundBook = true;
                 break;
             }
         }
-        if(!foundBook){
+        if (!foundBook) {
             throw new MyCustomException("No book with the title: " + title + " of the author: " + author + " was found");
         }
-        bookDao.delete(title,author);
+        bookDao.delete(title, author);
     }
 
     @Override
