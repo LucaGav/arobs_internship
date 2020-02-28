@@ -36,7 +36,8 @@ public class Book {
 
     @ManyToMany(cascade = {
             CascadeType.ALL,
-    })
+    }, fetch = FetchType.EAGER)
+
     @JoinTable(name = "booktag",
             joinColumns = @JoinColumn(name = "bookID"),
             inverseJoinColumns = @JoinColumn(name = "tagID")

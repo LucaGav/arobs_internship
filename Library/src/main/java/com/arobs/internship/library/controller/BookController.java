@@ -3,15 +3,13 @@ package com.arobs.internship.library.controller;
 import com.arobs.internship.library.business.BookService;
 import com.arobs.internship.library.dtos.BookDTO;
 import com.arobs.internship.library.dtos.TagDTO;
-import com.arobs.internship.library.entities.book.Book;
-import com.arobs.internship.library.handler.MyCustomException;
+import com.arobs.internship.library.handler.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.ValidationException;
 import java.util.List;
 import java.util.Set;
 
@@ -27,7 +25,7 @@ public class BookController {
         try {
             bookService.insertBook(bookService.dtoToBook(bookDTO));
             return new ResponseEntity<>("Inserted book", HttpStatus.OK);
-        } catch (ValidationException ex) {
+        } catch (CustomException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
@@ -46,7 +44,7 @@ public class BookController {
         BookDTO bookDTO;
         try {
             bookDTO = bookService.findBookById(id);
-        } catch (MyCustomException ex) {
+        } catch (CustomException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(bookDTO, HttpStatus.OK);
@@ -56,7 +54,7 @@ public class BookController {
     public ResponseEntity<?> deleteBook(@RequestParam("title") String title, @RequestParam("author") String author) {
         try {
             bookService.deleteBook(title, author);
-        } catch (MyCustomException ex) {
+        } catch (CustomException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>("Book " + title + " of author: " + author + " deleted successfully.", HttpStatus.OK);
@@ -66,7 +64,7 @@ public class BookController {
     public ResponseEntity<?> updateBook(@RequestParam("bookDescription") String description, @RequestBody Set<TagDTO> tagDTOSet, @PathVariable int id) {
         try {
             bookService.updateBook(description, tagDTOSet, id);
-        } catch (MyCustomException ex) {
+        } catch (CustomException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>("Book with id: " + id + " updated successfully", HttpStatus.OK);

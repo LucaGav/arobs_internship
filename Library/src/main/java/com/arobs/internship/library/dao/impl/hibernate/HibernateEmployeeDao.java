@@ -4,21 +4,17 @@ import com.arobs.internship.library.dao.EmployeeDao;
 import com.arobs.internship.library.entities.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
 public class HibernateEmployeeDao implements EmployeeDao {
-
-    @Autowired
-    private EntityManager entityManager;
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -31,127 +27,52 @@ public class HibernateEmployeeDao implements EmployeeDao {
 
     @Override
     public int save(Employee employee) {
-        //Session session = this.entityManager.unwrap(Session.class);
-        Transaction transaction = null;
-        try {
-            Session session = this.sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            Integer res = (Integer) session.save(employee);
-            transaction.commit();
-            return res;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-                logger.warn("Rollback");
-            }
-        }
-        return 0;
+        Session session = this.sessionFactory.getCurrentSession();
+        return (Integer) session.save(employee);
     }
 
     @Override
     public List<Employee> findEmployees() {
-        //Session session = this.entityManager.unwrap(Session.class);
-        Transaction transaction = null;
         List<Employee> employees;
-        try {
-            Session session = this.sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            Query query = session.createQuery("FROM Employee");
-            employees = query.getResultList();
-            transaction.commit();
-            return employees;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-                logger.warn("Rollback");
-            }
-        }
-        return null;
+        Session session = this.sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM Employee");
+        employees = query.getResultList();
+        return employees;
     }
 
     @Override
     public Employee findById(int id) {
-        //Session session = this.entityManager.unwrap(Session.class);
-        Transaction transaction = null;
         Employee employee;
-        try {
-            Session session = this.sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            employee = session.get(Employee.class, id);
-            transaction.commit();
-            return employee;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-                logger.warn("Rollback");
-            }
-        }
-        return null;
+        Session session = this.sessionFactory.getCurrentSession();
+        employee = session.get(Employee.class, id);
+        return employee;
     }
 
     @Override
     public Employee findByEmail(String email) {
-        Transaction transaction = null;
         Employee employee = null;
-        try{
-            Session session = this.sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            Query query = session.createQuery("FROM Employee WHERE email =: email");
-            query.setParameter("email",email);
-            List<?> results = query.getResultList();
-            if(!results.isEmpty()){
-                employee = (Employee) results.get(0);
-            }
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-                logger.warn("Rollback");
-            }
+        Session session = this.sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM Employee WHERE email =: email");
+        query.setParameter("email", email);
+        List<?> results = query.getResultList();
+        if (!results.isEmpty()) {
+            employee = (Employee) results.get(0);
         }
         return employee;
     }
 
     @Override
-    //@Transactional
     public int delete(String email) {
-        //Session session = this.entityManager.unwrap(Session.class);
-        Transaction transaction = null;
-        try {
-            Session session = this.sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            Query query = session.createQuery("DELETE FROM Employee where email =:email");
-            query.setParameter("email", email);
-            query.executeUpdate();
-            transaction.commit();
-            return 1;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-                logger.warn("Rollback");
-            }
-        }
-        return 0;
+        Session session = this.sessionFactory.getCurrentSession();
+        Query query = session.createQuery("DELETE FROM Employee where email =:email");
+        query.setParameter("email", email);
+        return query.executeUpdate();
     }
 
     @Override
-    //@Transactional
     public int update(Employee employee) {
-        //Session session = this.entityManager.unwrap(Session.class);
-        Transaction transaction = null;
-        try {
-            Session session = this.sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            session.merge(employee);
-            transaction.commit();
-            return 1;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-                logger.warn("Rollback");
-            }
-            e.printStackTrace();
-        }
-        return 0;
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(employee);
+        return 1;
     }
 }

@@ -7,13 +7,14 @@ import com.arobs.internship.library.dtos.BookDTO;
 import com.arobs.internship.library.dtos.TagDTO;
 import com.arobs.internship.library.entities.book.Book;
 import com.arobs.internship.library.entities.book.Tag;
-import com.arobs.internship.library.handler.MyCustomException;
+import com.arobs.internship.library.handler.CustomException;
 import com.arobs.internship.library.util.ObjectMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -40,17 +41,19 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void insertBook(Book book) {
+    @Transactional
+    public void insertBook(Book book) throws CustomException {
         List<BookDTO> books = this.findBooks();
         for (BookDTO b : books) {
             if (b.getAuthor().equals(book.getAuthor()) && b.getTitle().equals(book.getTitle())) {
-                throw new MyCustomException("Book having the same title and author already exists");
+                throw new CustomException("Book having the same title and author already exists");
             }
         }
         bookDao.save(book);
     }
 
     @Override
+    @Transactional
     public List<BookDTO> findBooks() {
         List<BookDTO> bookDTOS = new ArrayList<>();
         List<Book> books = bookDao.findBooks();
@@ -62,19 +65,21 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public BookDTO findBookById(int id) {
+    @Transactional
+    public BookDTO findBookById(int id) throws CustomException {
         Book book = bookDao.findById(id);
         if (book == null) {
-            throw new MyCustomException("No book with id: " + id + "found in the database");
+            throw new CustomException("No book with id: " + id + "found in the database");
         }
         return this.bookToDto(book);
     }
 
     @Override
-    public void updateBook(String description, Set<TagDTO> tagDTOSet, int id) {
+    @Transactional
+    public void updateBook(String description, Set<TagDTO> tagDTOSet, int id) throws CustomException {
         BookDTO bookDTO = this.findBookById(id);
         if (bookDTO == null) {
-            throw new MyCustomException("No book with this id found");
+            throw new CustomException("No book with this id found");
         }
         if (!description.equals(bookDTO.getDescription()) || !bookDTO.getTags().equals(tagDTOSet)) {
             bookDTO.setTags(tagDTOSet);
@@ -83,12 +88,13 @@ public class BookServiceImpl implements BookService {
             book.setBookID(id);
             bookDao.update(book);
         } else {
-            throw new MyCustomException("No updated fields");
+            throw new CustomException("No updated fields");
         }
     }
 
     @Override
-    public void deleteBook(String title, String author) {
+    @Transactional
+    public void deleteBook(String title, String author) throws CustomException {
         boolean foundBook = false;
         List<BookDTO> books = this.findBooks();
         for (BookDTO bookDTO : books) {
@@ -98,12 +104,13 @@ public class BookServiceImpl implements BookService {
             }
         }
         if (!foundBook) {
-            throw new MyCustomException("No book with the title: " + title + " of the author: " + author + " was found");
+            throw new CustomException("No book with the title: " + title + " of the author: " + author + " was found");
         }
         bookDao.delete(title, author);
     }
 
     @Override
+    @Transactional
     public Book dtoToBook(BookDTO bookDTO) {
         ModelMapper modelMapper = objectMapper.getMapper();
         Book book = modelMapper.map(bookDTO, Book.class);
@@ -114,7 +121,7 @@ public class BookServiceImpl implements BookService {
             try {
                 tag = tagService.findTagByDescription(tagDTO.getTagDescription());
                 tags.add(tag);//find in db? then add it to the et
-            } catch (MyCustomException ex) {
+            } catch (CustomException ex) {
                 tag = tagService.dtoToTag(tagDTO);//didn't find in db? add to set as new tag
                 tags.add(tag);
             }
@@ -124,6 +131,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public BookDTO bookToDto(Book book) {
         ModelMapper modelMapper = objectMapper.getMapper();
         return modelMapper.map(book, BookDTO.class);

@@ -5,13 +5,13 @@ import com.arobs.internship.library.dao.TagDao;
 import com.arobs.internship.library.entities.book.Tag;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -28,84 +28,40 @@ public class HibernateTagDao implements TagDao {
 
     @Override
     public int save(Tag tag) {
-        Transaction transaction = null;
-        try {
-            Session session = this.sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            Integer res = (Integer) session.save(tag);
-            transaction.commit();
-            return res;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-                logger.warn("Rollback");
-            }
-        }
-        return 0;
+        Session session = this.sessionFactory.getCurrentSession();
+        return (Integer) session.save(tag);
     }
 
     @Override
     public List<Tag> findTags() {
-        Transaction transaction = null;
         List<Tag> tags;
-        try {
-            Session session = this.sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            Query query = session.createQuery("FROM Tag");
-            tags = query.getResultList();
-            transaction.commit();
-            return tags;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-                logger.warn("Rollback");
-            }
-        }
-        return null;
+        Session session = this.sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM Tag");
+        tags = query.getResultList();
+        return tags;
     }
 
     @Override
     public Tag findByDescription(String description) {
-        Transaction transaction = null;
         Tag tag = null;
-        try {
-            Session session = this.sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            Query query = session.createQuery("FROM Tag WHERE tagDescription =: tagDescription");
-            query.setParameter("tagDescription", description);
-            //tag = (Tag) query.getSingleResult();
-            List<?> results = query.getResultList();
-            if (!results.isEmpty()) {
-                tag = (Tag) results.get(0);
-            }
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-                logger.warn("Rollback");
-            }
+        Session session = this.sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM Tag WHERE tagDescription =: tagDescription");
+        query.setParameter("tagDescription", description);
+        //tag = (Tag) query.getSingleResult();
+        List<?> results = query.getResultList();
+        if (!results.isEmpty()) {
+            tag = (Tag) results.get(0);
         }
         return tag;
     }
 
     @Override
     public int delete(String description) {
-        Transaction transaction = null;
-        try {
-            Session session = this.sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            Query query = session.createQuery("DELETE FROM Tag where tagDescription =: description");
-            query.setParameter("description", description);
-            query.executeUpdate();
-            transaction.commit();
-            return 1;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-                logger.warn("Rollback");
-            }
-        }
-        return 0;
+        Session session = this.sessionFactory.getCurrentSession();
+        Query query = session.createQuery("DELETE FROM Tag where tagDescription =: description");
+        query.setParameter("description", description);
+        query.executeUpdate();
+        return 1;
     }
 
    /* @Override

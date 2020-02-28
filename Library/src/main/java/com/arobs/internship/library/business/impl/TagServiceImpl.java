@@ -5,13 +5,14 @@ import com.arobs.internship.library.dao.TagDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
 import com.arobs.internship.library.dtos.TagDTO;
 import com.arobs.internship.library.entities.book.Tag;
-import com.arobs.internship.library.handler.MyCustomException;
+import com.arobs.internship.library.handler.CustomException;
 import com.arobs.internship.library.util.ObjectMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,17 +34,19 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public void insertTag(Tag tag) {
+    @Transactional
+    public void insertTag(Tag tag) throws CustomException {
         List<TagDTO> tagDTOS = this.findTags();
         for(TagDTO t: tagDTOS){
             if(t.getTagDescription().equals(tag.getTagDescription())){
-                throw new MyCustomException("Tag with description " + t.getTagDescription() + " already exists.");
+                throw new CustomException("Tag with description " + t.getTagDescription() + " already exists.");
             }
         }
         tagDao.save(tag);
     }
 
     @Override
+    @Transactional
     public List<TagDTO> findTags() {
         List<TagDTO> tagDTOS = new ArrayList<>();
         List<Tag> tags = tagDao.findTags();
@@ -55,10 +58,11 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public Tag findTagByDescription(String description) {
+    @Transactional
+    public Tag findTagByDescription(String description) throws CustomException {
         Tag tag = tagDao.findByDescription(description);
         if (tag == null) {
-            throw new MyCustomException("No tag with this description found");
+            throw new CustomException("No tag with this description found");
         }
         return tag;
     }
@@ -69,7 +73,8 @@ public class TagServiceImpl implements TagService {
     }*/
 
     @Override
-    public void deleteTag(String description) {
+    @Transactional
+    public void deleteTag(String description) throws CustomException {
         boolean foundDescription = false;
         List<TagDTO> tags = this.findTags();
         for(TagDTO tagDTO: tags){
@@ -79,18 +84,20 @@ public class TagServiceImpl implements TagService {
             }
         }
         if(!foundDescription){
-            throw new MyCustomException("Description is invalid");
+            throw new CustomException("Description is invalid");
         }
         tagDao.delete(description);
     }
 
     @Override
+    @Transactional
     public Tag dtoToTag(TagDTO tagDTO) {
         ModelMapper modelMapper = objectMapper.getMapper();
         return modelMapper.map(tagDTO, Tag.class);
     }
 
     @Override
+    @Transactional
     public TagDTO tagToDto(Tag tag) {
         ModelMapper modelMapper = objectMapper.getMapper();
         return modelMapper.map(tag, TagDTO.class);
