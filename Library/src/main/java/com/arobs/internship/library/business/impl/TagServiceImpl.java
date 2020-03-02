@@ -5,7 +5,7 @@ import com.arobs.internship.library.dao.TagDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
 import com.arobs.internship.library.dtos.TagDTO;
 import com.arobs.internship.library.entities.book.Tag;
-import com.arobs.internship.library.handler.CustomException;
+import com.arobs.internship.library.handler.ValidationException;
 import com.arobs.internship.library.util.ObjectMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,11 +35,11 @@ public class TagServiceImpl implements TagService {
 
     @Override
     @Transactional
-    public void insertTag(Tag tag) throws CustomException {
+    public void insertTag(Tag tag) throws ValidationException {
         List<TagDTO> tagDTOS = this.findTags();
         for(TagDTO t: tagDTOS){
             if(t.getTagDescription().equals(tag.getTagDescription())){
-                throw new CustomException("Tag with description " + t.getTagDescription() + " already exists.");
+                throw new ValidationException("Tag with description " + t.getTagDescription() + " already exists.");
             }
         }
         tagDao.save(tag);
@@ -59,22 +59,17 @@ public class TagServiceImpl implements TagService {
 
     @Override
     @Transactional
-    public Tag findTagByDescription(String description) throws CustomException {
+    public Tag findTagByDescription(String description) throws ValidationException {
         Tag tag = tagDao.findByDescription(description);
         if (tag == null) {
-            throw new CustomException("No tag with this description found");
+            throw new ValidationException("No tag with this description found");
         }
         return tag;
     }
 
-   /* @Override
-    public void updateTag(String description, int id) {
-        TagDTO tagDTO = this.findTagByDescription()
-    }*/
-
     @Override
     @Transactional
-    public void deleteTag(String description) throws CustomException {
+    public void deleteTag(String description) throws ValidationException {
         boolean foundDescription = false;
         List<TagDTO> tags = this.findTags();
         for(TagDTO tagDTO: tags){
@@ -84,7 +79,7 @@ public class TagServiceImpl implements TagService {
             }
         }
         if(!foundDescription){
-            throw new CustomException("Description is invalid");
+            throw new ValidationException("Description is invalid");
         }
         tagDao.delete(description);
     }

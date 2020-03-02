@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -44,10 +43,8 @@ public class HibernateBookDao implements BookDao {
 
     @Override
     public Book findById(int id) {
-        Book book;
         Session session = this.sessionFactory.getCurrentSession();
-        book = session.get(Book.class, id);
-        return book;
+        return session.get(Book.class, id);
     }
 
     @Override
@@ -63,7 +60,7 @@ public class HibernateBookDao implements BookDao {
     @Override
     public int update(Book book) {
         Session session = this.sessionFactory.getCurrentSession();
-        session.update(book);
+        session.merge(book);
         return 1;
     }
 }

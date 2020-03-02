@@ -2,14 +2,13 @@ package com.arobs.internship.library.controller;
 
 import com.arobs.internship.library.business.TagService;
 import com.arobs.internship.library.dtos.TagDTO;
-import com.arobs.internship.library.handler.CustomException;
+import com.arobs.internship.library.handler.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.ValidationException;
 import java.util.List;
 
 @RestController
@@ -24,7 +23,7 @@ public class TagController {
         try {
             tagService.insertTag(tagService.dtoToTag(tagDTO));
             return new ResponseEntity<>("Tag inserted successfully", HttpStatus.OK);
-        } catch (CustomException ex) {
+        } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
@@ -43,7 +42,7 @@ public class TagController {
         TagDTO tagDTO;
         try {
             tagDTO = tagService.tagToDto(tagService.findTagByDescription(tagDescription));
-        } catch (CustomException ex) {
+        } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(tagDTO, HttpStatus.OK);
@@ -53,7 +52,7 @@ public class TagController {
     public ResponseEntity<?> deleteTag(@RequestParam("description") String description){
         try{
             tagService.deleteTag(description);
-        } catch (CustomException ex) {
+        } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>("Tag with description: " + description + " deleted successfully.", HttpStatus.OK);

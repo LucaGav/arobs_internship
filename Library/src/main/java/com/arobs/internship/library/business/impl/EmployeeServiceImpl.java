@@ -5,7 +5,7 @@ import com.arobs.internship.library.dao.EmployeeDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
 import com.arobs.internship.library.dtos.EmployeeDTO;
 import com.arobs.internship.library.entities.Employee;
-import com.arobs.internship.library.handler.CustomException;
+import com.arobs.internship.library.handler.ValidationException;
 import com.arobs.internship.library.util.ObjectMapper;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -43,11 +43,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional
-    public void insertEmployee(Employee employee) throws CustomException {
+    public void insertEmployee(Employee employee) throws ValidationException {
         List<EmployeeDTO> employees = this.findEmployees();
         for(EmployeeDTO e : employees){
             if(e.getEmail().equals(employee.getEmail())){
-                throw new CustomException("Account associated with this email already exists");
+                throw new ValidationException("Account associated with this email already exists");
             }
         }
         employee.setPassword(this.passwordEncryption(employee.getPassword()));
@@ -68,20 +68,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional
-    public EmployeeDTO findEmployeeById(int id) throws CustomException {
+    public EmployeeDTO findEmployeeById(int id) throws ValidationException {
         Employee employee = employeeDao.findById(id);
         if(employee == null){
-            throw new CustomException("No employee with id: " + id + " found in the database");
+            throw new ValidationException("No employee with id: " + id + " found in the database");
         }
         return this.employeeToDto(employee);
     }
 
     @Override
     @Transactional
-    public void updateEmployee(String email, String firstName, String lastName, int id) throws CustomException {
+    public void updateEmployee(String email, String firstName, String lastName, int id) throws ValidationException {
         EmployeeDTO employeeDTO = this.findEmployeeById(id);
         if(employeeDTO == null){
-            throw new CustomException("No employee with this id found");
+            throw new ValidationException("No employee with this id found");
         }
         if (!email.equals(employeeDTO.getEmail()) || !firstName.equals(employeeDTO.getFirstName()) || !lastName.equals(employeeDTO.getLastName())) {
             employeeDTO.setEmail(email);
@@ -92,13 +92,13 @@ public class EmployeeServiceImpl implements EmployeeService {
             employeeDao.update(employee);
         }
         else {
-            throw new CustomException("No updated fields");
+            throw new ValidationException("No updated fields");
         }
     }
 
     @Override
     @Transactional
-    public void deleteEmployee(String email) throws CustomException {
+    public void deleteEmployee(String email) throws ValidationException {
         boolean foundEmail = false;
         List<EmployeeDTO> employees = this.findEmployees();
         for(EmployeeDTO employeeDTO: employees){
@@ -108,7 +108,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             }
         }
         if(!foundEmail){
-            throw new CustomException("Email is invalid");
+            throw new ValidationException("Email is invalid");
         }
         employeeDao.delete(email);
     }
@@ -116,17 +116,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional
-    public void updateEmployeePassoword(String email, String oldPassword, String newPassword) throws CustomException {
+    public void updateEmployeePassoword(String email, String oldPassword, String newPassword) throws ValidationException {
         Employee employee = employeeDao.findByEmail(email);
         if(employee == null){
-            throw new CustomException("Email is invalid");
+            throw new ValidationException("Email is invalid");
         }
         if(oldPassword.equals(newPassword)){
-            throw new CustomException("Old password equals new password");
+            throw new ValidationException("Old password equals new password");
         }
         String oldEncrypt = this.passwordEncryption(oldPassword);
         if(!oldEncrypt.equals(employee.getPassword())){
-            throw new CustomException("Old password does not correspond");
+            throw new ValidationException("Old password does not correspond");
         }
         employee.setPassword(this.passwordEncryption(newPassword));
         employeeDao.update(employee);

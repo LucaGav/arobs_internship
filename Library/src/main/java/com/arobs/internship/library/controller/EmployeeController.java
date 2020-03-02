@@ -2,7 +2,7 @@ package com.arobs.internship.library.controller;
 
 import com.arobs.internship.library.business.EmployeeService;
 import com.arobs.internship.library.dtos.EmployeeDTO;
-import com.arobs.internship.library.handler.CustomException;
+import com.arobs.internship.library.handler.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class EmployeeController {
         try {
             employeeService.insertEmployee(employeeService.dtoToEmployee(employeeDTO));
             return new ResponseEntity<>("Employee inserted successfully", HttpStatus.OK);
-        } catch (CustomException ex) {
+        } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
@@ -42,7 +42,7 @@ public class EmployeeController {
         EmployeeDTO employeeDTO;
         try {
             employeeDTO = employeeService.findEmployeeById(id);
-        } catch (CustomException ex) {
+        } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(employeeDTO, HttpStatus.OK);
@@ -52,7 +52,7 @@ public class EmployeeController {
     public ResponseEntity<?> deleteEmployee(@RequestParam("email") String email) {
         try {
             employeeService.deleteEmployee(email);
-        } catch (CustomException ex) {
+        } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>("User with email: " + email + " deleted successfully.", HttpStatus.OK);
@@ -63,7 +63,7 @@ public class EmployeeController {
                                             @PathVariable int id) {
         try {
             employeeService.updateEmployee(email, firstName, lastName, id);
-        } catch (CustomException ex) {
+        } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>("User with email: " + email + " updated successfully.", HttpStatus.OK);
@@ -73,7 +73,7 @@ public class EmployeeController {
     public ResponseEntity<?> updateEmployeePassword(@RequestParam("email") String email, @RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword) {
         try {
             employeeService.updateEmployeePassoword(email, oldPassword, newPassword);
-        } catch (CustomException ex) {
+        } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>("Password of user with email: " + email + " successfully updated", HttpStatus.OK);

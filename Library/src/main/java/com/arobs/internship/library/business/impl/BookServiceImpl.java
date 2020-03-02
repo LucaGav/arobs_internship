@@ -7,7 +7,7 @@ import com.arobs.internship.library.dtos.BookDTO;
 import com.arobs.internship.library.dtos.TagDTO;
 import com.arobs.internship.library.entities.book.Book;
 import com.arobs.internship.library.entities.book.Tag;
-import com.arobs.internship.library.handler.CustomException;
+import com.arobs.internship.library.handler.ValidationException;
 import com.arobs.internship.library.util.ObjectMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,11 +42,11 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public void insertBook(Book book) throws CustomException {
+    public void insertBook(Book book) throws ValidationException {
         List<BookDTO> books = this.findBooks();
         for (BookDTO b : books) {
             if (b.getAuthor().equals(book.getAuthor()) && b.getTitle().equals(book.getTitle())) {
-                throw new CustomException("Book having the same title and author already exists");
+                throw new ValidationException("Book having the same title and author already exists");
             }
         }
         bookDao.save(book);
@@ -66,20 +66,20 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public BookDTO findBookById(int id) throws CustomException {
+    public BookDTO findBookById(int id) throws ValidationException {
         Book book = bookDao.findById(id);
         if (book == null) {
-            throw new CustomException("No book with id: " + id + "found in the database");
+            throw new ValidationException("No book with id: " + id + "found in the database");
         }
         return this.bookToDto(book);
     }
 
     @Override
     @Transactional
-    public void updateBook(String description, Set<TagDTO> tagDTOSet, int id) throws CustomException {
+    public void updateBook(String description, Set<TagDTO> tagDTOSet, int id) throws ValidationException {
         BookDTO bookDTO = this.findBookById(id);
         if (bookDTO == null) {
-            throw new CustomException("No book with this id found");
+            throw new ValidationException("No book with this id found");
         }
         if (!description.equals(bookDTO.getDescription()) || !bookDTO.getTags().equals(tagDTOSet)) {
             bookDTO.setTags(tagDTOSet);
@@ -88,13 +88,13 @@ public class BookServiceImpl implements BookService {
             book.setBookID(id);
             bookDao.update(book);
         } else {
-            throw new CustomException("No updated fields");
+            throw new ValidationException("No updated fields");
         }
     }
 
     @Override
     @Transactional
-    public void deleteBook(String title, String author) throws CustomException {
+    public void deleteBook(String title, String author) throws ValidationException {
         boolean foundBook = false;
         List<BookDTO> books = this.findBooks();
         for (BookDTO bookDTO : books) {
@@ -104,7 +104,7 @@ public class BookServiceImpl implements BookService {
             }
         }
         if (!foundBook) {
-            throw new CustomException("No book with the title: " + title + " of the author: " + author + " was found");
+            throw new ValidationException("No book with the title: " + title + " of the author: " + author + " was found");
         }
         bookDao.delete(title, author);
     }
@@ -114,19 +114,10 @@ public class BookServiceImpl implements BookService {
     public Book dtoToBook(BookDTO bookDTO) {
         ModelMapper modelMapper = objectMapper.getMapper();
         Book book = modelMapper.map(bookDTO, Book.class);
-        Set<Tag> tags = new HashSet<>();
-        Tag tag;
-        Set<TagDTO> tagDTOs = bookDTO.getTags();
-        for (TagDTO tagDTO : tagDTOs) {
-            try {
-                tag = tagService.findTagByDescription(tagDTO.getTagDescription());
-                tags.add(tag);//find in db? then add it to the et
-            } catch (CustomException ex) {
-                tag = tagService.dtoToTag(tagDTO);//didn't find in db? add to set as new tag
-                tags.add(tag);
-            }
+        book.setTags(this.updateTags(bookDTO));
+        for(Tag tag: book.getTags()){
+            System.out.println(tag.getTagID() + " " + tag.getTagDescription());
         }
-        book.setTags(tags);
         return book;
     }
 
@@ -135,5 +126,21 @@ public class BookServiceImpl implements BookService {
     public BookDTO bookToDto(Book book) {
         ModelMapper modelMapper = objectMapper.getMapper();
         return modelMapper.map(book, BookDTO.class);
+    }
+
+    public Set<Tag> updateTags(BookDTO bookDTO){
+        Set<Tag> tags = new HashSet<>();
+        Tag tag;
+        Set<TagDTO> tagDTOs = bookDTO.getTags();
+        for (TagDTO tagDTO : tagDTOs) {
+            try {
+                tag = tagService.findTagByDescription(tagDTO.getTagDescription());
+                tags.add(tag);//find in db? then add it to the et
+            } catch (ValidationException ex) {
+                tag = tagService.dtoToTag(tagDTO);//didn't find in db? add to set as new tag
+                tags.add(tag);
+            }
+        }
+        return tags;
     }
 }
