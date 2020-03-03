@@ -44,8 +44,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public void insertEmployee(Employee employee) throws ValidationException {
-        List<EmployeeDTO> employees = this.findEmployees();
-        for(EmployeeDTO e : employees){
+        List<Employee> employees = this.findEmployees();
+        for(Employee e : employees){
             if(e.getEmail().equals(employee.getEmail())){
                 throw new ValidationException("Account associated with this email already exists");
             }
@@ -56,40 +56,32 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional
-    public List<EmployeeDTO> findEmployees() {
-        List<EmployeeDTO> employeeDTOS = new ArrayList<>();
+    public List<Employee> findEmployees() {
         List<Employee> employees = employeeDao.findEmployees();
-        for (Employee e : employees) {
-            EmployeeDTO dto = employeeToDto(e);
-            employeeDTOS.add(dto);
-        }
-        return employeeDTOS;
+        return employees;
     }
 
     @Override
     @Transactional
-    public EmployeeDTO findEmployeeById(int id) throws ValidationException {
+    public Employee findEmployeeById(int id) throws ValidationException {
         Employee employee = employeeDao.findById(id);
         if(employee == null){
             throw new ValidationException("No employee with id: " + id + " found in the database");
         }
-        return this.employeeToDto(employee);
+        return employee;
     }
 
     @Override
     @Transactional
     public void updateEmployee(String email, String firstName, String lastName, int id) throws ValidationException {
-        EmployeeDTO employeeDTO = this.findEmployeeById(id);
-        if(employeeDTO == null){
+        Employee employee = this.findEmployeeById(id);
+        if(employee == null){
             throw new ValidationException("No employee with this id found");
         }
-        if (!email.equals(employeeDTO.getEmail()) || !firstName.equals(employeeDTO.getFirstName()) || !lastName.equals(employeeDTO.getLastName())) {
-            employeeDTO.setEmail(email);
-            employeeDTO.setFirstName(firstName);
-            employeeDTO.setLastName(lastName);
-            Employee employee = this.dtoToEmployee(employeeDTO);
-            employee.setEmployeeID(id);
-            employeeDao.update(employee);
+        if (!email.equals(employee.getEmail()) || !firstName.equals(employee.getFirstName()) || !lastName.equals(employee.getLastName())) {
+            employee.setEmail(email);
+            employee.setFirstName(firstName);
+            employee.setLastName(lastName);
         }
         else {
             throw new ValidationException("No updated fields");
@@ -100,9 +92,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Transactional
     public void deleteEmployee(String email) throws ValidationException {
         boolean foundEmail = false;
-        List<EmployeeDTO> employees = this.findEmployees();
-        for(EmployeeDTO employeeDTO: employees){
-            if(employeeDTO.getEmail().equals(email)){
+        List<Employee> employees = this.findEmployees();
+        for(Employee employee: employees){
+            if(employee.getEmail().equals(email)){
                 foundEmail = true;
                 break;
             }
@@ -129,7 +121,6 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new ValidationException("Old password does not correspond");
         }
         employee.setPassword(this.passwordEncryption(newPassword));
-        employeeDao.update(employee);
     }
 
     @Override
@@ -142,6 +133,18 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeDTO employeeToDto(Employee employee) {
         ModelMapper modelMapper = objectMapper.getMapper();
         return modelMapper.map(employee, EmployeeDTO.class);
+    }
+
+    @Override
+    public List<EmployeeDTO> listEmployeeToDto(List<Employee> employees){
+        ModelMapper modelMapper = objectMapper.getMapper();
+        EmployeeDTO employeeDTO;
+        List<EmployeeDTO> employeeDTOS = new ArrayList<>();
+        for(Employee employee: employees){
+            employeeDTO = modelMapper.map(employee, EmployeeDTO.class);
+            employeeDTOS.add(employeeDTO);
+        }
+        return employeeDTOS;
     }
 
     private String passwordEncryption(String password) {

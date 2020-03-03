@@ -2,6 +2,7 @@ package com.arobs.internship.library.controller;
 
 import com.arobs.internship.library.business.EmployeeService;
 import com.arobs.internship.library.dtos.EmployeeDTO;
+import com.arobs.internship.library.entities.Employee;
 import com.arobs.internship.library.handler.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,22 +31,23 @@ public class EmployeeController {
 
     @GetMapping("/employees")
     public ResponseEntity<?> findEmployees() {
-        List<EmployeeDTO> employees = employeeService.findEmployees();
+        List<Employee> employees = employeeService.findEmployees();
         if (employees == null) {
             return new ResponseEntity<>("No employees present in the db", HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(employees, HttpStatus.OK);
+        List<EmployeeDTO> employeeDTOS = employeeService.listEmployeeToDto(employees);
+        return new ResponseEntity<>(employeeDTOS, HttpStatus.OK);
     }
 
     @GetMapping
     public ResponseEntity<?> getEmployee(@RequestParam("employeeID") int id) {
-        EmployeeDTO employeeDTO;
+        Employee employee;
         try {
-            employeeDTO = employeeService.findEmployeeById(id);
+            employee = employeeService.findEmployeeById(id);
         } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(employeeDTO, HttpStatus.OK);
+        return new ResponseEntity<>(employeeService.employeeToDto(employee), HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteEmployee")

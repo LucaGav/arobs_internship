@@ -3,6 +3,7 @@ package com.arobs.internship.library.controller;
 import com.arobs.internship.library.business.BookService;
 import com.arobs.internship.library.dtos.BookDTO;
 import com.arobs.internship.library.dtos.TagDTO;
+import com.arobs.internship.library.entities.book.Book;
 import com.arobs.internship.library.handler.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,22 +33,23 @@ public class BookController {
 
     @GetMapping("/books")
     public ResponseEntity<?> findBooks() {
-        List<BookDTO> books = bookService.findBooks();
+        List<Book> books = bookService.findBooks();
         if (books == null) {
             return new ResponseEntity<>("No books present in the db", HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(books, HttpStatus.OK);
+        List<BookDTO> bookDTOS = bookService.listBookToDto(books);
+        return new ResponseEntity<>(bookDTOS, HttpStatus.OK);
     }
 
     @GetMapping
     public ResponseEntity<?> getBook(@RequestParam("bookID") int id) {
-        BookDTO bookDTO;
+        Book book;
         try {
-            bookDTO = bookService.findBookById(id);
+            book = bookService.findBookById(id);
         } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(bookDTO, HttpStatus.OK);
+        return new ResponseEntity<>(bookService.bookToDto(book), HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteBook")

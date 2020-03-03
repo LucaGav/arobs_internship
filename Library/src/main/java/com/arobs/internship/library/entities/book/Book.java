@@ -35,7 +35,7 @@ public class Book {
     private Date addedDate;
 
     @ManyToMany(cascade = {
-            CascadeType.MERGE
+            CascadeType.ALL
     }, fetch = FetchType.EAGER)
 
     @JoinTable(name = "booktag",

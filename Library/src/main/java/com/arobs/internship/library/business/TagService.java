@@ -9,7 +9,7 @@ import java.util.List;
 public interface TagService {
     void insertTag(Tag tag) throws ValidationException;
 
-    List<TagDTO> findTags();
+    List<Tag> findTags();
 
     Tag findTagByDescription(String description) throws ValidationException;
 
@@ -20,5 +20,7 @@ public interface TagService {
     Tag dtoToTag(TagDTO tagDTO);
 
     TagDTO tagToDto(Tag tag);
+
+    List<TagDTO> listTagToDto(List<Tag> tags);
 
 }

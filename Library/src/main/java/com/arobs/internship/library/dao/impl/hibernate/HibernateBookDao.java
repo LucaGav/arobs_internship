@@ -27,7 +27,7 @@ public class HibernateBookDao implements BookDao {
     @Override
     public int save(Book book) {
         Session session = this.sessionFactory.getCurrentSession();
-        session.save(book);
+        session.persist(book);
         return 1;
     }
 
@@ -60,7 +60,7 @@ public class HibernateBookDao implements BookDao {
     @Override
     public int update(Book book) {
         Session session = this.sessionFactory.getCurrentSession();
-        session.merge(book);
+        session.update(book);
         return 1;
     }
 }

@@ -2,6 +2,7 @@ package com.arobs.internship.library.controller;
 
 import com.arobs.internship.library.business.TagService;
 import com.arobs.internship.library.dtos.TagDTO;
+import com.arobs.internship.library.entities.book.Tag;
 import com.arobs.internship.library.handler.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,11 +31,12 @@ public class TagController {
 
     @GetMapping("/tags")
     public ResponseEntity<?> findTags(){
-        List<TagDTO> tags = tagService.findTags();
+        List<Tag> tags = tagService.findTags();
         if(tags == null){
             return new ResponseEntity<>("No tags present in the db", HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(tags, HttpStatus.OK);
+        List<TagDTO> tagDTOS = tagService.listTagToDto(tags);
+        return new ResponseEntity<>(tagDTOS, HttpStatus.OK);
     }
 
     @GetMapping
