@@ -1,12 +1,12 @@
 package com.arobs.internship.library.business.impl;
 
 import com.arobs.internship.library.business.BookService;
+import com.arobs.internship.library.converters.BookDTOConverter;
+import com.arobs.internship.library.converters.TagDTOConverter;
 import com.arobs.internship.library.dao.BookDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
 import com.arobs.internship.library.dtos.BookDTO;
-import com.arobs.internship.library.dtos.EmployeeDTO;
 import com.arobs.internship.library.dtos.TagDTO;
-import com.arobs.internship.library.entities.Employee;
 import com.arobs.internship.library.entities.book.Book;
 import com.arobs.internship.library.entities.book.Tag;
 import com.arobs.internship.library.handler.ValidationException;
@@ -26,7 +26,7 @@ import java.util.Set;
 public class BookServiceImpl implements BookService {
 
     @Autowired
-    private ObjectMapper objectMapper;
+    private TagDTOConverter tagDTOConverter;
 
     @Autowired
     private DaoFactory daoFactory;
@@ -58,8 +58,7 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional
     public List<Book> findBooks() {
-        List<Book> books = bookDao.findBooks();
-        return books;
+        return bookDao.findBooks();
     }
 
     @Override
@@ -80,15 +79,10 @@ public class BookServiceImpl implements BookService {
             throw new ValidationException("No book with this id found");
         }
         if (!description.equals(book.getDescription()) || !book.getTags().equals(tagDTOSet)) {
-            Set<Tag> newTags = new HashSet<>();
-            Tag tag;
-            for(TagDTO tagDTO: tagDTOSet){
-                tag = tagService.dtoToTag(tagDTO);
-                newTags.add(tag);
-            }
-            book.setTags(this.updateTags(newTags));
+            List<TagDTO> dtoList = new ArrayList<>(tagDTOSet);
+            List<Tag> newTags = tagDTOConverter.listDTOToTag(dtoList);
+            book.setTags(this.updateTags(new HashSet<>(newTags)));
             book.setDescription(description);
-           // bookDao.update(book);
         } else {
             throw new ValidationException("No updated fields");
         }
@@ -111,33 +105,8 @@ public class BookServiceImpl implements BookService {
         bookDao.delete(title, author);
     }
 
-    @Override
-    public List<BookDTO> listBookToDto(List<Book> books) {
-        ModelMapper modelMapper = objectMapper.getMapper();
-        BookDTO bookDTO;
-        List<BookDTO> bookDTOS = new ArrayList<>();
-        for(Book book: books){
-            bookDTO = modelMapper.map(book, BookDTO.class);
-            bookDTOS.add(bookDTO);
-        }
-        return bookDTOS;
-    }
 
-    @Override
-    public Book dtoToBook(BookDTO bookDTO) {
-        ModelMapper modelMapper = objectMapper.getMapper();
-        Book book = modelMapper.map(bookDTO, Book.class);
-       // book.setTags(this.updateTags(bookDTO.getTags()));
-        return book;
-    }
-
-    @Override
-    public BookDTO bookToDto(Book book) {
-        ModelMapper modelMapper = objectMapper.getMapper();
-        return modelMapper.map(book, BookDTO.class);
-    }
-
-    public Set<Tag> updateTags(Set<Tag> bookTags){
+    public Set<Tag> updateTags(Set<Tag> bookTags) {
         Set<Tag> newTags = new HashSet<>();
         Tag newTag;
         for (Tag tag : bookTags) {
@@ -151,4 +120,5 @@ public class BookServiceImpl implements BookService {
         }
         return newTags;
     }
+
 }

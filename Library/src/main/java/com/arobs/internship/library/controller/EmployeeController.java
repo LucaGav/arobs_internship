@@ -32,7 +32,7 @@ public class EmployeeController {
     @GetMapping("/employees")
     public ResponseEntity<?> findEmployees() {
         List<Employee> employees = employeeService.findEmployees();
-        if (employees == null) {
+        if (employees.isEmpty()) {
             return new ResponseEntity<>("No employees present in the db", HttpStatus.BAD_REQUEST);
         }
         List<EmployeeDTO> employeeDTOS = employeeService.listEmployeeToDto(employees);

@@ -1,6 +1,7 @@
 package com.arobs.internship.library.controller;
 
 import com.arobs.internship.library.business.BookService;
+import com.arobs.internship.library.converters.BookDTOConverter;
 import com.arobs.internship.library.dtos.BookDTO;
 import com.arobs.internship.library.dtos.TagDTO;
 import com.arobs.internship.library.entities.book.Book;
@@ -21,10 +22,13 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private BookDTOConverter bookDTOConverter;
+
     @PostMapping("/addBook")
     public ResponseEntity<?> addBook(@RequestBody @Valid BookDTO bookDTO) {
         try {
-            bookService.insertBook(bookService.dtoToBook(bookDTO));
+            bookService.insertBook(bookDTOConverter.dtoToBook(bookDTO));
             return new ResponseEntity<>("Inserted book", HttpStatus.OK);
         } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
@@ -34,10 +38,10 @@ public class BookController {
     @GetMapping("/books")
     public ResponseEntity<?> findBooks() {
         List<Book> books = bookService.findBooks();
-        if (books == null) {
+        if (books.isEmpty()) {
             return new ResponseEntity<>("No books present in the db", HttpStatus.BAD_REQUEST);
         }
-        List<BookDTO> bookDTOS = bookService.listBookToDto(books);
+        List<BookDTO> bookDTOS = bookDTOConverter.listBookToDTO(books);
         return new ResponseEntity<>(bookDTOS, HttpStatus.OK);
     }
 
@@ -49,7 +53,7 @@ public class BookController {
         } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(bookService.bookToDto(book), HttpStatus.OK);
+        return new ResponseEntity<>(bookDTOConverter.bookToDTO(book), HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteBook")

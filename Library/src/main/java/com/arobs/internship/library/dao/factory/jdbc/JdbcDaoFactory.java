@@ -1,8 +1,6 @@
 package com.arobs.internship.library.dao.factory.jdbc;
 
-import com.arobs.internship.library.dao.BookDao;
-import com.arobs.internship.library.dao.EmployeeDao;
-import com.arobs.internship.library.dao.TagDao;
+import com.arobs.internship.library.dao.*;
 import com.arobs.internship.library.dao.impl.jdbc.JdbcEmployeeDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +26,16 @@ public class JdbcDaoFactory extends DaoFactory {
 
     @Override
     public TagDao getTagDao() {
+        return null;
+    }
+
+    @Override
+    public CopyDao getCopyDao() {
+        return null;
+    }
+
+    @Override
+    public BookRequestDao getBookRequestDao() {
         return null;
     }
 }

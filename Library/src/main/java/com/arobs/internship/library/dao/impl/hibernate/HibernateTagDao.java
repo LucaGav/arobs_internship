@@ -26,9 +26,9 @@ public class HibernateTagDao implements TagDao {
     private static final Logger logger = LoggerFactory.getLogger(BookServiceImpl.class);
 
     @Override
-    public int save(Tag tag) {
+    public void save(Tag tag) {
         Session session = this.sessionFactory.getCurrentSession();
-        return (Integer) session.save(tag);
+        session.save(tag);
     }
 
     @Override
@@ -54,11 +54,10 @@ public class HibernateTagDao implements TagDao {
     }
 
     @Override
-    public int delete(String description) {
+    public void delete(String description) {
         Session session = this.sessionFactory.getCurrentSession();
         Query query = session.createQuery("DELETE FROM Tag where tagDescription =: description");
         query.setParameter("description", description);
         query.executeUpdate();
-        return 1;
     }
 }

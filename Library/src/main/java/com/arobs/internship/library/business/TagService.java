@@ -13,14 +13,6 @@ public interface TagService {
 
     Tag findTagByDescription(String description) throws ValidationException;
 
-    //void updateTag(String description, int id);
-
     void deleteTag(String description) throws ValidationException;
-
-    Tag dtoToTag(TagDTO tagDTO);
-
-    TagDTO tagToDto(Tag tag);
-
-    List<TagDTO> listTagToDto(List<Tag> tags);
 
 }

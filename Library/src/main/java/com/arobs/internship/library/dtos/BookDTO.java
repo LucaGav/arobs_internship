@@ -1,7 +1,5 @@
 package com.arobs.internship.library.dtos;
 
-import com.arobs.internship.library.entities.book.Tag;
-
 import java.util.Date;
 import java.util.Set;
 

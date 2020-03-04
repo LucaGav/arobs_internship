@@ -1,6 +1,7 @@
 package com.arobs.internship.library.controller;
 
 import com.arobs.internship.library.business.TagService;
+import com.arobs.internship.library.converters.TagDTOConverter;
 import com.arobs.internship.library.dtos.TagDTO;
 import com.arobs.internship.library.entities.book.Tag;
 import com.arobs.internship.library.handler.ValidationException;
@@ -19,10 +20,13 @@ public class TagController {
     @Autowired
     private TagService tagService;
 
+    @Autowired
+    private TagDTOConverter tagDTOConverter;
+
     @PostMapping("/addTag")
-    public ResponseEntity<?> addTag(@RequestBody @Valid TagDTO tagDTO){
+    public ResponseEntity<?> addTag(@RequestBody @Valid TagDTO tagDTO) {
         try {
-            tagService.insertTag(tagService.dtoToTag(tagDTO));
+            tagService.insertTag(tagDTOConverter.dtoToTag(tagDTO));
             return new ResponseEntity<>("Tag inserted successfully", HttpStatus.OK);
         } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
@@ -30,12 +34,12 @@ public class TagController {
     }
 
     @GetMapping("/tags")
-    public ResponseEntity<?> findTags(){
+    public ResponseEntity<?> findTags() {
         List<Tag> tags = tagService.findTags();
-        if(tags == null){
+        if (tags.isEmpty()) {
             return new ResponseEntity<>("No tags present in the db", HttpStatus.BAD_REQUEST);
         }
-        List<TagDTO> tagDTOS = tagService.listTagToDto(tags);
+        List<TagDTO> tagDTOS = tagDTOConverter.listTagToDTO(tags);
         return new ResponseEntity<>(tagDTOS, HttpStatus.OK);
     }
 
@@ -43,7 +47,7 @@ public class TagController {
     public ResponseEntity<?> getTag(@RequestParam("tagDescription") String tagDescription) {
         TagDTO tagDTO;
         try {
-            tagDTO = tagService.tagToDto(tagService.findTagByDescription(tagDescription));
+            tagDTO = tagDTOConverter.tagToDTO(tagService.findTagByDescription(tagDescription));
         } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
@@ -51,8 +55,8 @@ public class TagController {
     }
 
     @DeleteMapping("/deleteTag")
-    public ResponseEntity<?> deleteTag(@RequestParam("description") String description){
-        try{
+    public ResponseEntity<?> deleteTag(@RequestParam("description") String description) {
+        try {
             tagService.deleteTag(description);
         } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);

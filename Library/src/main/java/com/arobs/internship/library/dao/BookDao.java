@@ -5,15 +5,16 @@ import com.arobs.internship.library.entities.book.Book;
 import java.util.List;
 
 public interface BookDao {
-    int save(Book book);
+
+    void save(Book book);
 
     List<Book> findBooks();
 
     Book findById(int id);
 
-    int delete(String title, String author);
+    void delete(String title, String author);
 
-    int update(Book book);
+    void update(Book book);
 }
 
 

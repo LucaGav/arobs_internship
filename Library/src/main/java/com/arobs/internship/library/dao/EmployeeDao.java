@@ -5,7 +5,8 @@ import com.arobs.internship.library.entities.Employee;
 import java.util.List;
 
 public interface EmployeeDao {
-    int save(Employee employee);
+
+    void save(Employee employee);
 
     List<Employee> findEmployees();
 
@@ -13,7 +14,7 @@ public interface EmployeeDao {
 
     Employee findByEmail(String email);
 
-    int delete(String email);
+    void delete(String email);
 
-    int update(Employee employee);
+    void update(Employee employee);
 }

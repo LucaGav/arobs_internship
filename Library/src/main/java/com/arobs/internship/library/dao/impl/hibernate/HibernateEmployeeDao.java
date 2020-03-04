@@ -25,9 +25,9 @@ public class HibernateEmployeeDao implements EmployeeDao {
     private static final Logger logger = LoggerFactory.getLogger(HibernateEmployeeDao.class);
 
     @Override
-    public int save(Employee employee) {
+    public void save(Employee employee) {
         Session session = this.sessionFactory.getCurrentSession();
-        return (Integer) session.save(employee);
+        session.save(employee);
     }
 
     @Override
@@ -61,17 +61,16 @@ public class HibernateEmployeeDao implements EmployeeDao {
     }
 
     @Override
-    public int delete(String email) {
+    public void delete(String email) {
         Session session = this.sessionFactory.getCurrentSession();
         Query query = session.createQuery("DELETE FROM Employee where email =:email");
         query.setParameter("email", email);
-        return query.executeUpdate();
+        query.executeUpdate();
     }
 
     @Override
-    public int update(Employee employee) {
+    public void update(Employee employee) {
         Session session = this.sessionFactory.getCurrentSession();
         session.update(employee);
-        return 1;
     }
 }

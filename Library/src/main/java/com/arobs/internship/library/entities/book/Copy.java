@@ -38,6 +38,10 @@ public class Copy {
         isAvailable = available;
     }
 
+    public void setCopyID(int copyID) {
+        this.copyID = copyID;
+    }
+
     public String getStatus() {
         return status;
     }
