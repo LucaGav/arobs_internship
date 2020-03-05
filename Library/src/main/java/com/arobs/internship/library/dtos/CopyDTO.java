@@ -2,24 +2,15 @@ package com.arobs.internship.library.dtos;
 
 public class CopyDTO {
 
-    private boolean isAvailable;
-    private String status;
+    private boolean isRentable;
     private int bookID;
 
-    public boolean isAvailable() {
-        return isAvailable;
+    public boolean isRentable() {
+        return isRentable;
     }
 
-    public void setAvailable(boolean available) {
-        isAvailable = available;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setRentable(boolean rentable) {
+        isRentable = rentable;
     }
 
     public int getBookID() {

@@ -2,7 +2,7 @@ package com.arobs.internship.library.converters;
 
 import com.arobs.internship.library.dtos.BookRequestDTO;
 import com.arobs.internship.library.entities.operations.BookRequest;
-import com.arobs.internship.library.handler.ValidationException;
+import com.arobs.internship.library.util.handler.ValidationException;
 
 import java.util.List;
 

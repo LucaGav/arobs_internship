@@ -4,25 +4,18 @@ import com.arobs.internship.library.business.BookService;
 import com.arobs.internship.library.business.CopyService;
 import com.arobs.internship.library.dao.CopyDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
-import com.arobs.internship.library.dtos.CopyDTO;
 import com.arobs.internship.library.entities.book.Copy;
-import com.arobs.internship.library.entities.util.CopyStatus;
-import com.arobs.internship.library.handler.ValidationException;
-import com.arobs.internship.library.util.ObjectMapper;
-import org.modelmapper.ModelMapper;
+import com.arobs.internship.library.util.status.CopyStatus;
+import com.arobs.internship.library.util.handler.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class CopyServiceImpl implements CopyService {
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Autowired
     private BookService bookService;
@@ -41,7 +34,7 @@ public class CopyServiceImpl implements CopyService {
     @Override
     @Transactional
     public void insertCopy(Copy copy) throws ValidationException {
-        if (!CopyStatus.contains(copy.getStatus().toUpperCase())) {
+        if (!CopyStatus.contains(copy.getStatus())) {
             throw new ValidationException("No valid status for copy");
         }
         copyDao.save(copy);
@@ -61,17 +54,13 @@ public class CopyServiceImpl implements CopyService {
 
     @Override
     @Transactional
-    public Copy findCopyById(int id) throws ValidationException {
-        Copy copy = copyDao.findById(id);
-        if (copy == null) {
-            throw new ValidationException("No copy with id: " + id + "found in the database");
-        }
-        return copy;
+    public Copy findCopyById(int id) {
+        return copyDao.findById(id);
     }
 
     @Override
     @Transactional
-    public void updateCopy(String status, Boolean available, int id) throws ValidationException {
+    public void updateCopy(String status, Boolean rentable, int id) throws ValidationException {
         Copy copy = this.findCopyById(id);
         if (copy == null) {
             throw new ValidationException("No copy with this id found.");
@@ -79,12 +68,19 @@ public class CopyServiceImpl implements CopyService {
         if (!CopyStatus.contains(status.toUpperCase())) {
             throw new ValidationException("No valid status for copy");
         }
-        if (!status.equals(copy.getStatus()) || copy.isAvailable() != available) {
-            copy.setAvailable(available);
-            copy.setStatus(status);
-        } else {
+        if (copy.isRentable() != rentable) {
+            copy.setRentable(rentable);
+        }
+        if (!status.toUpperCase().equals(copy.getStatus())) {
+            this.setCopyStatus(copy, status.toUpperCase());
+            if(!status.toUpperCase().equals(copy.getStatus())){
+                throw new ValidationException("Cannot update status, because the copy is not rentable");
+            }
+        }
+        else if (status.equals(copy.getStatus()) && copy.isRentable() == rentable) {
             throw new ValidationException("No updated fields");
         }
+
     }
 
     @Override
@@ -104,29 +100,11 @@ public class CopyServiceImpl implements CopyService {
         copyDao.delete(id);
     }
 
-    @Override
-    public List<CopyDTO> listCopyToDto(List<Copy> copies) {
-        ModelMapper modelMapper = objectMapper.getMapper();
-        CopyDTO copyDTO;
-        List<CopyDTO> copyDTOS = new ArrayList<>();
-        for (Copy copy : copies) {
-            copyDTO = modelMapper.map(copy, CopyDTO.class);
-            copyDTOS.add(copyDTO);
+    void setCopyStatus(Copy copy, String status) {
+        if(status.equals(CopyStatus.PENDING.name()) || status.equals(CopyStatus.RENTED.name())){
+            if(copy.isRentable()){
+                copy.setStatus(status);
+            }
         }
-        return copyDTOS;
-    }
-
-    @Override
-    public Copy dtoToCopy(CopyDTO copyDTO) throws ValidationException {
-        ModelMapper modelMapper = objectMapper.getMapper();
-        Copy copy = modelMapper.map(copyDTO, Copy.class);
-        copy.setBook(bookService.findBookById(copyDTO.getBookID()));
-        return copy;
-    }
-
-    @Override
-    public CopyDTO copyToDto(Copy copy) {
-        ModelMapper modelMapper = objectMapper.getMapper();
-        return modelMapper.map(copy, CopyDTO.class);
     }
 }

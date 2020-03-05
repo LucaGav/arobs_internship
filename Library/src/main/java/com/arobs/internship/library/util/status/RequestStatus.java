@@ -1,13 +1,13 @@
-package com.arobs.internship.library.entities.util;
+package com.arobs.internship.library.util.status;
 
-public enum CopyStatus {
-    AVAILABLE("available"),
+public enum RequestStatus {
+    ACCEPTED("accepted"),
     PENDING("pending"),
-    RENTED("rented");
+    REJECTED("rejected");
 
     private final String status;
 
-    CopyStatus(String s){
+    RequestStatus(String s){
         this.status = s;
     }
     String getStatus(){
@@ -15,12 +15,12 @@ public enum CopyStatus {
     }
 
     public static boolean contains(String text){
-        for(CopyStatus s: CopyStatus.values()){
+        for(RequestStatus s: RequestStatus.values()){
             if(s.name().equals(text)){
                 return true;
             }
         }
         return false;
     }
-
 }
+

@@ -3,17 +3,13 @@ package com.arobs.internship.library.converters.impl;
 import com.arobs.internship.library.converters.BookDTOConverter;
 import com.arobs.internship.library.dtos.BookDTO;
 import com.arobs.internship.library.entities.book.Book;
-import com.arobs.internship.library.entities.book.Tag;
-import com.arobs.internship.library.handler.ValidationException;
 import com.arobs.internship.library.util.ObjectMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Component
 public class BookDTOConverterImpl implements BookDTOConverter {

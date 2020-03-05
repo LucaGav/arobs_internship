@@ -2,13 +2,13 @@ package com.arobs.internship.library.dtos;
 
 public class TagDTO {
 
-    private String tagDescription;
+    private String tagName;
 
-    public String getTagDescription() {
-        return tagDescription;
+    public String getTagName() {
+        return tagName;
     }
 
-    public void setTagDescription(String tagDescription) {
-        this.tagDescription = tagDescription;
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
     }
 }

@@ -4,10 +4,11 @@ import com.arobs.internship.library.business.TagService;
 import com.arobs.internship.library.converters.TagDTOConverter;
 import com.arobs.internship.library.dtos.TagDTO;
 import com.arobs.internship.library.entities.book.Tag;
-import com.arobs.internship.library.handler.ValidationException;
+import com.arobs.internship.library.util.handler.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,7 +25,10 @@ public class TagController {
     private TagDTOConverter tagDTOConverter;
 
     @PostMapping("/addTag")
-    public ResponseEntity<?> addTag(@RequestBody @Valid TagDTO tagDTO) {
+    public ResponseEntity<?> addTag(@RequestBody @Valid TagDTO tagDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>("Invalid information in fields", HttpStatus.BAD_REQUEST);
+        }
         try {
             tagService.insertTag(tagDTOConverter.dtoToTag(tagDTO));
             return new ResponseEntity<>("Tag inserted successfully", HttpStatus.OK);
@@ -44,23 +48,21 @@ public class TagController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getTag(@RequestParam("tagDescription") String tagDescription) {
-        TagDTO tagDTO;
-        try {
-            tagDTO = tagDTOConverter.tagToDTO(tagService.findTagByDescription(tagDescription));
-        } catch (ValidationException ex) {
-            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<?> getTag(@RequestParam("tagName") String tagName) {
+        Tag tag = tagService.findTagByName(tagName);
+        if (tag == null) {
+            return new ResponseEntity<>("No tag with this name found", HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(tagDTO, HttpStatus.OK);
+        return new ResponseEntity<>(tagDTOConverter.tagToDTO(tag), HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteTag")
-    public ResponseEntity<?> deleteTag(@RequestParam("description") String description) {
+    public ResponseEntity<?> deleteTag(@RequestParam("name") String name) {
         try {
-            tagService.deleteTag(description);
+            tagService.deleteTag(name);
         } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>("Tag with description: " + description + " deleted successfully.", HttpStatus.OK);
+        return new ResponseEntity<>("Tag with name: " + name + " deleted successfully.", HttpStatus.OK);
     }
 }

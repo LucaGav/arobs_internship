@@ -12,8 +12,8 @@ public class Copy {
     private int copyID;
 
     @NotNull
-    @Column(name = "isAvailable")
-    private boolean isAvailable;
+    @Column(name = "isRentable")
+    private boolean isRentable;
 
     @NotNull
     @Column(name = "status")
@@ -26,16 +26,22 @@ public class Copy {
     public Copy() {
     }
 
+    public Copy(@NotNull boolean isRentable, @NotNull String status, Book book) {
+        this.isRentable = isRentable;
+        this.status = status;
+        this.book = book;
+    }
+
     public int getCopyID() {
         return copyID;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
+    public boolean isRentable() {
+        return isRentable;
     }
 
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+    public void setRentable(boolean rentable) {
+        isRentable = rentable;
     }
 
     public void setCopyID(int copyID) {

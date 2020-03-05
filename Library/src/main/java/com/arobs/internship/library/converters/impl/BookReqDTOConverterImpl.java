@@ -4,7 +4,7 @@ import com.arobs.internship.library.business.EmployeeService;
 import com.arobs.internship.library.converters.BookReqDTOConverter;
 import com.arobs.internship.library.dtos.BookRequestDTO;
 import com.arobs.internship.library.entities.operations.BookRequest;
-import com.arobs.internship.library.handler.ValidationException;
+import com.arobs.internship.library.util.handler.ValidationException;
 import com.arobs.internship.library.util.ObjectMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -13,8 +13,6 @@ public interface BookDao {
     Book findById(int id);
 
     void delete(String title, String author);
-
-    void update(Book book);
 }
 
 

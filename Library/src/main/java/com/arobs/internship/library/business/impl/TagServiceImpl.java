@@ -3,17 +3,13 @@ package com.arobs.internship.library.business.impl;
 import com.arobs.internship.library.business.TagService;
 import com.arobs.internship.library.dao.TagDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
-import com.arobs.internship.library.dtos.TagDTO;
 import com.arobs.internship.library.entities.book.Tag;
-import com.arobs.internship.library.handler.ValidationException;
-import com.arobs.internship.library.util.ObjectMapper;
-import org.modelmapper.ModelMapper;
+import com.arobs.internship.library.util.handler.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -35,8 +31,8 @@ public class TagServiceImpl implements TagService {
     public void insertTag(Tag tag) throws ValidationException {
         List<Tag> tags = this.findTags();
         for (Tag t : tags) {
-            if (t.getTagDescription().equals(tag.getTagDescription())) {
-                throw new ValidationException("Tag with description " + t.getTagDescription() + " already exists.");
+            if (t.equals(tag.getTagName())) {
+                throw new ValidationException("Tag with description " + t.getTagName() + " already exists.");
             }
         }
         tagDao.save(tag);
@@ -50,28 +46,24 @@ public class TagServiceImpl implements TagService {
 
     @Override
     @Transactional
-    public Tag findTagByDescription(String description) throws ValidationException {
-        Tag tag = tagDao.findByDescription(description);
-        if (tag == null) {
-            throw new ValidationException("No tag with this description found");
-        }
-        return tag;
+    public Tag findTagByName(String name) {
+        return tagDao.findByName(name);
     }
 
     @Override
     @Transactional
-    public void deleteTag(String description) throws ValidationException {
-        boolean foundDescription = false;
+    public void deleteTag(String name) throws ValidationException {
+        boolean foundName = false;
         List<Tag> tags = this.findTags();
         for (Tag tag : tags) {
-            if (tag.getTagDescription().equals(description)) {
-                foundDescription = true;
+            if (tag.getTagName().equals(name)) {
+                foundName = true;
                 break;
             }
         }
-        if (!foundDescription) {
-            throw new ValidationException("Description is invalid");
+        if (!foundName) {
+            throw new ValidationException("Tag name is invalid");
         }
-        tagDao.delete(description);
+        tagDao.delete(name);
     }
 }

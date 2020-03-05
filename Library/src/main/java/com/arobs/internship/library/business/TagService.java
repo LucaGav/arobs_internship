@@ -1,18 +1,18 @@
 package com.arobs.internship.library.business;
 
-import com.arobs.internship.library.dtos.TagDTO;
 import com.arobs.internship.library.entities.book.Tag;
-import com.arobs.internship.library.handler.ValidationException;
+import com.arobs.internship.library.util.handler.ValidationException;
 
 import java.util.List;
 
 public interface TagService {
+
     void insertTag(Tag tag) throws ValidationException;
 
     List<Tag> findTags();
 
-    Tag findTagByDescription(String description) throws ValidationException;
+    Tag findTagByName(String name);
 
-    void deleteTag(String description) throws ValidationException;
+    void deleteTag(String name) throws ValidationException;
 
 }

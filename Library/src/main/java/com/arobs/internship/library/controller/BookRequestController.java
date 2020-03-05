@@ -4,10 +4,11 @@ import com.arobs.internship.library.business.BookRequestService;
 import com.arobs.internship.library.converters.BookReqDTOConverter;
 import com.arobs.internship.library.dtos.BookRequestDTO;
 import com.arobs.internship.library.entities.operations.BookRequest;
-import com.arobs.internship.library.handler.ValidationException;
+import com.arobs.internship.library.util.handler.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,7 +25,10 @@ public class BookRequestController {
     private BookReqDTOConverter bookReqDTOConverter;
 
     @PostMapping("/addBookRequest")
-    public ResponseEntity<?> addBookRequest(@RequestBody @Valid BookRequestDTO bookRequestDTO) {
+    public ResponseEntity<?> addBookRequest(@RequestBody @Valid BookRequestDTO bookRequestDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>("Invalid information in fields", HttpStatus.BAD_REQUEST);
+        }
         try {
             bookRequestService.insertBookRequest(bookReqDTOConverter.dtoToBookRequest(bookRequestDTO));
             return new ResponseEntity<>("Book Request inserted successfully", HttpStatus.OK);
@@ -45,11 +49,9 @@ public class BookRequestController {
 
     @GetMapping
     public ResponseEntity<?> getBookRequest(@RequestParam("bookRequestID") int id) {
-        BookRequest bookRequest;
-        try {
-            bookRequest = bookRequestService.findBookRequestById(id);
-        } catch (ValidationException ex) {
-            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        BookRequest bookRequest = bookRequestService.findBookRequestById(id);
+        if (bookRequest == null) {
+            return new ResponseEntity<>("No book request with this id found", HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(bookReqDTOConverter.bookRequestToDTO(bookRequest), HttpStatus.OK);
     }

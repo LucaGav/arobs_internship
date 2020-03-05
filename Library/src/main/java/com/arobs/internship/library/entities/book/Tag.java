@@ -9,8 +9,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tag",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"tagDescription"})}
-    )
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"tagName"})}
+)
 public class Tag {
     @Id
     @Column(name = "tagID")
@@ -18,8 +18,8 @@ public class Tag {
     private int tagID;
 
     @NotNull
-    @Column(name = "tagDescription")
-    private String tagDescription;
+    @Column(name = "tagName")
+    private String tagName;
 
     @ManyToMany(mappedBy = "tags")
     private Set<Book> books = new HashSet<>();
@@ -27,24 +27,24 @@ public class Tag {
     public Tag() {
     }
 
-    public Tag(int tagID, String tagDescription) {
+    public Tag(int tagID, String tagName) {
         this.tagID = tagID;
-        this.tagDescription = tagDescription;
+        this.tagName = tagName;
     }
 
-    public Tag(@NotNull String tagDescription) {
-        this.tagDescription = tagDescription;
+    public Tag(@NotNull String tagName) {
+        this.tagName = tagName;
     }
 
     public int getTagID() {
         return tagID;
     }
 
-    public String getTagDescription() {
-        return tagDescription;
+    public String getTagName() {
+        return tagName;
     }
 
-    public void setTagDescription(String tagDescription) {
-        this.tagDescription = tagDescription;
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
     }
 }

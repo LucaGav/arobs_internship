@@ -1,8 +1,7 @@
 package com.arobs.internship.library.business;
 
-import com.arobs.internship.library.dtos.BookRequestDTO;
 import com.arobs.internship.library.entities.operations.BookRequest;
-import com.arobs.internship.library.handler.ValidationException;
+import com.arobs.internship.library.util.handler.ValidationException;
 
 import java.util.List;
 
@@ -12,7 +11,7 @@ public interface BookRequestService {
 
     List<BookRequest> findBookRequests();
 
-    BookRequest findBookRequestById(int id) throws ValidationException;
+    BookRequest findBookRequestById(int id);
 
     void updateBookRequest(String status, int id) throws ValidationException;
 

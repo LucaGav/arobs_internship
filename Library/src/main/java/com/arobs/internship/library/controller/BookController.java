@@ -5,10 +5,11 @@ import com.arobs.internship.library.converters.BookDTOConverter;
 import com.arobs.internship.library.dtos.BookDTO;
 import com.arobs.internship.library.dtos.TagDTO;
 import com.arobs.internship.library.entities.book.Book;
-import com.arobs.internship.library.handler.ValidationException;
+import com.arobs.internship.library.util.handler.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,7 +27,10 @@ public class BookController {
     private BookDTOConverter bookDTOConverter;
 
     @PostMapping("/addBook")
-    public ResponseEntity<?> addBook(@RequestBody @Valid BookDTO bookDTO) {
+    public ResponseEntity<?> addBook(@RequestBody @Valid BookDTO bookDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>("Invalid information in fields", HttpStatus.BAD_REQUEST);
+        }
         try {
             bookService.insertBook(bookDTOConverter.dtoToBook(bookDTO));
             return new ResponseEntity<>("Inserted book", HttpStatus.OK);
@@ -47,11 +51,9 @@ public class BookController {
 
     @GetMapping
     public ResponseEntity<?> getBook(@RequestParam("bookID") int id) {
-        Book book;
-        try {
-            book = bookService.findBookById(id);
-        } catch (ValidationException ex) {
-            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        Book book = bookService.findBookById(id);
+        if (book == null) {
+            return new ResponseEntity<>("No book with this id found", HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(bookDTOConverter.bookToDTO(book), HttpStatus.OK);
     }

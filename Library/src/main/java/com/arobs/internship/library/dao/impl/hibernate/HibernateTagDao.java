@@ -41,11 +41,11 @@ public class HibernateTagDao implements TagDao {
     }
 
     @Override
-    public Tag findByDescription(String description) {
+    public Tag findByName(String tagName) {
         Tag tag = null;
         Session session = this.sessionFactory.getCurrentSession();
-        Query query = session.createQuery("FROM Tag WHERE tagDescription =: tagDescription");
-        query.setParameter("tagDescription", description);
+        Query query = session.createQuery("FROM Tag WHERE tagName =: tagName");
+        query.setParameter("tagName", tagName);
         List<?> results = query.getResultList();
         if (!results.isEmpty()) {
             tag = (Tag) results.get(0);
@@ -54,10 +54,10 @@ public class HibernateTagDao implements TagDao {
     }
 
     @Override
-    public void delete(String description) {
+    public void delete(String name) {
         Session session = this.sessionFactory.getCurrentSession();
-        Query query = session.createQuery("DELETE FROM Tag where tagDescription =: description");
-        query.setParameter("description", description);
+        Query query = session.createQuery("DELETE FROM Tag where tagName =: name");
+        query.setParameter("name", name);
         query.executeUpdate();
     }
 }

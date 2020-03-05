@@ -1,12 +1,14 @@
 package com.arobs.internship.library.controller;
 
 import com.arobs.internship.library.business.CopyService;
+import com.arobs.internship.library.converters.CopyDTOConverter;
 import com.arobs.internship.library.dtos.CopyDTO;
 import com.arobs.internship.library.entities.book.Copy;
-import com.arobs.internship.library.handler.ValidationException;
+import com.arobs.internship.library.util.handler.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -19,10 +21,16 @@ public class CopyController {
     @Autowired
     private CopyService copyService;
 
+    @Autowired
+    private CopyDTOConverter copyDTOConverter;
+
     @PostMapping("/addCopy")
-    public ResponseEntity<?> addCopy(@RequestBody @Valid CopyDTO copyDTO) {
+    public ResponseEntity<?> addCopy(@RequestBody @Valid CopyDTO copyDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>("Invalid information in fields", HttpStatus.BAD_REQUEST);
+        }
         try {
-            copyService.insertCopy(copyService.dtoToCopy(copyDTO));
+            copyService.insertCopy(copyDTOConverter.dtoToCopy(copyDTO));
             return new ResponseEntity<>("Copy inserted successfully", HttpStatus.OK);
         } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
@@ -35,7 +43,7 @@ public class CopyController {
         if (copies.isEmpty()) {
             return new ResponseEntity<>("No copies present in the db", HttpStatus.BAD_REQUEST);
         }
-        List<CopyDTO> copyDTOS = copyService.listCopyToDto(copies);
+        List<CopyDTO> copyDTOS = copyDTOConverter.listCopyToDTO(copies);
         return new ResponseEntity<>(copyDTOS, HttpStatus.OK);
     }
 
@@ -45,19 +53,17 @@ public class CopyController {
         if (copies.isEmpty()) {
             return new ResponseEntity<>("No copies of this book present in the db", HttpStatus.BAD_REQUEST);
         }
-        List<CopyDTO> copyDTOS = copyService.listCopyToDto(copies);
+        List<CopyDTO> copyDTOS = copyDTOConverter.listCopyToDTO(copies);
         return new ResponseEntity<>(copyDTOS, HttpStatus.OK);
     }
 
     @GetMapping
     public ResponseEntity<?> getCopy(@RequestParam("copyID") int id) {
-        Copy copy;
-        try {
-            copy = copyService.findCopyById(id);
-        } catch (ValidationException ex) {
-            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        Copy copy = copyService.findCopyById(id);
+        if (copy == null) {
+            return new ResponseEntity<>("No copy with this id found", HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(copyService.copyToDto(copy), HttpStatus.OK);
+        return new ResponseEntity<>(copyDTOConverter.copyToDTO(copy), HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteCopy")
@@ -71,10 +77,10 @@ public class CopyController {
     }
 
     @PatchMapping("/updateCopy/{id}")
-    public ResponseEntity<?> updateEmployee(@RequestParam("isAvailable") Boolean available, @RequestParam("Status") String status,
+    public ResponseEntity<?> updateEmployee(@RequestParam("isRentable") Boolean rentable, @RequestParam("Status") String status,
                                             @PathVariable int id) {
         try {
-            copyService.updateCopy(status, available, id);
+            copyService.updateCopy(status, rentable, id);
         } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }

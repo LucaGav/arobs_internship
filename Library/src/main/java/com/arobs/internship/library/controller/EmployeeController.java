@@ -1,12 +1,15 @@
 package com.arobs.internship.library.controller;
 
 import com.arobs.internship.library.business.EmployeeService;
+import com.arobs.internship.library.converters.EmployeeDTOConverter;
 import com.arobs.internship.library.dtos.EmployeeDTO;
 import com.arobs.internship.library.entities.Employee;
-import com.arobs.internship.library.handler.ValidationException;
+import com.arobs.internship.library.util.entities.EmployeeUtil;
+import com.arobs.internship.library.util.handler.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -19,10 +22,22 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+    @Autowired
+    private EmployeeDTOConverter employeeDTOConverter;
+
     @PostMapping("/addEmployee")
-    public ResponseEntity<?> addEmployee(@RequestBody @Valid EmployeeDTO employeeDTO) {
+    public ResponseEntity<?> addEmployee(@RequestBody @Valid EmployeeDTO employeeDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>("Invalid information in fields", HttpStatus.BAD_REQUEST);
+        }
+        if (!EmployeeUtil.validateEmail(employeeDTO.getEmail())) {
+            return new ResponseEntity<>("Bad e-mail format", HttpStatus.BAD_REQUEST);
+        }
+        if (!EmployeeUtil.validateRole(employeeDTO.getRole())) {
+            return new ResponseEntity<>("No such role exists", HttpStatus.BAD_REQUEST);
+        }
         try {
-            employeeService.insertEmployee(employeeService.dtoToEmployee(employeeDTO));
+            employeeService.insertEmployee(employeeDTOConverter.dtoToEmployee(employeeDTO));
             return new ResponseEntity<>("Employee inserted successfully", HttpStatus.OK);
         } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
@@ -35,19 +50,17 @@ public class EmployeeController {
         if (employees.isEmpty()) {
             return new ResponseEntity<>("No employees present in the db", HttpStatus.BAD_REQUEST);
         }
-        List<EmployeeDTO> employeeDTOS = employeeService.listEmployeeToDto(employees);
+        List<EmployeeDTO> employeeDTOS = employeeDTOConverter.listEmployeeToDTO(employees);
         return new ResponseEntity<>(employeeDTOS, HttpStatus.OK);
     }
 
     @GetMapping
     public ResponseEntity<?> getEmployee(@RequestParam("employeeID") int id) {
-        Employee employee;
-        try {
-            employee = employeeService.findEmployeeById(id);
-        } catch (ValidationException ex) {
-            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        Employee employee = employeeService.findEmployeeById(id);
+        if (employee == null) {
+            return new ResponseEntity<>("No employee with this id found", HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(employeeService.employeeToDto(employee), HttpStatus.OK);
+        return new ResponseEntity<>(employeeDTOConverter.employeeToDTO(employee), HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteEmployee")
@@ -63,6 +76,9 @@ public class EmployeeController {
     @PatchMapping("/updateEmployee/{id}")
     public ResponseEntity<?> updateEmployee(@RequestParam("email") String email, @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
                                             @PathVariable int id) {
+        if (!EmployeeUtil.validateEmail(email)) {
+            return new ResponseEntity<>("Bad e-mail format", HttpStatus.BAD_REQUEST);
+        }
         try {
             employeeService.updateEmployee(email, firstName, lastName, id);
         } catch (ValidationException ex) {

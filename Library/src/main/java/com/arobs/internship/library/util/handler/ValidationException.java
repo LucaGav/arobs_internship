@@ -1,4 +1,4 @@
-package com.arobs.internship.library.handler;
+package com.arobs.internship.library.util.handler;
 
 public class ValidationException extends Exception {
 

@@ -29,7 +29,7 @@ public class BookRent {
     private String status;
 
     @Column(name = "note")
-    private String note;
+    private float note;
 
     @OneToOne
     @JoinColumn(name = "copyID")
@@ -38,7 +38,7 @@ public class BookRent {
     public BookRent() {
     }
 
-    public BookRent(int rentID, Date rentalDate, Date returnDate, String status, String note) {
+    public BookRent(int rentID, Date rentalDate, Date returnDate, String status, float note) {
         this.rentID = rentID;
         this.rentalDate = rentalDate;
         this.returnDate = returnDate;
@@ -74,11 +74,11 @@ public class BookRent {
         this.status = status;
     }
 
-    public String getNote() {
+    public float getNote() {
         return note;
     }
 
-    public void setNote(String note) {
+    public void setNote(float note) {
         this.note = note;
     }
 

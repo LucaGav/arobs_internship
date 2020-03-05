@@ -10,8 +10,8 @@ public interface TagDao {
 
     List<Tag> findTags();
 
-    Tag findByDescription(String description);
+    Tag findByName(String tagName);
 
-    void delete(String description);
+    void delete(String name);
 
 }

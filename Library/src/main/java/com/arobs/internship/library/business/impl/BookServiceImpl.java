@@ -1,26 +1,22 @@
 package com.arobs.internship.library.business.impl;
 
 import com.arobs.internship.library.business.BookService;
-import com.arobs.internship.library.converters.BookDTOConverter;
 import com.arobs.internship.library.converters.TagDTOConverter;
 import com.arobs.internship.library.dao.BookDao;
+import com.arobs.internship.library.dao.CopyDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
-import com.arobs.internship.library.dtos.BookDTO;
 import com.arobs.internship.library.dtos.TagDTO;
 import com.arobs.internship.library.entities.book.Book;
+import com.arobs.internship.library.entities.book.Copy;
 import com.arobs.internship.library.entities.book.Tag;
-import com.arobs.internship.library.handler.ValidationException;
-import com.arobs.internship.library.util.ObjectMapper;
-import org.modelmapper.ModelMapper;
+import com.arobs.internship.library.util.status.CopyStatus;
+import com.arobs.internship.library.util.handler.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -36,10 +32,13 @@ public class BookServiceImpl implements BookService {
 
     private BookDao bookDao;
 
+    private CopyDao copyDao;
+
     @PostConstruct
     public void init() {
         DaoFactory factory = daoFactory.getInstance();
         bookDao = factory.getBookDao();
+        copyDao = factory.getCopyDao();
     }
 
     @Override
@@ -52,7 +51,10 @@ public class BookServiceImpl implements BookService {
             }
         }
         book.setTags(this.updateTags(book.getTags()));
+        book.setAddedDate(new Date());
         bookDao.save(book);
+        Copy copy = new Copy(true, CopyStatus.AVAILABLE.name(), book);//add a copy when inserting a book
+        copyDao.save(copy);
     }
 
     @Override
@@ -63,12 +65,8 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public Book findBookById(int id) throws ValidationException {
-        Book book = bookDao.findById(id);
-        if (book == null) {
-            throw new ValidationException("No book with id: " + id + "found in the database");
-        }
-        return book;
+    public Book findBookById(int id) {
+        return bookDao.findById(id);
     }
 
     @Override
@@ -110,15 +108,13 @@ public class BookServiceImpl implements BookService {
         Set<Tag> newTags = new HashSet<>();
         Tag newTag;
         for (Tag tag : bookTags) {
-            try {
-                newTag = tagService.findTagByDescription(tag.getTagDescription());
-                newTags.add(newTag);//find in db? then add it to the et
-            } catch (ValidationException ex) {
-                //newTag = tagService.dtoToTag(tag);//didn't find in db? add to set as new tag
+            newTag = tagService.findTagByName(tag.getTagName());
+            if (newTag == null) {
                 newTags.add(tag);
+            } else {
+                newTags.add(newTag);
             }
         }
         return newTags;
     }
-
 }

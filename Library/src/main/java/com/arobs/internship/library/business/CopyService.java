@@ -1,8 +1,7 @@
 package com.arobs.internship.library.business;
 
-import com.arobs.internship.library.dtos.CopyDTO;
 import com.arobs.internship.library.entities.book.Copy;
-import com.arobs.internship.library.handler.ValidationException;
+import com.arobs.internship.library.util.handler.ValidationException;
 
 import java.util.List;
 
@@ -14,15 +13,9 @@ public interface CopyService {
 
     List<Copy> findCopiesOfBook(int id);
 
-    Copy findCopyById(int id) throws ValidationException;
+    Copy findCopyById(int id);
 
     void updateCopy(String string, Boolean available, int id) throws ValidationException;
 
     void deleteCopy(int id) throws ValidationException;
-
-    List<CopyDTO> listCopyToDto(List<Copy> copies);
-
-    Copy dtoToCopy(CopyDTO copyDTO) throws ValidationException;
-
-    CopyDTO copyToDto(Copy copy);
 }

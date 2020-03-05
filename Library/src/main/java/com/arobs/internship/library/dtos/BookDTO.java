@@ -8,7 +8,6 @@ public class BookDTO {
     private String title;
     private String author;
     private String description;
-    private Date addedDate;
     private Set<TagDTO> tags;
 
     public String getTitle() {
@@ -33,14 +32,6 @@ public class BookDTO {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Date getAddedDate() {
-        return addedDate;
-    }
-
-    public void setAddedDate(Date addDate) {
-        this.addedDate = addDate;
     }
 
     public Set<TagDTO> getTags() {

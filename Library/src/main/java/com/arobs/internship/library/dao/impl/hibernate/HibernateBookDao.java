@@ -54,10 +54,4 @@ public class HibernateBookDao implements BookDao {
         query.setParameter("author", author);
         query.executeUpdate();
     }
-
-    @Override
-    public void update(Book book) {
-        Session session = this.sessionFactory.getCurrentSession();
-        session.update(book);
-    }
 }

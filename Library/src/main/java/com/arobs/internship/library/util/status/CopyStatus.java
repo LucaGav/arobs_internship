@@ -1,15 +1,13 @@
-package com.arobs.internship.library.entities.util;
+package com.arobs.internship.library.util.status;
 
-import org.springframework.web.bind.annotation.RequestBody;
-
-public enum RequestStatus {
-    ACCEPTED("accepted"),
+public enum CopyStatus {
+    AVAILABLE("available"),
     PENDING("pending"),
-    REJECTED("rejected");
+    RENTED("rented");
 
     private final String status;
 
-    RequestStatus(String s){
+    CopyStatus(String s){
         this.status = s;
     }
     String getStatus(){
@@ -17,12 +15,12 @@ public enum RequestStatus {
     }
 
     public static boolean contains(String text){
-        for(RequestStatus s: RequestStatus.values()){
+        for(CopyStatus s: CopyStatus.values()){
             if(s.name().equals(text)){
                 return true;
             }
         }
         return false;
     }
-}
 
+}
