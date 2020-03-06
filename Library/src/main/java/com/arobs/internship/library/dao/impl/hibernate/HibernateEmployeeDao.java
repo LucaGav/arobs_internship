@@ -54,10 +54,6 @@ public class HibernateEmployeeDao implements EmployeeDao {
         Session session = this.sessionFactory.getCurrentSession();
         Query query = session.createQuery("FROM Employee WHERE email =: email");
         query.setParameter("email", email);
-       /* List<?> results = query.getResultList();
-        if (!results.isEmpty()) {
-            employee = (Employee) results.get(0);
-        }*/
         return QueryUtil.safeGetUniqueResult(query.getResultList());
     }
 
