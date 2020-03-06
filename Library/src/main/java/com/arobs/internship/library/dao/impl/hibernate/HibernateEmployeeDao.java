@@ -1,6 +1,7 @@
 package com.arobs.internship.library.dao.impl.hibernate;
 
 import com.arobs.internship.library.dao.EmployeeDao;
+import com.arobs.internship.library.dao.impl.hibernate.util.QueryUtil;
 import com.arobs.internship.library.entities.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -53,11 +54,11 @@ public class HibernateEmployeeDao implements EmployeeDao {
         Session session = this.sessionFactory.getCurrentSession();
         Query query = session.createQuery("FROM Employee WHERE email =: email");
         query.setParameter("email", email);
-        List<?> results = query.getResultList();
+       /* List<?> results = query.getResultList();
         if (!results.isEmpty()) {
             employee = (Employee) results.get(0);
-        }
-        return employee;
+        }*/
+        return QueryUtil.safeGetUniqueResult(query.getResultList());
     }
 
     @Override

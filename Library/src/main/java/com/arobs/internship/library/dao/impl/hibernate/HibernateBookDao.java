@@ -1,6 +1,7 @@
 package com.arobs.internship.library.dao.impl.hibernate;
 
 import com.arobs.internship.library.dao.BookDao;
+import com.arobs.internship.library.dao.impl.hibernate.util.QueryUtil;
 import com.arobs.internship.library.entities.book.Book;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -34,7 +35,7 @@ public class HibernateBookDao implements BookDao {
     public List<Book> findBooks() {
         List<Book> books;
         Session session = this.sessionFactory.getCurrentSession();
-        Query query = session.createQuery("FROM Book");
+        Query query = session.createQuery("SELECT b from Book b LEFT JOIN FETCH b.tags");
         books = query.getResultList();
         return books;
     }
@@ -42,8 +43,11 @@ public class HibernateBookDao implements BookDao {
 
     @Override
     public Book findById(int id) {
+        Book book = null;
         Session session = this.sessionFactory.getCurrentSession();
-        return session.get(Book.class, id);
+        Query query = session.createQuery("SELECT b from Book b LEFT JOIN FETCH b.tags WHERE b.bookID =: id");
+        query.setParameter("id", id);
+        return QueryUtil.safeGetUniqueResult(query.getResultList());
     }
 
     @Override

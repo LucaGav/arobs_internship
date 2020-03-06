@@ -19,7 +19,7 @@ public class Copy {
     @Column(name = "status")
     private String status;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bookID")
     private Book book;
 
