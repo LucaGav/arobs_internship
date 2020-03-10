@@ -19,14 +19,10 @@ public class HibernateEmployeeDao implements EmployeeDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void setSessionFactory(SessionFactory sf) {
-        this.sessionFactory = sf;
-    }
-
     private static final Logger logger = LoggerFactory.getLogger(HibernateEmployeeDao.class);
 
     @Override
-    public void save(Employee employee) {
+    public void insert(Employee employee) {
         Session session = this.sessionFactory.getCurrentSession();
         session.save(employee);
     }

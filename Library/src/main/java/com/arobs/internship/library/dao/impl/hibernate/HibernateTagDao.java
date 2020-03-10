@@ -19,14 +19,10 @@ public class HibernateTagDao implements TagDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void setSessionFactory(SessionFactory sf) {
-        this.sessionFactory = sf;
-    }
-
     private static final Logger logger = LoggerFactory.getLogger(BookServiceImpl.class);
 
     @Override
-    public void save(Tag tag) {
+    public void insert(Tag tag) {
         Session session = this.sessionFactory.getCurrentSession();
         session.save(tag);
     }

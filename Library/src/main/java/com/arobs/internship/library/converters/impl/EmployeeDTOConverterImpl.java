@@ -1,7 +1,7 @@
 package com.arobs.internship.library.converters.impl;
 
 import com.arobs.internship.library.converters.EmployeeDTOConverter;
-import com.arobs.internship.library.dtos.EmployeeDTO;
+import com.arobs.internship.library.dtos.employee.EmployeeDTO;
 import com.arobs.internship.library.entities.Employee;
 import com.arobs.internship.library.util.ObjectMapper;
 import org.modelmapper.ModelMapper;

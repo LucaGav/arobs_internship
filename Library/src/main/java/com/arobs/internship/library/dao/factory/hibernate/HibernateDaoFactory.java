@@ -24,6 +24,9 @@ public class HibernateDaoFactory extends DaoFactory {
     @Autowired
     private HibernateBookRequestDao bookRequestDao;
 
+    @Autowired
+    private HibernateBookRentDao bookRentDao;
+
     @Override
     public EmployeeDao getEmployeeDao() {
         return employeeDao;
@@ -47,6 +50,11 @@ public class HibernateDaoFactory extends DaoFactory {
     @Override
     public BookRequestDao getBookRequestDao() {
         return bookRequestDao;
+    }
+
+    @Override
+    public BookRentDao getBookRentDao() {
+        return bookRentDao;
     }
 
 }

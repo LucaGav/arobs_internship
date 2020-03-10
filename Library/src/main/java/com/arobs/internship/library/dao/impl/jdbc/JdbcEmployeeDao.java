@@ -17,7 +17,7 @@ public class JdbcEmployeeDao implements EmployeeDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void save(Employee employee) {
+    public void insert(Employee employee) {
         jdbcTemplate.update("insert into employee (firstName,lastName,role,password,email) " +
                         "values(?,?,?,?,?)",
                 employee.getFirstName(), employee.getLastName(),

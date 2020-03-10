@@ -21,12 +21,8 @@ public class HibernateBookDao implements BookDao {
 
     private static final Logger logger = LoggerFactory.getLogger(HibernateBookDao.class);
 
-    public void setSessionFactory(SessionFactory sf) {
-        this.sessionFactory = sf;
-    }
-
     @Override
-    public void save(Book book) {
+    public void insert(Book book) {
         Session session = this.sessionFactory.getCurrentSession();
         session.persist(book);
     }

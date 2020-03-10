@@ -3,6 +3,8 @@ package com.arobs.internship.library.business.impl;
 import com.arobs.internship.library.business.EmployeeService;
 import com.arobs.internship.library.dao.EmployeeDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
+import com.arobs.internship.library.dtos.employee.EmployeeDTO;
+import com.arobs.internship.library.dtos.employee.EmployeeUpdateDTO;
 import com.arobs.internship.library.entities.Employee;
 import com.arobs.internship.library.util.entities.EmployeeUtil;
 import com.arobs.internship.library.util.handler.ValidationException;
@@ -13,9 +15,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @Service
@@ -45,7 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             }
         }
         employee.setPassword(EmployeeUtil.passwordEncryption(employee.getPassword()));
-        employeeDao.save(employee);
+        employeeDao.insert(employee);
     }
 
     @Override
@@ -62,15 +61,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional
-    public void updateEmployee(String email, String firstName, String lastName, int id) throws ValidationException {
+    public void updateEmployee(EmployeeUpdateDTO employeeDTO, int id) throws ValidationException {
         Employee employee = this.findEmployeeById(id);
         if (employee == null) {
             throw new ValidationException("No employee with this id found");
         }
-        if (!email.equals(employee.getEmail()) || !firstName.equals(employee.getFirstName()) || !lastName.equals(employee.getLastName())) {
-            employee.setEmail(email);
-            employee.setFirstName(firstName);
-            employee.setLastName(lastName);
+        if (!employeeDTO.getEmail().equals(employee.getEmail()) || !employeeDTO.getFirstName().equals(employee.getFirstName())
+                || !employeeDTO.getLastName().equals(employee.getLastName())) {
+            employee.setEmail(employeeDTO.getEmail());
+            employee.setFirstName(employeeDTO.getFirstName());
+            employee.setLastName(employeeDTO.getLastName());
         } else {
             throw new ValidationException("No updated fields");
         }

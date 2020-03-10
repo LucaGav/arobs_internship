@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CopyDao {
 
-    void save(Copy copy);
+    void insert(Copy copy);
 
     List<Copy> findCopies();
 

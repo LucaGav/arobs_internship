@@ -47,7 +47,7 @@ org.hibernate.LazyInitializationException: failed to lazily initialize a collect
 	at org.modelmapper.internal.MappingEngineImpl.map(MappingEngineImpl.java:72) ~[modelmapper-2.3.5.jar:na]
 	at org.modelmapper.ModelMapper.mapInternal(ModelMapper.java:573) ~[modelmapper-2.3.5.jar:na]
 	at org.modelmapper.ModelMapper.map(ModelMapper.java:406) ~[modelmapper-2.3.5.jar:na]
-	at com.arobs.internship.library.converters.impl.BookDTOConverterImpl.bookToDTO(BookDTOConverterImpl.java:41) ~[classes/:na]
+	at com.arobs.internship.library.converters.impl.book.BookDTOConverterImpl.bookToDTO(BookDTOConverterImpl.java:41) ~[classes/:na]
 	at com.arobs.internship.library.controller.BookController.getBook(BookController.java:58) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
@@ -682,7 +682,7 @@ org.hibernate.LazyInitializationException: failed to lazily initialize a collect
 	at org.modelmapper.internal.MappingEngineImpl.map(MappingEngineImpl.java:72) ~[modelmapper-2.3.5.jar:na]
 	at org.modelmapper.ModelMapper.mapInternal(ModelMapper.java:573) ~[modelmapper-2.3.5.jar:na]
 	at org.modelmapper.ModelMapper.map(ModelMapper.java:406) ~[modelmapper-2.3.5.jar:na]
-	at com.arobs.internship.library.converters.impl.BookDTOConverterImpl.listBookToDTO(BookDTOConverterImpl.java:26) ~[classes/:na]
+	at com.arobs.internship.library.converters.impl.book.BookDTOConverterImpl.listBookToDTO(BookDTOConverterImpl.java:26) ~[classes/:na]
 	at com.arobs.internship.library.controller.BookController.findBooks(BookController.java:48) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
@@ -839,3 +839,92 @@ org.hibernate.LazyInitializationException: failed to lazily initialize a collect
 2020-03-06 15:57:26.763  INFO 8848 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2020-03-06 15:57:26.765  INFO 8848 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2020-03-06 15:57:26.783  INFO 8848 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 18 ms
+2020-03-10 10:35:16.072  INFO 15016 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 15016 (C:\Library\target\classes started by luca.gavril in C:\Library)
+2020-03-10 10:35:16.080  INFO 15016 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
+2020-03-10 10:35:20.493  INFO 15016 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-03-10 10:35:20.698  INFO 15016 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 168ms. Found 0 JPA repository interfaces.
+2020-03-10 10:35:21.937  INFO 15016 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-10 10:35:23.328  INFO 15016 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-10 10:35:23.357  INFO 15016 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-10 10:35:23.359  INFO 15016 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-10 10:35:23.713  INFO 15016 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
+2020-03-10 10:35:23.714  INFO 15016 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 7484 ms
+2020-03-10 10:35:24.544  INFO 15016 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
+2020-03-10 10:35:24.979  INFO 15016 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-03-10 10:35:26.430  INFO 15016 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-03-10 10:35:29.207  INFO 15016 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-03-10 10:35:29.389  WARN 15016 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookRequestServiceImpl': Unsatisfied dependency expressed through field 'daoFactory'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jdbcDaoFactory': Unsatisfied dependency expressed through field 'hibernateDaoFactory'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'hibernateDaoFactory': Unsatisfied dependency expressed through field 'bookRentDao'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.arobs.internship.library.dao.impl.hibernate.HibernateBookRentDao' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2020-03-10 10:35:29.404  INFO 15016 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-03-10 10:35:29.450  INFO 15016 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-03-10 10:35:29.762 ERROR 15016 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field bookRentDao in com.arobs.internship.library.dao.factory.hibernate.HibernateDaoFactory required a bean of type 'com.arobs.internship.library.dao.impl.hibernate.HibernateBookRentDao' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.arobs.internship.library.dao.impl.hibernate.HibernateBookRentDao' in your configuration.
+
+2020-03-10 10:36:53.821  INFO 17776 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 17776 (C:\Library\target\classes started by luca.gavril in C:\Library)
+2020-03-10 10:36:53.831  INFO 17776 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
+2020-03-10 10:36:58.390  INFO 17776 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-03-10 10:36:58.539  INFO 17776 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 114ms. Found 0 JPA repository interfaces.
+2020-03-10 10:36:59.523  INFO 17776 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-10 10:37:00.894  INFO 17776 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-10 10:37:00.912  INFO 17776 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-10 10:37:00.914  INFO 17776 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-10 10:37:01.223  INFO 17776 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
+2020-03-10 10:37:01.224  INFO 17776 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 7239 ms
+2020-03-10 10:37:01.687  INFO 17776 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
+2020-03-10 10:37:02.043  INFO 17776 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-03-10 10:37:03.443  INFO 17776 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-03-10 10:37:06.215  INFO 17776 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-03-10 10:37:07.564  INFO 17776 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-03-10 10:37:07.876  INFO 17776 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-10 10:37:08.243  INFO 17776 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-03-10 10:37:08.304  INFO 17776 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-03-10 10:37:08.403  INFO 17776 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-03-10 10:37:09.102  INFO 17776 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateEmployeeUsingPATCH_1
+2020-03-10 10:37:09.250  INFO 17776 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateEmployeeUsingPATCH_2
+2020-03-10 10:37:09.485  INFO 17776 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
+2020-03-10 10:37:09.512  INFO 17776 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 16.898 seconds (JVM running for 18.427)
+2020-03-10 10:37:27.140  INFO 17776 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-10 10:37:27.146  INFO 17776 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-10 10:37:27.165  INFO 17776 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 19 ms
+2020-03-10 10:51:55.744  INFO 17200 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 17200 (C:\Library\target\classes started by luca.gavril in C:\Library)
+2020-03-10 10:51:55.770  INFO 17200 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
+2020-03-10 10:52:02.435  INFO 17200 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-03-10 10:52:02.609  INFO 17200 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 147ms. Found 0 JPA repository interfaces.
+2020-03-10 10:52:03.808  INFO 17200 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-10 10:52:05.559  INFO 17200 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-10 10:52:05.584  INFO 17200 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-10 10:52:05.585  INFO 17200 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-10 10:52:05.999  INFO 17200 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
+2020-03-10 10:52:06.000  INFO 17200 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 10016 ms
+2020-03-10 10:52:06.592  INFO 17200 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
+2020-03-10 10:52:06.981  INFO 17200 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-03-10 10:52:08.386  INFO 17200 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-03-10 10:52:11.276  INFO 17200 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-03-10 10:52:12.798  INFO 17200 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-03-10 10:52:13.093  INFO 17200 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-10 10:52:13.422  INFO 17200 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-03-10 10:52:13.468  INFO 17200 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-03-10 10:52:13.548  INFO 17200 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-03-10 10:52:14.158  INFO 17200 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateEmployeeUsingPATCH_1
+2020-03-10 10:52:14.258  INFO 17200 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateEmployeeUsingPATCH_2
+2020-03-10 10:52:14.467  INFO 17200 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
+2020-03-10 10:52:14.488  INFO 17200 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 20.912 seconds (JVM running for 23.272)
+2020-03-10 10:52:30.446  INFO 17200 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-10 10:52:30.451  INFO 17200 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-10 10:52:30.464  INFO 17200 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 13 ms

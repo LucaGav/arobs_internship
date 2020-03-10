@@ -2,6 +2,7 @@ package com.arobs.internship.library.controller;
 
 import com.arobs.internship.library.business.BookService;
 import com.arobs.internship.library.converters.BookDTOConverter;
+import com.arobs.internship.library.converters.TagDTOConverter;
 import com.arobs.internship.library.dtos.book.BookDTO;
 import com.arobs.internship.library.dtos.book.TagDTO;
 import com.arobs.internship.library.entities.book.Book;

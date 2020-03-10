@@ -8,7 +8,6 @@ import com.arobs.internship.library.dao.factory.DaoFactory;
 import com.arobs.internship.library.dtos.book.TagDTO;
 import com.arobs.internship.library.entities.book.Book;
 import com.arobs.internship.library.entities.book.Copy;
-import com.arobs.internship.library.entities.book.Tag;
 import com.arobs.internship.library.util.status.CopyStatus;
 import com.arobs.internship.library.util.handler.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,11 +49,11 @@ public class BookServiceImpl implements BookService {
                 throw new ValidationException("Book having the same title and author already exists");
             }
         }
-        book.setTags(this.updateTags(book.getTags()));
+        book.setTags(tagService.handleBookTags(book.getTags()));
         book.setAddedDate(new Date());
-        bookDao.save(book);
+        bookDao.insert(book);
         Copy copy = new Copy(true, CopyStatus.AVAILABLE.name(), book);//add a copy when inserting a book
-        copyDao.save(copy);
+        copyDao.insert(copy);
     }
 
     @Override
@@ -77,9 +76,7 @@ public class BookServiceImpl implements BookService {
             throw new ValidationException("No book with this id found");
         }
         if (!description.equals(book.getDescription()) || !book.getTags().equals(tagDTOSet)) {
-            List<TagDTO> dtoList = new ArrayList<>(tagDTOSet);
-            List<Tag> newTags = tagDTOConverter.listDTOToTag(dtoList);
-            book.setTags(this.updateTags(new HashSet<>(newTags)));
+            book.setTags(tagService.handleBookTags(tagDTOConverter.setTagToDTO(tagDTOSet)));
             book.setDescription(description);
         } else {
             throw new ValidationException("No updated fields");
@@ -103,18 +100,4 @@ public class BookServiceImpl implements BookService {
         bookDao.delete(title, author);
     }
 
-
-    public Set<Tag> updateTags(Set<Tag> bookTags) {
-        Set<Tag> newTags = new HashSet<>();
-        Tag newTag;
-        for (Tag tag : bookTags) {
-            newTag = tagService.findTagByName(tag.getTagName());
-            if (newTag == null) {
-                newTags.add(tag);
-            } else {
-                newTags.add(newTag);
-            }
-        }
-        return newTags;
-    }
 }

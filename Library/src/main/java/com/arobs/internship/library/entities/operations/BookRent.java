@@ -1,5 +1,6 @@
 package com.arobs.internship.library.entities.operations;
 
+import com.arobs.internship.library.entities.book.Book;
 import com.arobs.internship.library.entities.book.Copy;
 
 import javax.persistence.*;
@@ -19,7 +20,6 @@ public class BookRent {
     @Temporal(TemporalType.DATE)
     private Date rentalDate;
 
-    @NotNull
     @Column(name = "returnDate")
     @Temporal(TemporalType.DATE)
     private Date returnDate;
@@ -28,26 +28,36 @@ public class BookRent {
     @Column(name = "status")
     private String status;
 
-    @Column(name = "note")
-    private float note;
+    @Column(name = "grade")
+    private float grade;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "copyID")
     private Copy copy;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bookID")
+    private Book book;
 
     public BookRent() {
     }
 
-    public BookRent(int rentID, Date rentalDate, Date returnDate, String status, float note) {
+    public BookRent(int rentID, @NotNull Date rentalDate, Date returnDate, @NotNull String status, float grade, Copy copy, Book book) {
         this.rentID = rentID;
         this.rentalDate = rentalDate;
         this.returnDate = returnDate;
         this.status = status;
-        this.note = note;
+        this.grade = grade;
+        this.copy = copy;
+        this.book = book;
     }
 
     public int getRentID() {
         return rentID;
+    }
+
+    public void setRentID(int rentID) {
+        this.rentID = rentID;
     }
 
     public Date getRentalDate() {
@@ -74,12 +84,12 @@ public class BookRent {
         this.status = status;
     }
 
-    public float getNote() {
-        return note;
+    public float getGrade() {
+        return grade;
     }
 
-    public void setNote(float note) {
-        this.note = note;
+    public void setGrade(float grade) {
+        this.grade = grade;
     }
 
     public Copy getCopy() {
@@ -88,5 +98,13 @@ public class BookRent {
 
     public void setCopy(Copy copy) {
         this.copy = copy;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 }

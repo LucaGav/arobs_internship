@@ -1,4 +1,4 @@
-package com.arobs.internship.library.converters.impl;
+package com.arobs.internship.library.converters.impl.operations;
 
 import com.arobs.internship.library.converters.RentReqDTOConverter;
 import com.arobs.internship.library.dtos.operations.RentRequestDTO;

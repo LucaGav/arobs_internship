@@ -20,13 +20,8 @@ public class HibernateCopyDao implements CopyDao {
 
     private static final Logger logger = LoggerFactory.getLogger(HibernateBookDao.class);
 
-    public void setSessionFactory(SessionFactory sf) {
-        this.sessionFactory = sf;
-    }
-
-
     @Override
-    public void save(Copy copy) {
+    public void insert(Copy copy) {
         Session session = this.sessionFactory.getCurrentSession();
         session.save(copy);
     }

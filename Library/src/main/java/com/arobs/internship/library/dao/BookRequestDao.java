@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BookRequestDao {
 
-    void save(BookRequest bookRequest);
+    void insert(BookRequest bookRequest);
 
     List<BookRequest> findBookRequests();
 

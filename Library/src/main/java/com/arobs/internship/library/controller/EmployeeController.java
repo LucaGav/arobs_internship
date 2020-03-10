@@ -2,7 +2,8 @@ package com.arobs.internship.library.controller;
 
 import com.arobs.internship.library.business.EmployeeService;
 import com.arobs.internship.library.converters.EmployeeDTOConverter;
-import com.arobs.internship.library.dtos.EmployeeDTO;
+import com.arobs.internship.library.dtos.employee.EmployeeDTO;
+import com.arobs.internship.library.dtos.employee.EmployeeUpdateDTO;
 import com.arobs.internship.library.entities.Employee;
 import com.arobs.internship.library.util.entities.EmployeeUtil;
 import com.arobs.internship.library.util.handler.ValidationException;
@@ -74,17 +75,20 @@ public class EmployeeController {
     }
 
     @PatchMapping("/updateEmployee/{id}")
-    public ResponseEntity<?> updateEmployee(@RequestParam("email") String email, @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
+    public ResponseEntity<?> updateEmployee(@RequestBody @Valid EmployeeUpdateDTO employeeDTO, BindingResult bindingResult,
                                             @PathVariable int id) {
-        if (!EmployeeUtil.validateEmail(email)) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>("Invalid information in fields", HttpStatus.BAD_REQUEST);
+        }
+        if (!EmployeeUtil.validateEmail(employeeDTO.getEmail())) {
             return new ResponseEntity<>("Bad e-mail format", HttpStatus.BAD_REQUEST);
         }
         try {
-            employeeService.updateEmployee(email, firstName, lastName, id);
+            employeeService.updateEmployee(employeeDTO, id);
         } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>("User with email: " + email + " updated successfully.", HttpStatus.OK);
+        return new ResponseEntity<>("User with email: " + employeeDTO.getEmail() + " updated successfully.", HttpStatus.OK);
     }
 
     @PatchMapping("/updatePassword")

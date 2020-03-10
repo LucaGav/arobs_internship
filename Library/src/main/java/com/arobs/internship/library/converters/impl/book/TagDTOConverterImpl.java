@@ -1,4 +1,4 @@
-package com.arobs.internship.library.converters.impl;
+package com.arobs.internship.library.converters.impl.book;
 
 import com.arobs.internship.library.converters.TagDTOConverter;
 import com.arobs.internship.library.dtos.book.TagDTO;
@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class TagDTOConverterImpl implements TagDTOConverter {
@@ -39,6 +41,13 @@ public class TagDTOConverterImpl implements TagDTOConverter {
             tagDTOS.add(tagDTO);
         }
         return tagDTOS;
+    }
+
+    @Override
+    public Set<Tag> setTagToDTO(Set<TagDTO> tagDTOSet) {
+        List<TagDTO> dtoList = new ArrayList<>(tagDTOSet);
+        List<Tag> newTags = this.listDTOToTag(dtoList);
+        return new HashSet<>(newTags);
     }
 
     @Override

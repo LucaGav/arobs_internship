@@ -24,7 +24,6 @@ public abstract class DaoFactory {
 
 
     public DaoFactory() {
-
     }
 
     public DaoFactory getInstance() {
@@ -48,4 +47,6 @@ public abstract class DaoFactory {
     public abstract CopyDao getCopyDao();
 
     public abstract BookRequestDao getBookRequestDao();
+
+    public abstract BookRentDao getBookRentDao();
 }

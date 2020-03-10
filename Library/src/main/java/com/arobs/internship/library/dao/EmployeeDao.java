@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface EmployeeDao {
 
-    void save(Employee employee);
+    void insert(Employee employee);
 
     List<Employee> findEmployees();
 

@@ -34,10 +34,7 @@ public class CopyServiceImpl implements CopyService {
     @Override
     @Transactional
     public void insertCopy(Copy copy) throws ValidationException {
-        if (!CopyStatus.contains(copy.getStatus())) {
-            throw new ValidationException("No valid status for copy");
-        }
-        copyDao.save(copy);
+        copyDao.insert(copy);
     }
 
     @Override
@@ -72,15 +69,28 @@ public class CopyServiceImpl implements CopyService {
             copy.setRentable(rentable);
         }
         if (!status.toUpperCase().equals(copy.getStatus())) {
-            this.setCopyStatus(copy, status.toUpperCase());
-            if(!status.toUpperCase().equals(copy.getStatus())){
+            boolean checkStatus = this.setCopyStatus(copy, status.toUpperCase());
+            if(!checkStatus){
                 throw new ValidationException("Cannot update status, because the copy is not rentable");
             }
         }
         else if (status.equals(copy.getStatus()) && copy.isRentable() == rentable) {
             throw new ValidationException("No updated fields");
         }
+    }
 
+    private boolean setCopyStatus(Copy copy, String status) {
+        if(status.equals(CopyStatus.AVAILABLE.name())){
+            copy.setStatus(status);
+            return true;
+        }
+        if(status.equals(CopyStatus.PENDING.name()) || status.equals(CopyStatus.RENTED.name())){
+            if(copy.isRentable()){
+                copy.setStatus(status);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -98,13 +108,5 @@ public class CopyServiceImpl implements CopyService {
             throw new ValidationException("No copy with this id found");
         }
         copyDao.delete(id);
-    }
-
-    void setCopyStatus(Copy copy, String status) {
-        if(status.equals(CopyStatus.PENDING.name()) || status.equals(CopyStatus.RENTED.name())){
-            if(copy.isRentable()){
-                copy.setStatus(status);
-            }
-        }
     }
 }

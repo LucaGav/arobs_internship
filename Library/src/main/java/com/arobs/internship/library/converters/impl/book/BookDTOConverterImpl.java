@@ -1,4 +1,4 @@
-package com.arobs.internship.library.converters.impl;
+package com.arobs.internship.library.converters.impl.book;
 
 import com.arobs.internship.library.converters.BookDTOConverter;
 import com.arobs.internship.library.dtos.book.BookDTO;

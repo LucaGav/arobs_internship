@@ -20,13 +20,8 @@ public class HibernateBookRequestDao implements BookRequestDao {
 
     private static final Logger logger = LoggerFactory.getLogger(HibernateBookDao.class);
 
-    public void setSessionFactory(SessionFactory sf) {
-        this.sessionFactory = sf;
-    }
-
-
     @Override
-    public void save(BookRequest bookRequest) {
+    public void insert(BookRequest bookRequest) {
         Session session = this.sessionFactory.getCurrentSession();
         session.save(bookRequest);
     }

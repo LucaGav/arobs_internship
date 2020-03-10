@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface TagDao {
 
-    void save(Tag tag);
+    void insert(Tag tag);
 
     List<Tag> findTags();
 

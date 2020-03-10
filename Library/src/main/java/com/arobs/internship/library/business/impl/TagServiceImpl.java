@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class TagServiceImpl implements TagService {
@@ -35,7 +37,7 @@ public class TagServiceImpl implements TagService {
                 throw new ValidationException("Tag with description " + t.getTagName() + " already exists.");
             }
         }
-        tagDao.save(tag);
+        tagDao.insert(tag);
     }
 
     @Override
@@ -65,5 +67,19 @@ public class TagServiceImpl implements TagService {
             throw new ValidationException("Tag name is invalid");
         }
         tagDao.delete(name);
+    }
+
+    public Set<Tag> handleBookTags(Set<Tag> bookTags) {
+        Set<Tag> newTags = new HashSet<>();
+        Tag newTag;
+        for (Tag tag : bookTags) {
+            newTag = this.findTagByName(tag.getTagName());
+            if (newTag == null) {
+                newTags.add(tag);
+            } else {
+                newTags.add(newTag);
+            }
+        }
+        return newTags;
     }
 }

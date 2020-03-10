@@ -31,7 +31,7 @@ public class BookRequestServiceImpl implements BookRequestService {
     @Transactional
     public void insertBookRequest(BookRequest bookRequest) {
         bookRequest.setStatus(RequestStatus.PENDING.name());
-        bookRequestDao.save(bookRequest);
+        bookRequestDao.insert(bookRequest);
     }
 
     @Override
@@ -54,11 +54,10 @@ public class BookRequestServiceImpl implements BookRequestService {
             throw new ValidationException("No book request with this id found.");
         }
         if (!RequestStatus.contains(status.toUpperCase())) {
-            System.out.println(status);
             throw new ValidationException("No valid status for copy");
         }
         if (!status.equals(bookRequest.getStatus())) {
-            bookRequest.setStatus(status);
+            bookRequest.setStatus(status.toUpperCase());
         } else {
             throw new ValidationException("No updated fields");
         }
