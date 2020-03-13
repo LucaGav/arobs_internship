@@ -1,4 +1,4 @@
-package com.arobs.internship.library.dao.impl.hibernate;
+package com.arobs.internship.library.dao.impl.hibernate.book;
 
 import com.arobs.internship.library.dao.BookDao;
 import com.arobs.internship.library.dao.impl.hibernate.util.QueryUtil;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

@@ -1,9 +1,8 @@
-package com.arobs.internship.library.business.impl;
+package com.arobs.internship.library.business.impl.book;
 
 import com.arobs.internship.library.business.BookService;
 import com.arobs.internship.library.converters.TagDTOConverter;
 import com.arobs.internship.library.dao.BookDao;
-import com.arobs.internship.library.dao.CopyDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
 import com.arobs.internship.library.dtos.book.TagDTO;
 import com.arobs.internship.library.entities.book.Book;

@@ -43,4 +43,11 @@ public class JdbcDaoFactory extends DaoFactory {
     public BookRentDao getBookRentDao() {
         return null;
     }
+
+    @Override
+    public RentRequestDao getRentRequestDao() {
+        return null;
+    }
+
+
 }

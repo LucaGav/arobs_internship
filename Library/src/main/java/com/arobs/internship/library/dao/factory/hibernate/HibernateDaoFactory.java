@@ -3,6 +3,12 @@ package com.arobs.internship.library.dao.factory.hibernate;
 import com.arobs.internship.library.dao.*;
 import com.arobs.internship.library.dao.factory.DaoFactory;
 import com.arobs.internship.library.dao.impl.hibernate.*;
+import com.arobs.internship.library.dao.impl.hibernate.book.HibernateBookDao;
+import com.arobs.internship.library.dao.impl.hibernate.book.HibernateCopyDao;
+import com.arobs.internship.library.dao.impl.hibernate.book.HibernateTagDao;
+import com.arobs.internship.library.dao.impl.hibernate.operations.HibernateBookRentDao;
+import com.arobs.internship.library.dao.impl.hibernate.operations.HibernateBookRequestDao;
+import com.arobs.internship.library.dao.impl.hibernate.operations.HibernateRentRequestDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +32,9 @@ public class HibernateDaoFactory extends DaoFactory {
 
     @Autowired
     private HibernateBookRentDao bookRentDao;
+
+    @Autowired
+    private HibernateRentRequestDao rentRequestDao;
 
     @Override
     public EmployeeDao getEmployeeDao() {
@@ -57,4 +66,7 @@ public class HibernateDaoFactory extends DaoFactory {
         return bookRentDao;
     }
 
+    public HibernateRentRequestDao getRentRequestDao() {
+        return rentRequestDao;
+    }
 }

@@ -1,4 +1,4 @@
-package com.arobs.internship.library.dao.impl.hibernate;
+package com.arobs.internship.library.dao.impl.hibernate.operations;
 
 import com.arobs.internship.library.dao.BookRentDao;
 import com.arobs.internship.library.entities.operations.BookRent;

@@ -49,4 +49,6 @@ public abstract class DaoFactory {
     public abstract BookRequestDao getBookRequestDao();
 
     public abstract BookRentDao getBookRentDao();
+
+    public abstract RentRequestDao getRentRequestDao();
 }

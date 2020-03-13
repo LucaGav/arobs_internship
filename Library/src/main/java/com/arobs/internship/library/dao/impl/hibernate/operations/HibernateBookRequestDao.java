@@ -1,6 +1,7 @@
-package com.arobs.internship.library.dao.impl.hibernate;
+package com.arobs.internship.library.dao.impl.hibernate.operations;
 
 import com.arobs.internship.library.dao.BookRequestDao;
+import com.arobs.internship.library.dao.impl.hibernate.book.HibernateBookDao;
 import com.arobs.internship.library.entities.operations.BookRequest;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

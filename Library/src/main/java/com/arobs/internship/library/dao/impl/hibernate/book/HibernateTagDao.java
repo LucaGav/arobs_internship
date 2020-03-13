@@ -1,6 +1,6 @@
-package com.arobs.internship.library.dao.impl.hibernate;
+package com.arobs.internship.library.dao.impl.hibernate.book;
 
-import com.arobs.internship.library.business.impl.BookServiceImpl;
+import com.arobs.internship.library.business.impl.book.BookServiceImpl;
 import com.arobs.internship.library.dao.TagDao;
 import com.arobs.internship.library.entities.book.Tag;
 import org.hibernate.Session;

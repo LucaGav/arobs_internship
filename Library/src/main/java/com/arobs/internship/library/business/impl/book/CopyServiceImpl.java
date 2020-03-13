@@ -1,4 +1,4 @@
-package com.arobs.internship.library.business.impl;
+package com.arobs.internship.library.business.impl.book;
 
 import com.arobs.internship.library.business.BookService;
 import com.arobs.internship.library.business.CopyService;

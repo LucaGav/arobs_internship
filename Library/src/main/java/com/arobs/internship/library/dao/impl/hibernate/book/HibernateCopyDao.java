@@ -1,4 +1,4 @@
-package com.arobs.internship.library.dao.impl.hibernate;
+package com.arobs.internship.library.dao.impl.hibernate.book;
 
 import com.arobs.internship.library.dao.CopyDao;
 import com.arobs.internship.library.entities.book.Copy;
