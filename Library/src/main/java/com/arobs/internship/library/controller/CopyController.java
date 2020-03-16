@@ -57,6 +57,18 @@ public class CopyController {
         return new ResponseEntity<>(copyDTOS, HttpStatus.OK);
     }
 
+    @GetMapping("/copies/available/{bookId}")
+    public ResponseEntity<?> checkAvailableCopy(@PathVariable int bookId) {
+        Copy copy = copyService.findAvailableCopyOfBook(bookId);
+        if(copy == null){
+            return new ResponseEntity<>("No available copies of this book present in the db", HttpStatus.BAD_REQUEST);
+        }
+        else {
+            return new ResponseEntity<>("Book with this id has at least one available copy", HttpStatus.OK);
+        }
+
+    }
+
     @GetMapping
     public ResponseEntity<?> getCopy(@RequestParam("copyID") int id) {
         Copy copy = copyService.findCopyById(id);

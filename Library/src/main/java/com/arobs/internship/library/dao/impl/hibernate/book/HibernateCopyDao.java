@@ -1,7 +1,9 @@
 package com.arobs.internship.library.dao.impl.hibernate.book;
 
 import com.arobs.internship.library.dao.CopyDao;
+import com.arobs.internship.library.dao.impl.hibernate.util.QueryUtil;
 import com.arobs.internship.library.entities.book.Copy;
+import com.arobs.internship.library.util.status.CopyStatus;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -44,6 +46,15 @@ public class HibernateCopyDao implements CopyDao {
         query.setParameter("bookID", bookId);
         copies = query.getResultList();
         return copies;
+    }
+
+    @Override
+    public Copy findAvailableByBookID(int bookId) {
+        Session session = this.sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Copy WHERE bookID =: id AND status =: status").setMaxResults(1);
+        query.setParameter("id",bookId);
+        query.setParameter("status", CopyStatus.AVAILABLE.name());
+        return QueryUtil.safeGetUniqueResult(query.getResultList());
     }
 
     @Override

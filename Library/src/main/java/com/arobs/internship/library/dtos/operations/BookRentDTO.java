@@ -4,16 +4,15 @@ import java.util.Date;
 
 public class BookRentDTO {
 
-    private int copyID;
+    private int employeeID;
     private int bookID;
 
-
-    public int getCopyID() {
-        return copyID;
+    public int getEmployeeID() {
+        return employeeID;
     }
 
-    public void setCopyID(int copyID) {
-        this.copyID = copyID;
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
     }
 
     public int getBookID() {

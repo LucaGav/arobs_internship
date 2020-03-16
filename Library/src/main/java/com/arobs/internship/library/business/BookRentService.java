@@ -12,7 +12,7 @@ public interface BookRentService {
 
     BookRent findBookRentById(int id);
 
-    BookRent updateBookRent();
+    BookRent updateBookRent(float grade, String status, int id);
 
     int deleteBookRent(int id);
 

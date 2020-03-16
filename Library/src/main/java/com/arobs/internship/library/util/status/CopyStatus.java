@@ -1,6 +1,7 @@
 package com.arobs.internship.library.util.status;
 
 public enum CopyStatus {
+
     AVAILABLE("available"),
     PENDING("pending"),
     RENTED("rented");

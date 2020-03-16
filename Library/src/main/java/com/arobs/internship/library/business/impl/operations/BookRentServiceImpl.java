@@ -4,6 +4,7 @@ import com.arobs.internship.library.business.BookRentService;
 import com.arobs.internship.library.dao.BookRentDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
 import com.arobs.internship.library.entities.operations.BookRent;
+import com.arobs.internship.library.util.handler.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +41,7 @@ public class BookRentServiceImpl implements BookRentService {
     }
 
     @Override
-    public BookRent updateBookRent() {
+    public BookRent updateBookRent(float grade, String status, int id) {
         return null;
     }
 

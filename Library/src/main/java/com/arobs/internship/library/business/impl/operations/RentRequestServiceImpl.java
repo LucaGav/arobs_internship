@@ -24,7 +24,7 @@ public class RentRequestServiceImpl implements RentRequestService {
     }
 
     @Override
-    public RentRequest updateRentRequest() {
+    public RentRequest updateRentRequest(String status, int id) {
         return null;
     }
 

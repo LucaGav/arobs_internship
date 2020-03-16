@@ -12,6 +12,8 @@ public interface CopyDao {
 
     List<Copy> findByBookID(int bookId);
 
+    Copy findAvailableByBookID(int bookId);
+
     Copy findById(int id);
 
     int delete(int id);

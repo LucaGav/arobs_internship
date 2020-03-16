@@ -51,6 +51,12 @@ public class CopyServiceImpl implements CopyService {
 
     @Override
     @Transactional
+    public Copy findAvailableCopyOfBook(int id) {
+        return copyDao.findAvailableByBookID(id);
+    }
+
+    @Override
+    @Transactional
     public Copy findCopyById(int id) {
         return copyDao.findById(id);
     }

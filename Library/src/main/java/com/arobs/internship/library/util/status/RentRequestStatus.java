@@ -1,14 +1,15 @@
 package com.arobs.internship.library.util.status;
 
-public enum RequestStatus {
+public enum RentRequestStatus {
 
-    ACCEPTED("accepted"),
-    PENDING("pending"),
-    REJECTED("rejected");
+    WAITINGAVAILABLECOPY("waiting_available_copy"),
+    WAITINGCONFIRMATION("waiting_confirmation"),
+    DECLINED("declined"),
+    GRANTED("granted");
 
     private final String status;
 
-    RequestStatus(String s){
+    RentRequestStatus(String s){
         this.status = s;
     }
     String getStatus(){
@@ -16,7 +17,7 @@ public enum RequestStatus {
     }
 
     public static boolean contains(String text){
-        for(RequestStatus s: RequestStatus.values()){
+        for(CopyStatus s: CopyStatus.values()){
             if(s.name().equals(text)){
                 return true;
             }
@@ -24,4 +25,3 @@ public enum RequestStatus {
         return false;
     }
 }
-

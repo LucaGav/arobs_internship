@@ -13,6 +13,8 @@ public interface CopyService {
 
     List<Copy> findCopiesOfBook(int id);
 
+    Copy findAvailableCopyOfBook(int id);
+
     Copy findCopyById(int id);
 
     Copy updateCopy(String string, Boolean available, int id) throws ValidationException;
