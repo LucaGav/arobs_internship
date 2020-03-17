@@ -1,9 +1,12 @@
 package com.arobs.internship.library.converters.impl.operations;
 
+import com.arobs.internship.library.business.BookService;
+import com.arobs.internship.library.business.EmployeeService;
 import com.arobs.internship.library.converters.BookRentDTOConverter;
 import com.arobs.internship.library.dtos.operations.BookRentDTO;
 import com.arobs.internship.library.entities.book.Book;
 import com.arobs.internship.library.entities.operations.BookRent;
+import com.arobs.internship.library.entities.operations.BookRequest;
 import com.arobs.internship.library.util.ObjectMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +21,18 @@ public class BookRentDTOConverterImpl implements BookRentDTOConverter {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Autowired
+    private EmployeeService employeeService;
+
+    @Autowired
+    private BookService bookService;
+
     @Override
     public BookRent dtoToBookRent(BookRentDTO bookRentDTO) {
-        ModelMapper modelMapper = objectMapper.getMapper();
-        return modelMapper.map(bookRentDTO, BookRent.class);
+        BookRent bookRent = new BookRent();
+        bookRent.setEmployee(employeeService.findEmployeeById(bookRentDTO.getEmployeeID()));
+        bookRent.setBook(bookService.findBookById(bookRentDTO.getBookID()));
+        return bookRent;
     }
 
     @Override

@@ -1,10 +1,15 @@
 package com.arobs.internship.library.business.impl.book;
 
+import com.arobs.internship.library.business.BookRentService;
 import com.arobs.internship.library.business.BookService;
 import com.arobs.internship.library.business.CopyService;
+import com.arobs.internship.library.business.RentRequestService;
 import com.arobs.internship.library.dao.CopyDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
+import com.arobs.internship.library.entities.book.Book;
 import com.arobs.internship.library.entities.book.Copy;
+import com.arobs.internship.library.entities.operations.BookRent;
+import com.arobs.internship.library.entities.operations.RentRequest;
 import com.arobs.internship.library.util.status.CopyStatus;
 import com.arobs.internship.library.util.handler.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +28,12 @@ public class CopyServiceImpl implements CopyService {
     @Autowired
     private DaoFactory daoFactory;
 
+    @Autowired
+    private RentRequestService rentRequestService;
+
+    @Autowired
+    private BookRentService bookRentService;
+
     private CopyDao copyDao;
 
     @PostConstruct
@@ -34,7 +45,24 @@ public class CopyServiceImpl implements CopyService {
     @Override
     @Transactional
     public Copy insertCopy(Copy copy) throws ValidationException {
-        return copyDao.insert(copy);
+        Book book = copy.getBook();
+        Copy copyIns = copyDao.insert(copy);
+        if(copyIns.isRentable()) {
+            this.updateOnCopyInsert(copyIns, book);
+        }
+        return copyIns;
+    }
+
+    private void updateOnCopyInsert(Copy copy, Book book) throws ValidationException {
+        List<RentRequest> rentRequests = rentRequestService.findRentRequestByBookID(book.getBookID());
+        if(!rentRequests.isEmpty()) {
+            RentRequest rentRequest = rentRequests.get(0);
+            BookRent bookRent = new BookRent(book, rentRequest.getEmployee());
+            bookRent.setCopy(copy);
+            copy.setStatus(CopyStatus.RENTED.name());
+            rentRequestService.deleteRentRequest(rentRequest.getRentreqID());
+            bookRentService.insertBookRent(bookRent);
+        }
     }
 
     @Override

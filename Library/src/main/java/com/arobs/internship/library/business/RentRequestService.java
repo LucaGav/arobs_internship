@@ -15,5 +15,9 @@ public interface RentRequestService {
 
     RentRequest updateRentRequest(String status, int id) throws ValidationException;
 
+    List<RentRequest> findRentRequestByBookID(int bookID);
+
+    RentRequest findRentRequestByEmployeeAndBookID(int employeeID, int bookID);
+
     int deleteRentRequest(int id);
 }

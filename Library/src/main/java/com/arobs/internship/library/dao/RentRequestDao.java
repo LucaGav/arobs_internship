@@ -12,5 +12,9 @@ public interface RentRequestDao {
 
     RentRequest findById(int id);
 
+    List<RentRequest> findByBookId(int bookID);
+
+    RentRequest findByEmployeeAndBookID(int employeeID,int bookID);
+
     int delete(int id);
 }

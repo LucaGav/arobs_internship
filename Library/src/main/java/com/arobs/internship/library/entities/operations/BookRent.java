@@ -1,5 +1,6 @@
 package com.arobs.internship.library.entities.operations;
 
+import com.arobs.internship.library.entities.Employee;
 import com.arobs.internship.library.entities.book.Book;
 import com.arobs.internship.library.entities.book.Copy;
 
@@ -39,10 +40,19 @@ public class BookRent {
     @JoinColumn(name = "bookID")
     private Book book;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employeeID")
+    private Employee employee;
+
     public BookRent() {
     }
 
-    public BookRent(int rentID, @NotNull Date rentalDate, Date returnDate, @NotNull String status, float grade, Copy copy, Book book) {
+    public BookRent(Book book, Employee employee) {
+        this.book = book;
+        this.employee = employee;
+    }
+
+    public BookRent(int rentID, @NotNull Date rentalDate, Date returnDate, @NotNull String status, float grade, Copy copy, Book book, Employee employee) {
         this.rentID = rentID;
         this.rentalDate = rentalDate;
         this.returnDate = returnDate;
@@ -50,6 +60,7 @@ public class BookRent {
         this.grade = grade;
         this.copy = copy;
         this.book = book;
+        this.employee = employee;
     }
 
     public int getRentID() {
@@ -106,5 +117,13 @@ public class BookRent {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Employee getEmployee() {
+        return employee;
     }
 }

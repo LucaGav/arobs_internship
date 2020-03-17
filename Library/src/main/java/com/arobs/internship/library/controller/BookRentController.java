@@ -3,9 +3,8 @@ package com.arobs.internship.library.controller;
 import com.arobs.internship.library.business.BookRentService;
 import com.arobs.internship.library.converters.BookRentDTOConverter;
 import com.arobs.internship.library.dtos.operations.BookRentDTO;
-import com.arobs.internship.library.dtos.operations.RentRequestDTO;
 import com.arobs.internship.library.entities.operations.BookRent;
-import com.arobs.internship.library.entities.operations.RentRequest;
+import com.arobs.internship.library.util.handler.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.ValidationException;
 import java.util.List;
 
 @RestController
@@ -33,6 +31,9 @@ public class BookRentController {
         }
         try {
             BookRent bookRent = bookRentService.insertBookRent(bookRentDTOConverter.dtoToBookRent(bookRentDTO));
+            if(bookRent.getCopy()==null){
+                return new ResponseEntity<>("Rent request created, no available or rentable copies", HttpStatus.OK);
+            }
             return new ResponseEntity<>(bookRentDTOConverter.bookRentToDTO(bookRent),HttpStatus.OK);
         } catch (ValidationException ex){
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);

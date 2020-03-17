@@ -51,9 +51,10 @@ public class HibernateCopyDao implements CopyDao {
     @Override
     public Copy findAvailableByBookID(int bookId) {
         Session session = this.sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Copy WHERE bookID =: id AND status =: status").setMaxResults(1);
+        Query query = session.createQuery("from Copy WHERE bookID =: id AND status =: status AND isRentable =: rentable").setMaxResults(1);
         query.setParameter("id",bookId);
         query.setParameter("status", CopyStatus.AVAILABLE.name());
+        query.setParameter("rentable", true);
         return QueryUtil.safeGetUniqueResult(query.getResultList());
     }
 

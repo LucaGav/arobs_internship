@@ -11,5 +11,7 @@ public interface BookRentDao {
 
     BookRent findById(int id);
 
+    BookRent findByEmployeeAndBookId(int employeeID, int bookID);
+
     int delete(int id);
 }
