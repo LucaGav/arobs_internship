@@ -91,25 +91,16 @@ public class CopyServiceImpl implements CopyService {
 
     @Override
     @Transactional
-    public Copy updateCopy(String status, Boolean rentable, int id) throws ValidationException {
+    public Copy updateCopy(Boolean rentable, int id) throws ValidationException {
         Copy copy = this.findCopyById(id);
         if (copy == null) {
             throw new ValidationException("No copy with this id found.");
         }
-        if (!CopyStatus.contains(status.toUpperCase())) {
-            throw new ValidationException("No valid status for copy");
-        }
         if (copy.isRentable() != rentable) {
             copy.setRentable(rentable);
         }
-        if (!status.toUpperCase().equals(copy.getStatus())) {
-            boolean checkStatus = this.setCopyStatus(copy, status.toUpperCase());
-            if(!checkStatus){
-                throw new ValidationException("Cannot update status, because the copy is not rentable");
-            }
-        }
-        else if (status.equals(copy.getStatus()) && copy.isRentable() == rentable) {
-            throw new ValidationException("No updated fields");
+        else {
+            throw new ValidationException("Rentable field not updated");
         }
         return copy;
     }

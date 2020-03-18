@@ -51,13 +51,13 @@ public class RentRequestServiceImpl implements RentRequestService {
     @Override
     @Transactional
     public List<RentRequest> findRentRequests() {
-        return null;
+        return rentRequestDao.findRentRequests();
     }
 
     @Override
     @Transactional
     public RentRequest findRentRequestById(int id) {
-        return null;
+        return rentRequestDao.findById(id);
     }
 
     @Override

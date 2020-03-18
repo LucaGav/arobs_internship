@@ -11,16 +11,20 @@ import com.arobs.internship.library.entities.book.Copy;
 import com.arobs.internship.library.entities.operations.BookRent;
 import com.arobs.internship.library.entities.operations.RentRequest;
 import com.arobs.internship.library.util.handler.ValidationException;
+import com.arobs.internship.library.util.status.BookRentStatus;
 import com.arobs.internship.library.util.status.CopyStatus;
-import com.arobs.internship.library.util.status.RentRequestStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @Service
+@EnableScheduling
 public class BookRentServiceImpl implements BookRentService {
 
     @Autowired
@@ -83,13 +87,13 @@ public class BookRentServiceImpl implements BookRentService {
     @Override
     @Transactional
     public List<BookRent> findBookRents() {
-        return null;
+        return bookRentDao.findBookRents();
     }
 
     @Override
     @Transactional
     public BookRent findBookRentById(int id) {
-        return null;
+        return bookRentDao.findById(id);
     }
 
     @Override
@@ -108,5 +112,16 @@ public class BookRentServiceImpl implements BookRentService {
     @Transactional
     public int deleteBookRent(int id) {
         return 0;
+    }
+
+    @Scheduled(cron = "0 52 14 * * *")
+    @Transactional
+    public void checkLateBookRents(){
+        List<BookRent> bookRents = bookRentDao.findBookRents();
+        for(BookRent b : bookRents){
+            if(b.getReturnDate().compareTo(new Date()) < 0){
+                b.setStatus(BookRentStatus.LATE.name());
+            }
+        }
     }
 }

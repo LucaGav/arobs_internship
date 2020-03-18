@@ -88,10 +88,10 @@ public class CopyController {
     }
 
     @PatchMapping("/updateCopy/{id}")
-    public ResponseEntity<?> updateEmployee(@RequestParam("isRentable") Boolean rentable, @RequestParam("Status") String status,
+    public ResponseEntity<?> updateCopy(@RequestParam("isRentable") Boolean rentable,
                                             @PathVariable int id) {
         try {
-            copyService.updateCopy(status, rentable, id);
+            copyService.updateCopy(rentable, id);
         } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
