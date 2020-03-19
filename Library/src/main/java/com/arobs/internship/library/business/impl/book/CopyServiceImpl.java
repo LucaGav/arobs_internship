@@ -1,17 +1,16 @@
 package com.arobs.internship.library.business.impl.book;
 
-import com.arobs.internship.library.business.BookRentService;
-import com.arobs.internship.library.business.BookService;
-import com.arobs.internship.library.business.CopyService;
-import com.arobs.internship.library.business.RentRequestService;
+import com.arobs.internship.library.business.*;
 import com.arobs.internship.library.dao.CopyDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
+import com.arobs.internship.library.entities.auxiliary.PendingRequest;
 import com.arobs.internship.library.entities.book.Book;
 import com.arobs.internship.library.entities.book.Copy;
 import com.arobs.internship.library.entities.operations.BookRent;
 import com.arobs.internship.library.entities.operations.RentRequest;
 import com.arobs.internship.library.util.status.CopyStatus;
 import com.arobs.internship.library.util.handler.ValidationException;
+import com.arobs.internship.library.util.status.RentRequestStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +33,9 @@ public class CopyServiceImpl implements CopyService {
     @Autowired
     private BookRentService bookRentService;
 
+    @Autowired
+    private PendingRequestService pendingRequestService;
+
     private CopyDao copyDao;
 
     @PostConstruct
@@ -54,14 +56,14 @@ public class CopyServiceImpl implements CopyService {
     }
 
     private void updateOnCopyInsert(Copy copy, Book book) throws ValidationException {
-        List<RentRequest> rentRequests = rentRequestService.findRentRequestByBookID(book.getBookID());
-        if(!rentRequests.isEmpty()) {
-            RentRequest rentRequest = rentRequests.get(0);
-            BookRent bookRent = new BookRent(book, rentRequest.getEmployee());
-            bookRent.setCopy(copy);
-            copy.setStatus(CopyStatus.RENTED.name());
-            rentRequestService.deleteRentRequest(rentRequest.getRentreqID());
-            bookRentService.insertBookRent(bookRent);
+        RentRequest rentRequest = rentRequestService.findWaitingForCopyRentRequest(book.getBookID());
+        if(rentRequest == null) {
+            copy.setStatus(CopyStatus.AVAILABLE.name());
+        } else {
+            copy.setStatus(CopyStatus.PENDING.name());
+            rentRequest.setStatus(RentRequestStatus.WAITINGCONFIRMATION.name());
+            PendingRequest pendingRequest = new PendingRequest(copy, rentRequest);
+            pendingRequestService.insertPendingRequest(pendingRequest);
         }
     }
 

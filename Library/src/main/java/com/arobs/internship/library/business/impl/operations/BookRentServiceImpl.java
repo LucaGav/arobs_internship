@@ -75,7 +75,7 @@ public class BookRentServiceImpl implements BookRentService {
     }
 
     private boolean verifyBookRentFactors(Book book, Employee employee, Copy copy) throws ValidationException {
-        List<RentRequest> rrCheck = rentRequestService.findRentRequestByBookID(book.getBookID());
+        List<RentRequest> rrCheck = rentRequestService.findListWaitingForCopyRentRequest(book.getBookID());
         if (copy == null || !rrCheck.isEmpty()) {
             RentRequest rentRequest = new RentRequest(book, employee);
             rentRequestService.insertRentRequest(rentRequest);
@@ -114,7 +114,7 @@ public class BookRentServiceImpl implements BookRentService {
         return 0;
     }
 
-    @Scheduled(cron = "0 52 14 * * *")
+    @Scheduled(cron = "0 59 16 * * *")
     @Transactional
     public void checkLateBookRents(){
         List<BookRent> bookRents = bookRentDao.findBookRents();

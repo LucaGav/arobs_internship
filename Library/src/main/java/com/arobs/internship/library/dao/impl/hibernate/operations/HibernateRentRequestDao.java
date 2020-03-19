@@ -65,6 +65,26 @@ public class HibernateRentRequestDao implements RentRequestDao {
     }
 
     @Override
+    public RentRequest findWaitingForCopyByBookId(int bookID) {
+        Session session = this.sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from RentRequest WHERE bookID =: id AND status =: status").setMaxResults(1);
+        query.setParameter("id", bookID);
+        query.setParameter("status", RentRequestStatus.WAITINGAVAILABLECOPY.name());
+        return QueryUtil.safeGetUniqueResult(query.getResultList());
+    }
+
+    @Override
+    public List<RentRequest> findListWaitingForCopyByBookId(int bookID) {
+        List<RentRequest> rentRequests;
+        Session session = this.sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from RentRequest WHERE bookID =: id AND status =: status");
+        query.setParameter("id",bookID);
+        query.setParameter("status", RentRequestStatus.WAITINGAVAILABLECOPY.name());
+        rentRequests = query.getResultList();
+        return rentRequests;
+    }
+
+    @Override
     public int delete(int id) {
         Session session = this.sessionFactory.getCurrentSession();
         Query query = session.createQuery("DELETE FROM RentRequest where rentreqID =:id");

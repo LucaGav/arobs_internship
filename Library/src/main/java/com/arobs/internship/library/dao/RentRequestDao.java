@@ -16,5 +16,9 @@ public interface RentRequestDao {
 
     RentRequest findByEmployeeAndBookID(int employeeID,int bookID);
 
+    RentRequest findWaitingForCopyByBookId(int bookID);
+
+    List<RentRequest> findListWaitingForCopyByBookId(int bookID);
+
     int delete(int id);
 }

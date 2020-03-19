@@ -49,5 +49,10 @@ public class JdbcDaoFactory extends DaoFactory {
         return null;
     }
 
+    @Override
+    public PendingRequestDao getPendingRequestDao() {
+        return null;
+    }
+
 
 }

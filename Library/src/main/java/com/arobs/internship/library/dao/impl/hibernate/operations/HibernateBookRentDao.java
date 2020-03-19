@@ -5,7 +5,6 @@ import com.arobs.internship.library.dao.impl.hibernate.util.QueryUtil;
 import com.arobs.internship.library.entities.operations.BookRent;
 import com.arobs.internship.library.util.date.DateUtil;
 import com.arobs.internship.library.util.status.BookRentStatus;
-import com.arobs.internship.library.util.status.CopyStatus;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class HibernateBookRentDao implements BookRentDao {
         Session session = this.sessionFactory.getCurrentSession();
         bookRent.setStatus(BookRentStatus.ON_GOING.name());
         bookRent.setRentalDate(new Date());
-        bookRent.setReturnDate(DateUtil.addDays(new Date(),30));
+        bookRent.setReturnDate(DateUtil.addDays(30));
         session.save(bookRent);
         return bookRent;
     }

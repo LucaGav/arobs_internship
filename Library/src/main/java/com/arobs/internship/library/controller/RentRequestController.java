@@ -71,10 +71,10 @@ public class RentRequestController {
     }
 
     @PatchMapping("/updateRentRequest/{id}")
-    public ResponseEntity<?> updateEmployee(@RequestParam("Status") String status,
+    public ResponseEntity<?> updateRequestFinalStatus(@RequestParam("Confirm") boolean confirmation,
                                             @PathVariable int id) {
         try {
-            rentRequestService.updateRentRequest(status, id);
+            rentRequestService.updateRentRequestFinalStatus(confirmation, id);
         } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }

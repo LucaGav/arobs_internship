@@ -3,6 +3,7 @@ package com.arobs.internship.library.dao.factory.hibernate;
 import com.arobs.internship.library.dao.*;
 import com.arobs.internship.library.dao.factory.DaoFactory;
 import com.arobs.internship.library.dao.impl.hibernate.*;
+import com.arobs.internship.library.dao.impl.hibernate.auxiliary.HibernatePendingRequestDao;
 import com.arobs.internship.library.dao.impl.hibernate.book.HibernateBookDao;
 import com.arobs.internship.library.dao.impl.hibernate.book.HibernateCopyDao;
 import com.arobs.internship.library.dao.impl.hibernate.book.HibernateTagDao;
@@ -36,6 +37,9 @@ public class HibernateDaoFactory extends DaoFactory {
     @Autowired
     private HibernateRentRequestDao rentRequestDao;
 
+    @Autowired
+    private HibernatePendingRequestDao pendingRequestDao;
+
     @Override
     public EmployeeDao getEmployeeDao() {
         return employeeDao;
@@ -66,7 +70,13 @@ public class HibernateDaoFactory extends DaoFactory {
         return bookRentDao;
     }
 
+    @Override
     public HibernateRentRequestDao getRentRequestDao() {
         return rentRequestDao;
+    }
+
+    @Override
+    public HibernatePendingRequestDao getPendingRequestDao() {
+        return pendingRequestDao;
     }
 }

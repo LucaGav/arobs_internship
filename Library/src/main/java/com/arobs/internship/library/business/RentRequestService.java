@@ -13,11 +13,15 @@ public interface RentRequestService {
 
     RentRequest findRentRequestById(int id);
 
-    RentRequest updateRentRequest(String status, int id) throws ValidationException;
+    RentRequest updateRentRequestFinalStatus(Boolean confirmation, int id) throws ValidationException;
 
-    List<RentRequest> findRentRequestByBookID(int bookID);
+    List<RentRequest> findRentRequestsByBookID(int bookID);
 
     RentRequest findRentRequestByEmployeeAndBookID(int employeeID, int bookID);
+
+    RentRequest findWaitingForCopyRentRequest(int bookID);
+
+    List<RentRequest> findListWaitingForCopyRentRequest(int bookID);
 
     int deleteRentRequest(int id);
 }
