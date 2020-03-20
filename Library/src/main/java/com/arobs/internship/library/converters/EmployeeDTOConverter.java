@@ -1,7 +1,7 @@
 package com.arobs.internship.library.converters;
 
 import com.arobs.internship.library.dtos.employee.EmployeeDTO;
-import com.arobs.internship.library.entities.Employee;
+import com.arobs.internship.library.entities.employee.Employee;
 
 import java.util.List;
 

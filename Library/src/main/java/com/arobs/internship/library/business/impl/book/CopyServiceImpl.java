@@ -50,16 +50,25 @@ public class CopyServiceImpl implements CopyService {
         Book book = copy.getBook();
         Copy copyIns = copyDao.insert(copy);
         if(copyIns.isRentable()) {
-            this.updateOnCopyInsert(copyIns, book);
+            this.updateOnNewAvailableCopy(copyIns, book);
         }
         return copyIns;
     }
 
-    private void updateOnCopyInsert(Copy copy, Book book) throws ValidationException {
+
+    @Override
+    @Transactional
+    public void updateCopyStatus(int id, String status) throws ValidationException {
+        Copy copy = this.findCopyById(id);
+        copy.setStatus(status);
+        if(status.equals(CopyStatus.AVAILABLE.name())){
+            this.updateOnNewAvailableCopy(copy, copy.getBook());
+        }
+    }
+
+    private void updateOnNewAvailableCopy(Copy copy, Book book) throws ValidationException {
         RentRequest rentRequest = rentRequestService.findWaitingForCopyRentRequest(book.getBookID());
-        if(rentRequest == null) {
-            copy.setStatus(CopyStatus.AVAILABLE.name());
-        } else {
+        if(rentRequest != null){
             copy.setStatus(CopyStatus.PENDING.name());
             rentRequest.setStatus(RentRequestStatus.WAITINGCONFIRMATION.name());
             PendingRequest pendingRequest = new PendingRequest(copy, rentRequest);
@@ -93,7 +102,7 @@ public class CopyServiceImpl implements CopyService {
 
     @Override
     @Transactional
-    public Copy updateCopy(Boolean rentable, int id) throws ValidationException {
+    public Copy updateCopyRentable(Boolean rentable, int id) throws ValidationException {
         Copy copy = this.findCopyById(id);
         if (copy == null) {
             throw new ValidationException("No copy with this id found.");

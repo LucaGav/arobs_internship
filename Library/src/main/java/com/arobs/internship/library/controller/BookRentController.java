@@ -70,10 +70,10 @@ public class BookRentController {
     }
 
     @PatchMapping("/updateBookRent/{id}")
-    public ResponseEntity<?> updateBookRent(@RequestParam("Grade") float grade, @RequestParam("Status") String status,
+    public ResponseEntity<?> updateBookRentReturn(@RequestParam("Grade") float grade,
                                             @PathVariable int id) {
         try {
-            bookRentService.updateBookRent(grade,status,id);
+            bookRentService.updateBookRentOnReturn(grade,id);
         } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }

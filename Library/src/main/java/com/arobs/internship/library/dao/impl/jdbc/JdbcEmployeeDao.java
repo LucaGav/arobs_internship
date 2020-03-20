@@ -1,7 +1,7 @@
 package com.arobs.internship.library.dao.impl.jdbc;
 
 import com.arobs.internship.library.dao.EmployeeDao;
-import com.arobs.internship.library.entities.Employee;
+import com.arobs.internship.library.entities.employee.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

@@ -1,9 +1,8 @@
 package com.arobs.internship.library.business;
 
 
-import com.arobs.internship.library.dtos.employee.EmployeeDTO;
 import com.arobs.internship.library.dtos.employee.EmployeeUpdateDTO;
-import com.arobs.internship.library.entities.Employee;
+import com.arobs.internship.library.entities.employee.Employee;
 import com.arobs.internship.library.util.handler.ValidationException;
 
 import java.util.List;

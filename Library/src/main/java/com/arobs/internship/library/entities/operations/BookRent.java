@@ -1,6 +1,6 @@
 package com.arobs.internship.library.entities.operations;
 
-import com.arobs.internship.library.entities.Employee;
+import com.arobs.internship.library.entities.employee.Employee;
 import com.arobs.internship.library.entities.book.Book;
 import com.arobs.internship.library.entities.book.Copy;
 

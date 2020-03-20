@@ -1,6 +1,7 @@
 package com.arobs.internship.library.business;
 
 import com.arobs.internship.library.entities.auxiliary.PendingRequest;
+import com.arobs.internship.library.util.handler.ValidationException;
 
 import java.util.List;
 
@@ -16,6 +17,6 @@ public interface PendingRequestService {
 
     int deletePendingRequest(int id);
 
-    void checkPendingRentRequests();
+    void checkPendingRentRequests() throws ValidationException;
 
 }

@@ -91,7 +91,7 @@ public class CopyController {
     public ResponseEntity<?> updateCopy(@RequestParam("isRentable") Boolean rentable,
                                             @PathVariable int id) {
         try {
-            copyService.updateCopy(rentable, id);
+            copyService.updateCopyRentable(rentable, id);
         } catch (ValidationException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }

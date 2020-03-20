@@ -1,11 +1,9 @@
 package com.arobs.internship.library.business.impl.operations;
 
-import com.arobs.internship.library.business.PendingRequestService;
 import com.arobs.internship.library.business.RentRequestService;
-import com.arobs.internship.library.dao.BookRentDao;
 import com.arobs.internship.library.dao.RentRequestDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
-import com.arobs.internship.library.entities.Employee;
+import com.arobs.internship.library.entities.employee.Employee;
 import com.arobs.internship.library.entities.book.Book;
 import com.arobs.internship.library.entities.operations.RentRequest;
 import com.arobs.internship.library.util.handler.ValidationException;

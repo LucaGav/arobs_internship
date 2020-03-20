@@ -54,5 +54,10 @@ public class JdbcDaoFactory extends DaoFactory {
         return null;
     }
 
+    @Override
+    public SuspendedEmployeeDao getSuspendedEmployeeDao() {
+        return null;
+    }
+
 
 }

@@ -1,6 +1,6 @@
 package com.arobs.internship.library.dao;
 
-import com.arobs.internship.library.entities.Employee;
+import com.arobs.internship.library.entities.employee.Employee;
 
 import java.util.List;
 

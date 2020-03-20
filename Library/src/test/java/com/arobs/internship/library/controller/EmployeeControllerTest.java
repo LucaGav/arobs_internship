@@ -2,7 +2,7 @@ package com.arobs.internship.library.controller;
 
 import com.arobs.internship.library.business.EmployeeService;
 import com.arobs.internship.library.converters.EmployeeDTOConverter;
-import com.arobs.internship.library.entities.Employee;
+import com.arobs.internship.library.entities.employee.Employee;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

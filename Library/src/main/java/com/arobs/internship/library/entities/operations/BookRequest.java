@@ -1,9 +1,8 @@
 package com.arobs.internship.library.entities.operations;
 
-import com.arobs.internship.library.entities.Employee;
+import com.arobs.internship.library.entities.employee.Employee;
 
 import javax.persistence.*;
-import javax.persistence.criteria.Join;
 import javax.validation.constraints.NotNull;
 
 @Entity

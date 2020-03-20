@@ -1,4 +1,4 @@
-package com.arobs.internship.library.entities;
+package com.arobs.internship.library.entities.employee;
 
 
 import com.arobs.internship.library.entities.operations.BookRequest;

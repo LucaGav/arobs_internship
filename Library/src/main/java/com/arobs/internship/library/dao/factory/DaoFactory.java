@@ -53,4 +53,6 @@ public abstract class DaoFactory {
     public abstract RentRequestDao getRentRequestDao();
 
     public abstract PendingRequestDao getPendingRequestDao();
+
+    public abstract SuspendedEmployeeDao getSuspendedEmployeeDao();
 }

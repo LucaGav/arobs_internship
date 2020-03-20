@@ -17,7 +17,9 @@ public interface CopyService {
 
     Copy findCopyById(int id);
 
-    Copy updateCopy(Boolean available, int id) throws ValidationException;
+    Copy updateCopyRentable(Boolean available, int id) throws ValidationException;
+
+    void updateCopyStatus(int id, String status) throws ValidationException;
 
     int deleteCopy(int id);
 }

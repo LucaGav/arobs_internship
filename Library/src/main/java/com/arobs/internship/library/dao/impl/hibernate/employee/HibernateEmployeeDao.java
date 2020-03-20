@@ -1,8 +1,8 @@
-package com.arobs.internship.library.dao.impl.hibernate;
+package com.arobs.internship.library.dao.impl.hibernate.employee;
 
 import com.arobs.internship.library.dao.EmployeeDao;
 import com.arobs.internship.library.dao.impl.hibernate.util.QueryUtil;
-import com.arobs.internship.library.entities.Employee;
+import com.arobs.internship.library.entities.employee.Employee;
 import com.arobs.internship.library.util.entities.EmployeeUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

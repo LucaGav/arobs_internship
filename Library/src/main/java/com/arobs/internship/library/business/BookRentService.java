@@ -15,8 +15,10 @@ public interface BookRentService {
 
     BookRent findBookRentByEmployeeAndBookID(int employeeID, int bookID);
 
-    BookRent updateBookRent(float grade, String status, int id) throws ValidationException;
+    BookRent updateBookRentOnReturn(float grade, int id) throws ValidationException;
 
     int deleteBookRent(int id);
+
+    void checkLateBookRents();
 
 }

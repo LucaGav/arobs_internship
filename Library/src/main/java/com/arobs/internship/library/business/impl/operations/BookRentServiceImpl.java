@@ -5,7 +5,7 @@ import com.arobs.internship.library.business.CopyService;
 import com.arobs.internship.library.business.RentRequestService;
 import com.arobs.internship.library.dao.BookRentDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
-import com.arobs.internship.library.entities.Employee;
+import com.arobs.internship.library.entities.employee.Employee;
 import com.arobs.internship.library.entities.book.Book;
 import com.arobs.internship.library.entities.book.Copy;
 import com.arobs.internship.library.entities.operations.BookRent;
@@ -15,7 +15,6 @@ import com.arobs.internship.library.util.status.BookRentStatus;
 import com.arobs.internship.library.util.status.CopyStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -104,8 +103,19 @@ public class BookRentServiceImpl implements BookRentService {
 
     @Override
     @Transactional
-    public BookRent updateBookRent(float grade, String status, int id) {
-        return null;
+    public BookRent updateBookRentOnReturn(float grade, int id) throws ValidationException {
+        BookRent bookRent = bookRentDao.findById(id);
+        if(bookRent == null){
+            throw new ValidationException("This is not a valid book rent");
+        }
+        if(grade < 1 || grade > 5) {
+            throw new ValidationException("Not a valid grade");
+        }
+        bookRent.setGrade(grade);
+        bookRent.setStatus(BookRentStatus.RETURNED.name());//MORE WORK HERE, check if the employee is tagged as "LATE", add to suspension
+        Copy copy = bookRent.getCopy();
+        copyService.updateCopyStatus(copy.getCopyID(),CopyStatus.AVAILABLE.name());
+        return bookRent;
     }
 
     @Override
@@ -114,7 +124,6 @@ public class BookRentServiceImpl implements BookRentService {
         return 0;
     }
 
-    @Scheduled(cron = "0 59 16 * * *")
     @Transactional
     public void checkLateBookRents(){
         List<BookRent> bookRents = bookRentDao.findBookRents();
