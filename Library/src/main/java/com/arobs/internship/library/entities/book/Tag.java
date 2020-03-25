@@ -1,7 +1,5 @@
 package com.arobs.internship.library.entities.book;
 
-import com.arobs.internship.library.entities.book.Book;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;

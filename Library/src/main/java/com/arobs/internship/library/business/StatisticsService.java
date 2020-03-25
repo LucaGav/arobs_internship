@@ -12,4 +12,5 @@ public interface StatisticsService {
     List<TopRentedBook> topXRentedBooks(int top, Date startDate, Date endDate) throws ValidationException;
 
     List<TopReadingEmployee> topXReadingEmployees(int top, Date startDate, Date endDate) throws ValidationException;
+
 }

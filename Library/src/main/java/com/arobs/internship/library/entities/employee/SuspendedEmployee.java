@@ -1,7 +1,5 @@
 package com.arobs.internship.library.entities.employee;
 
-import com.arobs.internship.library.entities.book.Copy;
-
 import javax.persistence.*;
 import java.util.Date;
 

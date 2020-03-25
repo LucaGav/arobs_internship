@@ -17,6 +17,6 @@ public interface BookService {
 
     Book updateBook(String description, Set<TagDTO> tagDTOSet, int id) throws ValidationException;
 
-    int deleteBook(String title, String author);
+    Book deleteBook(int id) throws ValidationException;
 
 }

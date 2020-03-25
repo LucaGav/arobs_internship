@@ -63,10 +63,4 @@ public class BookRequestServiceImpl implements BookRequestService {
         }
         return bookRequest;
     }
-
-    @Override
-    @Transactional
-    public int deleteBookRequest(int id) {
-        return bookRequestDao.delete(id);
-    }
 }

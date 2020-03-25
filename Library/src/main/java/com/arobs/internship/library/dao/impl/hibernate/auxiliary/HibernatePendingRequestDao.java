@@ -44,14 +44,6 @@ public class HibernatePendingRequestDao implements PendingRequestDao {
     }
 
     @Override
-    public PendingRequest findByRentRequestID(int id) {
-        Session session = this.sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from PendingRequest WHERE rentreqID =: id").setMaxResults(1);
-        query.setParameter("id", id);
-        return QueryUtil.safeGetUniqueResult(query.getResultList());
-    }
-
-    @Override
     public int delete(int id) {
         Session session = this.sessionFactory.getCurrentSession();
         Query query = session.createQuery("DELETE FROM PendingRequest WHERE pendingreqID =: id");

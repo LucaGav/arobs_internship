@@ -22,7 +22,7 @@ public class SuspendedEmployeeDTOConverterImpl implements SuspendedEmployeeDTOCo
         ModelMapper modelMapper = objectMapper.getMapper();
         SuspendedEmployeeDTO suspendedEmployeeDTO = null;
         List<SuspendedEmployeeDTO> suspendedEmployeeDTOS = new ArrayList<>();
-        for(SuspendedEmployee suspendedEmployee : suspendedEmployees){
+        for (SuspendedEmployee suspendedEmployee : suspendedEmployees) {
             suspendedEmployeeDTO.setEmail(suspendedEmployee.getEmployee().getEmail());
             suspendedEmployeeDTO.setSuspendedUntilDate(suspendedEmployee.getSuspendedUntilDate());
             suspendedEmployeeDTOS.add(suspendedEmployeeDTO);

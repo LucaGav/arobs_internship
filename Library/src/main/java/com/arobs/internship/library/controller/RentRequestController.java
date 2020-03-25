@@ -2,13 +2,11 @@ package com.arobs.internship.library.controller;
 
 import com.arobs.internship.library.business.RentRequestService;
 import com.arobs.internship.library.converters.RentReqDTOConverter;
-import com.arobs.internship.library.dtos.book.CopyDTO;
-import com.arobs.internship.library.dtos.operations.BookRequestDTO;
 import com.arobs.internship.library.dtos.operations.RentRequestDTO;
-import com.arobs.internship.library.entities.book.Copy;
-import com.arobs.internship.library.entities.operations.BookRequest;
 import com.arobs.internship.library.entities.operations.RentRequest;
 import com.arobs.internship.library.util.handler.ValidationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,15 +26,21 @@ public class RentRequestController {
     @Autowired
     private RentReqDTOConverter rentReqDTOConverter;
 
+    private static final Logger logger = LoggerFactory.getLogger(RentRequestController.class);
+
+
     @PostMapping("/addRentRequest")
     public ResponseEntity<?> addRentRequest(@RequestBody @Valid RentRequestDTO rentRequestDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+            logger.error("addRentRequest: RequestBody has invalid information");
             return new ResponseEntity<>("Invalid information in fields", HttpStatus.BAD_REQUEST);
         }
         try {
             RentRequest rentRequest = rentRequestService.insertRentRequest(rentReqDTOConverter.dtoToRentRequest(rentRequestDTO));
+            logger.info("addRentRequest: Rent request with id " + rentRequest.getRentreqID() + " inserted successfully");
             return new ResponseEntity<>(rentReqDTOConverter.rentRequestToDTO(rentRequest), HttpStatus.OK);
         } catch (ValidationException ex) {
+            logger.error("addRentRequest: " + ex.getMessage());
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
@@ -45,9 +49,11 @@ public class RentRequestController {
     public ResponseEntity<?> findRentRequests() {
         List<RentRequest> rentRequests = rentRequestService.findRentRequests();
         if (rentRequests.isEmpty()) {
-            return new ResponseEntity<>("No rent request requests present in the db", HttpStatus.BAD_REQUEST);
+            logger.info("findRentRequests: No rent requests present in the db");
+            return new ResponseEntity<>("No rent requests present in the db", HttpStatus.NO_CONTENT);
         }
         List<RentRequestDTO> rentDTOS = rentReqDTOConverter.listRentRequestToDTO(rentRequests);
+        logger.info("findRentRequests: List of rent requests sent as response");
         return new ResponseEntity<>(rentDTOS, HttpStatus.OK);
     }
 
@@ -56,28 +62,23 @@ public class RentRequestController {
     public ResponseEntity<?> getRentRequest(@RequestParam("rentRequestID") int id) {
         RentRequest rentRequest = rentRequestService.findRentRequestById(id);
         if (rentRequest == null) {
-            return new ResponseEntity<>("No rent request with this id found", HttpStatus.BAD_REQUEST);
+            logger.info("getRentRequest: No rent request with id " + id + " found");
+            return new ResponseEntity<>("getRentRequest: No rent request with this id found", HttpStatus.NO_CONTENT);
         }
+        logger.info("getRentRequest: Rent request with id " + id + " found and sent in response");
         return new ResponseEntity<>(rentReqDTOConverter.rentRequestToDTO(rentRequest), HttpStatus.OK);
-    }
-
-    @DeleteMapping("/deleteRentRequest")
-    public ResponseEntity<?> deleteRentRequest(@RequestParam("id") int id) {
-        if(rentRequestService.deleteRentRequest(id)==1){
-            return new ResponseEntity<>("Rent request with id: " + id + " deleted successfully.", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("No rent request with this id found", HttpStatus.BAD_REQUEST);
-        }
     }
 
     @PatchMapping("/updateRentRequest/{id}")
     public ResponseEntity<?> updateRequestFinalStatus(@RequestParam("Confirm") boolean confirmation,
-                                            @PathVariable int id) {
+                                                      @PathVariable int id) {
         try {
-            rentRequestService.updateRentRequestFinalStatus(confirmation, id);
+            RentRequest rentRequest = rentRequestService.updateRentRequestFinalStatus(confirmation, id);
+            logger.info("updateRequestFinalStatus: Rent request with id: " + rentRequest.getRentreqID() + " updated successfully");
+            return new ResponseEntity<>("Rent request with id: " + rentRequest.getRentreqID() + " updated successfully", HttpStatus.OK);
         } catch (ValidationException ex) {
+            logger.error("updateRequestFinalStatus: " + ex.getMessage());
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>("Rent request with id: " + id + " updated successfully.", HttpStatus.OK);
     }
 }

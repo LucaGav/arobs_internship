@@ -1,12 +1,9 @@
 package com.arobs.internship.library.dao.impl.hibernate.operations;
 
 import com.arobs.internship.library.dao.BookRequestDao;
-import com.arobs.internship.library.dao.impl.hibernate.book.HibernateBookDao;
 import com.arobs.internship.library.entities.operations.BookRequest;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -18,8 +15,6 @@ public class HibernateBookRequestDao implements BookRequestDao {
 
     @Autowired
     private SessionFactory sessionFactory;
-
-    private static final Logger logger = LoggerFactory.getLogger(HibernateBookDao.class);
 
     @Override
     public BookRequest insert(BookRequest bookRequest) {

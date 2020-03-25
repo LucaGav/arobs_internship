@@ -1,8 +1,8 @@
 package com.arobs.internship.library.entities.employee;
 
-
 import com.arobs.internship.library.entities.operations.BookRequest;
 import com.arobs.internship.library.entities.operations.RentRequest;
+import com.arobs.internship.library.util.status.ActiveStatus;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -40,6 +40,10 @@ public class Employee {
     @Column(name = "email")
     private String email;
 
+    @NotNull
+    @Column(name = "status")
+    private String status;
+
     @OneToMany(
             mappedBy = "employee",
             cascade = CascadeType.ALL
@@ -55,13 +59,15 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(int employeeID, String firstName, String lastName, String role, String password, String email) {
+    public Employee(int employeeID, @NotNull String firstName, @NotNull String lastName, @NotNull String role, @NotNull String password,
+                    @NotNull String email) {
         this.employeeID = employeeID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
         this.password = password;
         this.email = email;
+        this.status = ActiveStatus.ACTIVE.name();
     }
 
     public void setEmployeeID(int employeeID) {
@@ -126,5 +132,13 @@ public class Employee {
 
     public void setRentRequests(Set<RentRequest> rentRequests) {
         this.rentRequests = rentRequests;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

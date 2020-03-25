@@ -76,10 +76,10 @@ public class RentRequestServiceImpl implements RentRequestService {
     @Transactional
     public RentRequest updateRentRequestFinalStatus(Boolean confirmation, int id) throws ValidationException {
         RentRequest rentRequest = rentRequestDao.findById(id);
-        if(!rentRequest.getStatus().equals(RentRequestStatus.WAITINGCONFIRMATION.name())){
+        if (!rentRequest.getStatus().equals(RentRequestStatus.WAITINGCONFIRMATION.name())) {
             throw new ValidationException("This rent request is not valid for granting or declining");
         }
-        if(confirmation == true){
+        if (confirmation == true) {
             rentRequest.setStatus(RentRequestStatus.GRANTED.name());
         } else {
             rentRequest.setStatus(RentRequestStatus.DECLINED.name());
@@ -94,14 +94,14 @@ public class RentRequestServiceImpl implements RentRequestService {
     }
 
     @Override
+    public List<RentRequest> findRentRequestsByEmployeeID(int employeeID) {
+        return rentRequestDao.findByEmployeeId(employeeID);
+    }
+
+    @Override
     @Transactional
     public RentRequest findRentRequestByEmployeeAndBookID(int employeeID, int bookID) {
         return rentRequestDao.findByEmployeeAndBookID(employeeID, bookID);
     }
 
-    @Override
-    @Transactional
-    public int deleteRentRequest(int id) {
-        return rentRequestDao.delete(id);
-    }
 }

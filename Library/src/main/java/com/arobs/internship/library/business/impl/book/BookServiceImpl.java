@@ -1,6 +1,8 @@
 package com.arobs.internship.library.business.impl.book;
 
 import com.arobs.internship.library.business.BookService;
+import com.arobs.internship.library.business.RentRequestService;
+import com.arobs.internship.library.business.impl.operations.BookRentServiceImpl;
 import com.arobs.internship.library.converters.TagDTOConverter;
 import com.arobs.internship.library.dao.BookDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
@@ -8,8 +10,13 @@ import com.arobs.internship.library.dtos.book.TagDTO;
 import com.arobs.internship.library.entities.book.Book;
 import com.arobs.internship.library.entities.book.Copy;
 import com.arobs.internship.library.entities.book.Tag;
+import com.arobs.internship.library.entities.operations.BookRent;
+import com.arobs.internship.library.entities.operations.RentRequest;
+import com.arobs.internship.library.util.status.ActiveStatus;
+import com.arobs.internship.library.util.status.BookRentStatus;
 import com.arobs.internship.library.util.status.CopyStatus;
 import com.arobs.internship.library.util.handler.ValidationException;
+import com.arobs.internship.library.util.status.RentRequestStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +38,12 @@ public class BookServiceImpl implements BookService {
 
     @Autowired
     private CopyServiceImpl copyService;
+
+    @Autowired
+    private BookRentServiceImpl bookRentService;
+
+    @Autowired
+    private RentRequestService rentRequestService;
 
     private BookDao bookDao;
 
@@ -104,7 +117,37 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public int deleteBook(String title, String author){
-        return bookDao.delete(title, author);
+    public Book deleteBook(int id) throws ValidationException {
+        Book book = this.findBookById(id);
+        if (book == null) {
+            throw new ValidationException("No book with this id found");
+        }
+        validateBookRemoval(id);
+        book.setStatus(ActiveStatus.INACTIVE.name());
+        return book;
+    }
+
+    private void validateBookRemoval(int bookID) throws ValidationException {
+        boolean brFlag = true;
+        boolean rrFlag = true;
+        List<BookRent> rentsOfBook = bookRentService.findBookRentsByBookID(bookID);
+        for (BookRent bookRent : rentsOfBook) {
+            if (!bookRent.getStatus().equals(BookRentStatus.RETURNED.name())) {
+                brFlag = false;
+            }
+        }
+        List<RentRequest> rentRequestsOfBook = rentRequestService.findRentRequestsByBookID(bookID);
+        for (RentRequest rentRequest : rentRequestsOfBook) {
+            if (!(rentRequest.getStatus().equals(RentRequestStatus.DECLINED.name())
+                    || rentRequest.getStatus().equals(RentRequestStatus.GRANTED.name()))) {
+                rrFlag = false;
+            }
+        }
+        if (!brFlag) {
+            throw new ValidationException("Cannot delete book, as it has unfinished book rents");
+        }
+        if (!rrFlag) {
+            throw new ValidationException("Cannot delete book, as it has unfinished rent requests");
+        }
     }
 }

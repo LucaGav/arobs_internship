@@ -17,11 +17,12 @@ public interface RentRequestService {
 
     List<RentRequest> findRentRequestsByBookID(int bookID);
 
+    List<RentRequest> findRentRequestsByEmployeeID(int employeeID);
+
     RentRequest findRentRequestByEmployeeAndBookID(int employeeID, int bookID);
 
     RentRequest findWaitingForCopyRentRequest(int bookID);
 
     List<RentRequest> findListWaitingForCopyRentRequest(int bookID);
 
-    int deleteRentRequest(int id);
 }

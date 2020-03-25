@@ -7,6 +7,8 @@ import com.arobs.internship.library.entities.employee.SuspendedEmployee;
 import com.arobs.internship.library.entities.statistics.TopReadingEmployee;
 import com.arobs.internship.library.entities.statistics.TopRentedBook;
 import com.arobs.internship.library.util.handler.ValidationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,9 @@ public class StatisticsController {
     @Autowired
     private SuspendedEmployeeDTOConverter suspendedEmployeeDTOConverter;
 
+    private static final Logger logger = LoggerFactory.getLogger(StatisticsController.class);
+
+
     @GetMapping(path = "/getRentedBooks")
     public ResponseEntity<?> getTopRentedBooks(@RequestParam("NumberOfResults") int top, @RequestParam("startDate") Date startDate,
                                                @RequestParam("endDate") Date endDate) {
@@ -38,11 +43,14 @@ public class StatisticsController {
         try {
             rentedBooks = statisticsService.topXRentedBooks(top, startDate, endDate);
         } catch (ValidationException e) {
+            logger.error("getTopRentedBooks:" + e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
         if (rentedBooks == null) {
+            logger.info("getTopRentedBooks: No books rented in this period of time");
             return new ResponseEntity<>("No books rented in this period of time", HttpStatus.NO_CONTENT);
         }
+        logger.info("getTopRentedBooks: Rented books sent in response");
         return new ResponseEntity<>(rentedBooks, HttpStatus.OK);
     }
 
@@ -53,11 +61,14 @@ public class StatisticsController {
         try {
             readingEmployees = statisticsService.topXReadingEmployees(top, startDate, endDate);
         } catch (ValidationException e) {
+            logger.error("getTopReadingEmployees: " + e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
         if (readingEmployees == null) {
+            logger.info("getTopReadingEmployees: No books read and returned in this period of time");
             return new ResponseEntity<>("No books read and returned in this period of time", HttpStatus.NO_CONTENT);
         }
+        logger.info("getTopReadingEmployees: Reading employees sent in response");
         return new ResponseEntity<>(readingEmployees, HttpStatus.OK);
     }
 
@@ -65,8 +76,10 @@ public class StatisticsController {
     public ResponseEntity<?> getSuspendedEmployees() {
         List<SuspendedEmployee> suspendedEmployees = suspendedEmployeeService.findSuspendedEmployees();
         if (suspendedEmployees.isEmpty()) {
-            return new ResponseEntity<>("No suspended employees in the database", HttpStatus.ACCEPTED);
+            logger.info("getSuspendedEmployees: No suspended employees in the database");
+            return new ResponseEntity<>("No suspended employees in the database", HttpStatus.NO_CONTENT);
         }
+        logger.info("getSuspendedEmployees: No suspended employees sent in response");
         return new ResponseEntity<>(suspendedEmployeeDTOConverter.listSuspendedEmployeeToDTO(suspendedEmployees), HttpStatus.OK);
     }
 }

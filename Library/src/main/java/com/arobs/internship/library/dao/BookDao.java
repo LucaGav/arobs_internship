@@ -12,7 +12,6 @@ public interface BookDao {
 
     Book findById(int id);
 
-    int delete(String title, String author);
 }
 
 

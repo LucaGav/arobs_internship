@@ -1,12 +1,9 @@
 package com.arobs.internship.library.dao.impl.hibernate.book;
 
-import com.arobs.internship.library.business.impl.book.BookServiceImpl;
 import com.arobs.internship.library.dao.TagDao;
 import com.arobs.internship.library.entities.book.Tag;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -18,8 +15,6 @@ public class HibernateTagDao implements TagDao {
 
     @Autowired
     private SessionFactory sessionFactory;
-
-    private static final Logger logger = LoggerFactory.getLogger(BookServiceImpl.class);
 
     @Override
     public Tag insert(Tag tag) {

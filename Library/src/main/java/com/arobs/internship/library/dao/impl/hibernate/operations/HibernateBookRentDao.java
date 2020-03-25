@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
@@ -45,6 +44,22 @@ public class HibernateBookRentDao implements BookRentDao {
     public BookRent findById(int id) {
         Session session = this.sessionFactory.getCurrentSession();
         return session.get(BookRent.class, id);
+    }
+
+    @Override
+    public List<BookRent> findByBookId(int bookID) {
+        Session session = this.sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from BookRent WHERE bookID =: id");
+        query.setParameter("id", bookID);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<BookRent> findByEmployeeId(int employeeID) {
+        Session session = this.sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from BookRent WHERE employeeID =: id");
+        query.setParameter("id", employeeID);
+        return query.getResultList();
     }
 
     @Override

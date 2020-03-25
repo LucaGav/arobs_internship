@@ -3,11 +3,11 @@ package com.arobs.internship.library.dao.factory;
 import com.arobs.internship.library.dao.*;
 import com.arobs.internship.library.dao.factory.hibernate.HibernateDaoFactory;
 import com.arobs.internship.library.dao.factory.jdbc.JdbcDaoFactory;
-import com.arobs.internship.library.entities.operations.BookRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 public abstract class DaoFactory {
+
     @Value("${datasource.type}")
     private String type;
 

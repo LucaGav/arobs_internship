@@ -6,8 +6,8 @@ import com.arobs.internship.library.dao.factory.DaoFactory;
 import com.arobs.internship.library.entities.auxiliary.PendingRequest;
 import com.arobs.internship.library.entities.book.Book;
 import com.arobs.internship.library.entities.book.Copy;
-import com.arobs.internship.library.entities.operations.BookRent;
 import com.arobs.internship.library.entities.operations.RentRequest;
+import com.arobs.internship.library.util.status.ActiveStatus;
 import com.arobs.internship.library.util.status.CopyStatus;
 import com.arobs.internship.library.util.handler.ValidationException;
 import com.arobs.internship.library.util.status.RentRequestStatus;
@@ -49,7 +49,7 @@ public class CopyServiceImpl implements CopyService {
     public Copy insertCopy(Copy copy) throws ValidationException {
         Book book = copy.getBook();
         Copy copyIns = copyDao.insert(copy);
-        if(copyIns.isRentable()) {
+        if (copyIns.isRentable()) {
             this.updateOnNewAvailableCopy(copyIns, book);
         }
         return copyIns;
@@ -61,14 +61,14 @@ public class CopyServiceImpl implements CopyService {
     public void updateCopyStatus(int id, String status) throws ValidationException {
         Copy copy = this.findCopyById(id);
         copy.setStatus(status);
-        if(status.equals(CopyStatus.AVAILABLE.name())){
+        if (status.equals(CopyStatus.AVAILABLE.name())) {
             this.updateOnNewAvailableCopy(copy, copy.getBook());
         }
     }
 
     private void updateOnNewAvailableCopy(Copy copy, Book book) throws ValidationException {
         RentRequest rentRequest = rentRequestService.findWaitingForCopyRentRequest(book.getBookID());
-        if(rentRequest != null){
+        if (rentRequest != null) {
             copy.setStatus(CopyStatus.PENDING.name());
             rentRequest.setStatus(RentRequestStatus.WAITINGCONFIRMATION.name());
             PendingRequest pendingRequest = new PendingRequest(copy, rentRequest);
@@ -109,30 +109,23 @@ public class CopyServiceImpl implements CopyService {
         }
         if (copy.isRentable() != rentable) {
             copy.setRentable(rentable);
-        }
-        else {
+        } else {
             throw new ValidationException("Rentable field not updated");
         }
         return copy;
     }
 
-    private boolean setCopyStatus(Copy copy, String status) {
-        if(status.equals(CopyStatus.AVAILABLE.name())){
-            copy.setStatus(status);
-            return true;
-        }
-        if(status.equals(CopyStatus.PENDING.name()) || status.equals(CopyStatus.RENTED.name())){
-            if(copy.isRentable()){
-                copy.setStatus(status);
-                return true;
-            }
-        }
-        return false;
-    }
-
     @Override
     @Transactional
-    public int deleteCopy(int id){
-        return copyDao.delete(id);
+    public Copy deleteCopy(int id) throws ValidationException {
+        Copy copy = this.findCopyById(id);
+        if (copy == null) {
+            throw new ValidationException("No copy with this id found");
+        }
+        if (!copy.getStatus().equals(CopyStatus.AVAILABLE.name())) {
+            throw new ValidationException("Copy cannot be deleted, it has unfinished operations");
+        }
+        copy.setStatus(ActiveStatus.INACTIVE.name());
+        return copy;
     }
 }

@@ -14,10 +14,10 @@ import com.arobs.internship.library.entities.operations.BookRent;
 import com.arobs.internship.library.entities.operations.RentRequest;
 import com.arobs.internship.library.util.date.DateUtil;
 import com.arobs.internship.library.util.handler.ValidationException;
+import com.arobs.internship.library.util.status.ActiveStatus;
 import com.arobs.internship.library.util.status.BookRentStatus;
 import com.arobs.internship.library.util.status.CopyStatus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -52,6 +52,9 @@ public class BookRentServiceImpl implements BookRentService {
     @Transactional
     public BookRent insertBookRent(BookRent bookRent) throws ValidationException {
         Book book = bookRent.getBook();
+        if (book.getStatus().equals(ActiveStatus.INACTIVE.name())) {
+            throw new ValidationException("This book is no longer active in the library");
+        }
         Employee employee = bookRent.getEmployee();
         validateEmployeeRent(employee, book);
 
@@ -71,7 +74,7 @@ public class BookRentServiceImpl implements BookRentService {
 
     private void validateEmployeeRent(Employee employee, Book book) throws ValidationException {
         SuspendedEmployee suspendedEmployee = suspendedEmployeeService.findSuspendedEmployeeByEmployeeID(employee.getEmployeeID());
-        if(suspendedEmployee != null){
+        if (suspendedEmployee != null) {
             throw new ValidationException("This employee is suspended from renting books");
         }
         BookRent brCheck = this.findBookRentByEmployeeAndBookID(employee.getEmployeeID(),
@@ -110,20 +113,30 @@ public class BookRentServiceImpl implements BookRentService {
     }
 
     @Override
+    public List<BookRent> findBookRentsByBookID(int bookID) {
+        return bookRentDao.findByBookId(bookID);
+    }
+
+    @Override
+    public List<BookRent> findBookRentsByEmployeeID(int employeeID) {
+        return bookRentDao.findByEmployeeId(employeeID);
+    }
+
+    @Override
     @Transactional
     public BookRent updateBookRentOnReturn(float grade, int id) throws ValidationException {
         BookRent bookRent = bookRentDao.findById(id);
-        if(bookRent == null){
+        if (bookRent == null) {
             throw new ValidationException("This is not a valid book rent");
         }
-        if(grade < 1 || grade > 5) {
+        if (grade < 1 || grade > 5) {
             throw new ValidationException("Not a valid grade");
         }
         bookRent.setGrade(grade);
         bookRent.setStatus(BookRentStatus.RETURNED.name());
         suspendedEmployeeService.updateOnBookReturn(bookRent.getEmployee(), bookRent.getReturnDate());
         Copy copy = bookRent.getCopy();
-        copyService.updateCopyStatus(copy.getCopyID(),CopyStatus.AVAILABLE.name());
+        copyService.updateCopyStatus(copy.getCopyID(), CopyStatus.AVAILABLE.name());
         return bookRent;
     }
 
@@ -131,10 +144,10 @@ public class BookRentServiceImpl implements BookRentService {
     @Transactional
     public BookRent updateBookRentOnExtension(int id) throws ValidationException {
         BookRent bookRent = bookRentDao.findById(id);
-        if(bookRent == null){
+        if (bookRent == null) {
             throw new ValidationException("This is not a valid book rent");
         }
-        if(!bookRent.getStatus().equals(BookRentStatus.ON_GOING.name())){
+        if (!bookRent.getStatus().equals(BookRentStatus.ON_GOING.name())) {
             throw new ValidationException("This book rent is not available for extension");
         }
         this.extendBookRent(bookRent);
@@ -143,31 +156,25 @@ public class BookRentServiceImpl implements BookRentService {
 
     private void extendBookRent(BookRent bookRent) throws ValidationException {
         Date rentalDate = bookRent.getRentalDate();
-        System.out.println(DateUtil.getDaysBetween(bookRent.getRentalDate(),bookRent.getReturnDate()));
-        if(DateUtil.getDaysBetween(rentalDate,bookRent.getReturnDate()) >= 90) {
+        System.out.println(DateUtil.getDaysBetween(bookRent.getRentalDate(), bookRent.getReturnDate()));
+        if (DateUtil.getDaysBetween(rentalDate, bookRent.getReturnDate()) >= 90) {
             throw new ValidationException("This book can no longer be extended");
         }
-        Date newReturnDate = DateUtil.addDays(bookRent.getReturnDate(),15);
-        if(DateUtil.getDaysBetween(rentalDate,newReturnDate) > 90) {
-            newReturnDate = DateUtil.addDays(rentalDate,90);
+        Date newReturnDate = DateUtil.addDays(bookRent.getReturnDate(), 15);
+        if (DateUtil.getDaysBetween(rentalDate, newReturnDate) > 90) {
+            newReturnDate = DateUtil.addDays(rentalDate, 90);
         }
         bookRent.setReturnDate(newReturnDate);
-        System.out.println(DateUtil.getDaysBetween(bookRent.getRentalDate(),bookRent.getReturnDate()));
-    }
-
-    @Override
-    @Transactional
-    public int deleteBookRent(int id) {
-        return 0;
+        System.out.println(DateUtil.getDaysBetween(bookRent.getRentalDate(), bookRent.getReturnDate()));
     }
 
     @Transactional
-    public void checkLateBookRents(){
+    public void checkLateBookRents() {
         List<BookRent> bookRents = bookRentDao.findBookRents();
-        for(BookRent b : bookRents){
-            if(b.getReturnDate().compareTo(new Date()) < 0){
+        for (BookRent b : bookRents) {
+            if (b.getReturnDate().compareTo(new Date()) < 0) {
                 b.setStatus(BookRentStatus.LATE.name());
-                if(suspendedEmployeeService.findSuspendedEmployeeByEmployeeID(b.getEmployee().getEmployeeID()) == null) {
+                if (suspendedEmployeeService.findSuspendedEmployeeByEmployeeID(b.getEmployee().getEmployeeID()) == null) {
                     SuspendedEmployee suspendedEmployee = new SuspendedEmployee();
                     suspendedEmployee.setEmployee(b.getEmployee());
                     suspendedEmployeeService.insertSuspendedEmployee(suspendedEmployee);

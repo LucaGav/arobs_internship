@@ -11,6 +11,10 @@ public interface BookRentDao {
 
     BookRent findById(int id);
 
+    List<BookRent> findByBookId(int bookID);
+
+    List<BookRent> findByEmployeeId(int employeeID);
+
     BookRent findByEmployeeAndBookId(int employeeID, int bookID);
 
     int delete(int id);

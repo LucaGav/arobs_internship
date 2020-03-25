@@ -4,10 +4,9 @@ import com.arobs.internship.library.dao.EmployeeDao;
 import com.arobs.internship.library.dao.impl.hibernate.util.QueryUtil;
 import com.arobs.internship.library.entities.employee.Employee;
 import com.arobs.internship.library.util.entities.EmployeeUtil;
+import com.arobs.internship.library.util.status.ActiveStatus;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,12 +19,11 @@ public class HibernateEmployeeDao implements EmployeeDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    private static final Logger logger = LoggerFactory.getLogger(HibernateEmployeeDao.class);
-
     @Override
     public Employee insert(Employee employee) {
         Session session = this.sessionFactory.getCurrentSession();
         employee.setPassword(EmployeeUtil.passwordEncryption(employee.getPassword()));
+        employee.setStatus(ActiveStatus.ACTIVE.name());
         session.save(employee);
         return employee;
     }
@@ -58,7 +56,7 @@ public class HibernateEmployeeDao implements EmployeeDao {
     @Override
     public int delete(String email) {
         Session session = this.sessionFactory.getCurrentSession();
-        Query query = session.createQuery("DELETE FROM Employee where email =:email");
+        Query query = session.createQuery("DELETE FROM Employee WHERE email =: email");
         query.setParameter("email", email);
         return query.executeUpdate();
     }

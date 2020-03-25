@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
 @Repository
 public class JdbcEmployeeDao implements EmployeeDao {
 
@@ -76,6 +75,4 @@ public class JdbcEmployeeDao implements EmployeeDao {
                 employee.getFirstName(), employee.getLastName(), employee.getEmail(), employee.getEmployeeID());
         return employee;
     }
-
-
 }

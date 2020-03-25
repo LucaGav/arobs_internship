@@ -1,4 +1,5 @@
 package com.arobs.internship.library.entities.auxiliary;
+
 import com.arobs.internship.library.entities.book.Copy;
 import com.arobs.internship.library.entities.operations.RentRequest;
 

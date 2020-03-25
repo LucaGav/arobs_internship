@@ -1,6 +1,5 @@
 package com.arobs.internship.library.business;
 
-
 import com.arobs.internship.library.dtos.employee.EmployeeUpdateDTO;
 import com.arobs.internship.library.entities.employee.Employee;
 import com.arobs.internship.library.util.handler.ValidationException;
@@ -17,7 +16,8 @@ public interface EmployeeService {
 
     Employee updateEmployee(EmployeeUpdateDTO employeeDTO, int id) throws ValidationException;
 
-    int deleteEmployee(String email);
+    Employee deleteEmployee(int id) throws ValidationException;
 
     Employee updateEmployeePassoword(String email, String oldPassword, String newPassword) throws ValidationException;
+
 }

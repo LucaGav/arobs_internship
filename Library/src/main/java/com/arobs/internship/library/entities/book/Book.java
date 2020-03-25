@@ -1,6 +1,7 @@
 package com.arobs.internship.library.entities.book;
 
 import com.arobs.internship.library.entities.operations.RentRequest;
+import com.arobs.internship.library.util.status.ActiveStatus;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -34,6 +35,10 @@ public class Book {
     @Temporal(TemporalType.DATE)
     private Date addedDate;
 
+    @NotNull
+    @Column(name = "status")
+    private String status;
+
     @ManyToMany(cascade = {
             CascadeType.ALL
     })
@@ -58,12 +63,13 @@ public class Book {
     public Book() {
     }
 
-    public Book(int bookID, String title, String author, String description, Date addDate) {
+    public Book(int bookID, @NotNull String title, @NotNull String author, @NotNull String description, @NotNull Date addedDate) {
         this.bookID = bookID;
         this.title = title;
         this.author = author;
         this.description = description;
-        this.addedDate = addDate;
+        this.addedDate = addedDate;
+        this.status = ActiveStatus.ACTIVE.name();
     }
 
     public void setBookID(int bookID) {
@@ -130,17 +136,12 @@ public class Book {
         this.rentRequests = rentRequests;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "bookID=" + bookID +
-                ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", description='" + description + '\'' +
-                ", addedDate=" + addedDate +
-                ", tags=" + tags +
-                ", copies=" + copies +
-                ", rentRequests=" + rentRequests +
-                '}';
+    public String getStatus() {
+        return status;
     }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
 }

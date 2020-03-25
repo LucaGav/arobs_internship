@@ -8,20 +8,20 @@ public enum BookRentStatus {
 
     private final String status;
 
-    BookRentStatus(String s){
+    BookRentStatus(String s) {
         this.status = s;
     }
-    String getStatus(){
+
+    String getStatus() {
         return status;
     }
 
-    public static boolean contains(String text){
-        for(CopyStatus s: CopyStatus.values()){
-            if(s.name().equals(text)){
+    public static boolean contains(String text) {
+        for (CopyStatus s : CopyStatus.values()) {
+            if (s.name().equals(text)) {
                 return true;
             }
         }
         return false;
     }
-
 }

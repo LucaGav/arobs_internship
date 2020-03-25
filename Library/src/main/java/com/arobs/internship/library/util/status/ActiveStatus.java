@@ -1,14 +1,12 @@
 package com.arobs.internship.library.util.status;
 
-public enum RequestStatus {
+public enum ActiveStatus {
 
-    ACCEPTED("accepted"),
-    PENDING("pending"),
-    REJECTED("rejected");
-
+    ACTIVE("active"),
+    INACTIVE("inactive");
     private final String status;
 
-    RequestStatus(String s) {
+    ActiveStatus(String s) {
         this.status = s;
     }
 
@@ -17,7 +15,7 @@ public enum RequestStatus {
     }
 
     public static boolean contains(String text) {
-        for (RequestStatus s : RequestStatus.values()) {
+        for (ActiveStatus s : ActiveStatus.values()) {
             if (s.name().equals(text)) {
                 return true;
             }
@@ -25,4 +23,3 @@ public enum RequestStatus {
         return false;
     }
 }
-

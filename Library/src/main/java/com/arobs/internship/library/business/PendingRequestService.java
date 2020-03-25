@@ -9,12 +9,6 @@ public interface PendingRequestService {
 
     PendingRequest insertPendingRequest(PendingRequest pendingRequest);
 
-    List<PendingRequest> findPendingRequests();
-
-    PendingRequest findPendingRequestById(int id);
-
-    PendingRequest findPendingRequestByRentRequestId(int rentreqID);
-
     int deletePendingRequest(int id);
 
     void checkPendingRentRequests() throws ValidationException;

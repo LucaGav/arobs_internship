@@ -15,8 +15,6 @@ import com.arobs.internship.library.util.handler.ValidationException;
 import com.arobs.internship.library.util.status.CopyStatus;
 import com.arobs.internship.library.util.status.RentRequestStatus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -52,24 +50,6 @@ public class PendingRequestServiceImpl implements PendingRequestService {
 
     @Override
     @Transactional
-    public List<PendingRequest> findPendingRequests() {
-        return pendingRequestDao.findPendingRequests();
-    }
-
-    @Override
-    @Transactional
-    public PendingRequest findPendingRequestById(int id) {
-        return pendingRequestDao.findById(id);
-    }
-
-    @Override
-    @Transactional
-    public PendingRequest findPendingRequestByRentRequestId(int rentreqID) {
-        return pendingRequestDao.findByRentRequestID(rentreqID);
-    }
-
-    @Override
-    @Transactional
     public int deletePendingRequest(int id) {
         return pendingRequestDao.delete(id);
     }
@@ -95,13 +75,13 @@ public class PendingRequestServiceImpl implements PendingRequestService {
     }
 
     private void finalizePending(PendingRequest pendingRequest, RentRequest rentRequest) throws ValidationException {
-        if(rentRequest.getStatus().equals(RentRequestStatus.GRANTED.name())){
-            BookRent bookRent = new BookRent(rentRequest.getBook(),rentRequest.getEmployee());
+        if (rentRequest.getStatus().equals(RentRequestStatus.GRANTED.name())) {
+            BookRent bookRent = new BookRent(rentRequest.getBook(), rentRequest.getEmployee());
             Copy copy = pendingRequest.getCopy();
             copy.setStatus(CopyStatus.RENTED.name());
             bookRent.setCopy(copy);
             bookRentService.insertBookRent(bookRent);
-        } else if(rentRequest.getStatus().equals(RentRequestStatus.DECLINED.name())){
+        } else if (rentRequest.getStatus().equals(RentRequestStatus.DECLINED.name())) {
             copyService.updateCopyStatus(pendingRequest.getCopy().getCopyID(), CopyStatus.AVAILABLE.name());
         }
         this.deletePendingRequest(pendingRequest.getPendingreqID());

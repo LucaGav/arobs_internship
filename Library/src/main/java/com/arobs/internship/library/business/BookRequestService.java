@@ -15,6 +15,4 @@ public interface BookRequestService {
 
     BookRequest updateBookRequest(String status, int id) throws ValidationException;
 
-    int deleteBookRequest(int id);
-
 }

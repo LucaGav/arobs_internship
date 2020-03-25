@@ -15,13 +15,14 @@ public interface BookRentService {
 
     BookRent findBookRentByEmployeeAndBookID(int employeeID, int bookID);
 
+    List<BookRent> findBookRentsByBookID(int bookID);
+
+    List<BookRent> findBookRentsByEmployeeID(int employeeID);
+
     BookRent updateBookRentOnReturn(float grade, int id) throws ValidationException;
 
     BookRent updateBookRentOnExtension(int id) throws ValidationException;
 
-    int deleteBookRent(int id);
-
     void checkLateBookRents();
-
 
 }

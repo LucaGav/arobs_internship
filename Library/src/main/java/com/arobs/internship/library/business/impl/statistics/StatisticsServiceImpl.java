@@ -1,10 +1,8 @@
 package com.arobs.internship.library.business.impl.statistics;
 
 import com.arobs.internship.library.business.StatisticsService;
-import com.arobs.internship.library.business.SuspendedEmployeeService;
 import com.arobs.internship.library.dao.StatisticsDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
-import com.arobs.internship.library.entities.employee.SuspendedEmployee;
 import com.arobs.internship.library.entities.statistics.TopReadingEmployee;
 import com.arobs.internship.library.entities.statistics.TopRentedBook;
 import com.arobs.internship.library.util.handler.ValidationException;
@@ -31,15 +29,15 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public List<TopRentedBook> topXRentedBooks(int top, Date startDate, Date endDate) throws ValidationException {
-        if(startDate.compareTo(endDate) < 0){
+        if (startDate.compareTo(endDate) < 0) {
             throw new ValidationException("Start date of period cannot be anterior to ending date");
         }
-        return statisticsDao.getTopXRentedBooks(top,startDate,endDate);
+        return statisticsDao.getTopXRentedBooks(top, startDate, endDate);
     }
 
     @Override
     public List<TopReadingEmployee> topXReadingEmployees(int top, Date startDate, Date endDate) throws ValidationException {
-        if(startDate.compareTo(endDate) < 0){
+        if (startDate.compareTo(endDate) < 0) {
             throw new ValidationException("Start date of period cannot be anterior to ending date");
         }
         return statisticsDao.getTopXReadingEmployees(top, startDate, endDate);

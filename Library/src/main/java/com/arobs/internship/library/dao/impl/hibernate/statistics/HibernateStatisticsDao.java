@@ -29,11 +29,11 @@ public class HibernateStatisticsDao implements StatisticsDao {
                 "JOIN Book b ON br.book.bookID = b.bookID WHERE br.rentalDate BETWEEN :startDate AND :endDate " +
                 "GROUP BY b.bookID " +
                 "ORDER BY c DESC").setMaxResults(top);
-        query.setParameter("startDate",startDate);
-        query.setParameter("endDate",endDate);
+        query.setParameter("startDate", startDate);
+        query.setParameter("endDate", endDate);
         List<Object[]> values = (List<Object[]>) query.getResultList();
         for (Object[] val : values) {
-            TopRentedBook book = new TopRentedBook(val[0].toString(),val[1].toString(),Integer.parseInt(val[2].toString()));
+            TopRentedBook book = new TopRentedBook(val[0].toString(), val[1].toString(), Integer.parseInt(val[2].toString()));
             topRentedBooks.add(book);
         }
         return topRentedBooks;
@@ -44,15 +44,15 @@ public class HibernateStatisticsDao implements StatisticsDao {
     public List<TopReadingEmployee> getTopXReadingEmployees(int top, Date startDate, Date endDate) {
         Session session = this.sessionFactory.getCurrentSession();
         List<TopReadingEmployee> topReadingEmployees = new ArrayList<>();
-        Query query =  session.createQuery("SELECT br.employee.email, br.employee.firstName, br.employee.lastName, COUNT(*) as c FROM BookRent br " +
+        Query query = session.createQuery("SELECT br.employee.email, br.employee.firstName, br.employee.lastName, COUNT(*) as c FROM BookRent br " +
                 "JOIN Employee e ON br.employee.employeeID = e.employeeID WHERE br.returnDate BETWEEN :startDate AND :endDate " +
                 "GROUP BY e.employeeID " +
                 "ORDER BY c DESC").setMaxResults(top);
-        query.setParameter("startDate",startDate);
-        query.setParameter("endDate",endDate);
+        query.setParameter("startDate", startDate);
+        query.setParameter("endDate", endDate);
         List<Object[]> values = (List<Object[]>) query.getResultList();
         for (Object[] val : values) {
-            TopReadingEmployee employee = new TopReadingEmployee(val[0].toString(),val[1].toString(),val[2].toString(),Integer.parseInt(val[3].toString()));
+            TopReadingEmployee employee = new TopReadingEmployee(val[0].toString(), val[1].toString(), val[2].toString(), Integer.parseInt(val[3].toString()));
             topReadingEmployees.add(employee);
         }
         return topReadingEmployees;

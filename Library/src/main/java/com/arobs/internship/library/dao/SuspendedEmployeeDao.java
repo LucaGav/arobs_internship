@@ -10,8 +10,6 @@ public interface SuspendedEmployeeDao {
 
     List<SuspendedEmployee> findSuspendedEmployees();
 
-    SuspendedEmployee findByID(int id);
-
     SuspendedEmployee findByEmployeeID(int employeeID);
 
     int delete(int id);

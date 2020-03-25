@@ -21,5 +21,6 @@ public interface CopyService {
 
     void updateCopyStatus(int id, String status) throws ValidationException;
 
-    int deleteCopy(int id);
+    Copy deleteCopy(int id) throws ValidationException;
+
 }

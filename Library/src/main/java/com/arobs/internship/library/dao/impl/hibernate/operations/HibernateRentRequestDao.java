@@ -3,7 +3,6 @@ package com.arobs.internship.library.dao.impl.hibernate.operations;
 import com.arobs.internship.library.dao.RentRequestDao;
 import com.arobs.internship.library.dao.impl.hibernate.util.QueryUtil;
 import com.arobs.internship.library.entities.operations.RentRequest;
-import com.arobs.internship.library.util.status.CopyStatus;
 import com.arobs.internship.library.util.status.RentRequestStatus;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -42,7 +41,7 @@ public class HibernateRentRequestDao implements RentRequestDao {
     @Override
     public RentRequest findById(int id) {
         Session session = this.sessionFactory.getCurrentSession();
-        return session.get(RentRequest.class,id);
+        return session.get(RentRequest.class, id);
     }
 
     @Override
@@ -50,7 +49,17 @@ public class HibernateRentRequestDao implements RentRequestDao {
         List<RentRequest> rentRequests;
         Session session = this.sessionFactory.getCurrentSession();
         Query query = session.createQuery("from RentRequest WHERE bookID =: id");
-        query.setParameter("id",bookID);
+        query.setParameter("id", bookID);
+        rentRequests = query.getResultList();
+        return rentRequests;
+    }
+
+    @Override
+    public List<RentRequest> findByEmployeeId(int employeeID) {
+        List<RentRequest> rentRequests;
+        Session session = this.sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from RentRequest WHERE employeeID =: id");
+        query.setParameter("id", employeeID);
         rentRequests = query.getResultList();
         return rentRequests;
     }
@@ -78,7 +87,7 @@ public class HibernateRentRequestDao implements RentRequestDao {
         List<RentRequest> rentRequests;
         Session session = this.sessionFactory.getCurrentSession();
         Query query = session.createQuery("from RentRequest WHERE bookID =: id AND status =: status");
-        query.setParameter("id",bookID);
+        query.setParameter("id", bookID);
         query.setParameter("status", RentRequestStatus.WAITINGAVAILABLECOPY.name());
         rentRequests = query.getResultList();
         return rentRequests;

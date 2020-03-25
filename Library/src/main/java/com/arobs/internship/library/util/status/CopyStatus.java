@@ -8,16 +8,17 @@ public enum CopyStatus {
 
     private final String status;
 
-    CopyStatus(String s){
+    CopyStatus(String s) {
         this.status = s;
     }
-    String getStatus(){
+
+    String getStatus() {
         return status;
     }
 
-    public static boolean contains(String text){
-        for(CopyStatus s: CopyStatus.values()){
-            if(s.name().equals(text)){
+    public static boolean contains(String text) {
+        for (CopyStatus s : CopyStatus.values()) {
+            if (s.name().equals(text)) {
                 return true;
             }
         }

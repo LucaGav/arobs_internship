@@ -34,14 +34,6 @@ public class HibernateSuspendedEmployeeDao implements SuspendedEmployeeDao {
     }
 
     @Override
-    public SuspendedEmployee findByID(int id) {
-        SuspendedEmployee suspendedEmployee;
-        Session session = this.sessionFactory.getCurrentSession();
-        suspendedEmployee = session.get(SuspendedEmployee.class,id);
-        return suspendedEmployee;
-    }
-
-    @Override
     public SuspendedEmployee findByEmployeeID(int employeeID) {
         Session session = this.sessionFactory.getCurrentSession();
         Query query = session.createQuery("FROM SuspendedEmployee WHERE employeeID =: id");
@@ -53,7 +45,7 @@ public class HibernateSuspendedEmployeeDao implements SuspendedEmployeeDao {
     public int delete(int id) {
         Session session = this.sessionFactory.getCurrentSession();
         Query query = session.createQuery("DELETE FROM SuspendedEmployee WHERE suspendedEmployeeID =: id");
-        query.setParameter("id",id);
+        query.setParameter("id", id);
         return query.executeUpdate();
     }
 }

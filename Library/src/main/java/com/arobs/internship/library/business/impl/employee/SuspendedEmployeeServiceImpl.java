@@ -1,7 +1,6 @@
 package com.arobs.internship.library.business.impl.employee;
 
 import com.arobs.internship.library.business.SuspendedEmployeeService;
-import com.arobs.internship.library.dao.EmployeeDao;
 import com.arobs.internship.library.dao.SuspendedEmployeeDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
 import com.arobs.internship.library.entities.employee.Employee;
@@ -33,7 +32,6 @@ public class SuspendedEmployeeServiceImpl implements SuspendedEmployeeService {
         suspendedEmployeeDao = factory.getSuspendedEmployeeDao();
     }
 
-
     @Override
     @Transactional
     public SuspendedEmployee insertSuspendedEmployee(SuspendedEmployee suspendedEmployee) {
@@ -48,12 +46,6 @@ public class SuspendedEmployeeServiceImpl implements SuspendedEmployeeService {
 
     @Override
     @Transactional
-    public SuspendedEmployee findSuspendedEmployeeByID(int id) {
-        return suspendedEmployeeDao.findByID(id);
-    }
-
-    @Override
-    @Transactional
     public SuspendedEmployee findSuspendedEmployeeByEmployeeID(int employeeID) {
         return suspendedEmployeeDao.findByEmployeeID(employeeID);
     }
@@ -62,12 +54,12 @@ public class SuspendedEmployeeServiceImpl implements SuspendedEmployeeService {
     @Transactional
     public void updateOnBookReturn(Employee employee, Date initialReturnDate) {
         SuspendedEmployee suspendedEmployee = suspendedEmployeeDao.findByEmployeeID(employee.getEmployeeID());
-        if(suspendedEmployee != null){
+        if (suspendedEmployee != null) {
             Date oldSuspensionDate = suspendedEmployee.getSuspendedUntilDate();
-            if(oldSuspensionDate != null){
-                suspendedEmployee.setSuspendedUntilDate(DateUtil.addDays(oldSuspensionDate,this.suspensionDateUpdate(initialReturnDate)));
+            if (oldSuspensionDate != null) {
+                suspendedEmployee.setSuspendedUntilDate(DateUtil.addDays(oldSuspensionDate, this.suspensionDateUpdate(initialReturnDate)));
             } else {
-                suspendedEmployee.setSuspendedUntilDate(DateUtil.addDays(new Date(),this.suspensionDateUpdate(initialReturnDate)));
+                suspendedEmployee.setSuspendedUntilDate(DateUtil.addDays(new Date(), this.suspensionDateUpdate(initialReturnDate)));
             }
         } else {
             logger.info("Employee was not late returning the book");
@@ -83,8 +75,7 @@ public class SuspendedEmployeeServiceImpl implements SuspendedEmployeeService {
         int daysLateReturn = DateUtil.getDaysBetween(initialReturnDate, new Date());
         if ((daysLateReturn * 2) < 10) {
             return 10;
-        }
-        else {
+        } else {
             return daysLateReturn * 2;
         }
     }
@@ -93,9 +84,11 @@ public class SuspendedEmployeeServiceImpl implements SuspendedEmployeeService {
     @Transactional
     public void checkSuspensionDates() {
         List<SuspendedEmployee> suspendedEmployees = this.findSuspendedEmployees();
-        for(SuspendedEmployee se : suspendedEmployees){
-            if(DateUtil.compareDates(se.getSuspendedUntilDate(),new Date())){
-                this.deleteSuspendedEmployee(se.getSuspendedemployeeID());
+        for (SuspendedEmployee se : suspendedEmployees) {
+            if (null != se.getSuspendedUntilDate()) {
+                if (DateUtil.compareDates(se.getSuspendedUntilDate(), new Date())) {
+                    this.deleteSuspendedEmployee(se.getSuspendedemployeeID());
+                }
             }
         }
     }

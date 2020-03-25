@@ -12,8 +12,6 @@ public interface SuspendedEmployeeService {
 
     List<SuspendedEmployee> findSuspendedEmployees();
 
-    SuspendedEmployee findSuspendedEmployeeByID(int id);
-
     SuspendedEmployee findSuspendedEmployeeByEmployeeID(int employeeID);
 
     void updateOnBookReturn(Employee employee, Date initialReturnDate);
@@ -21,4 +19,5 @@ public interface SuspendedEmployeeService {
     int deleteSuspendedEmployee(int id);
 
     void checkSuspensionDates();
+
 }

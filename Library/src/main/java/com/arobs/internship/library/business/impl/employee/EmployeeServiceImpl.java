@@ -1,14 +1,19 @@
 package com.arobs.internship.library.business.impl.employee;
 
+import com.arobs.internship.library.business.BookRentService;
 import com.arobs.internship.library.business.EmployeeService;
+import com.arobs.internship.library.business.RentRequestService;
 import com.arobs.internship.library.dao.EmployeeDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
 import com.arobs.internship.library.dtos.employee.EmployeeUpdateDTO;
 import com.arobs.internship.library.entities.employee.Employee;
+import com.arobs.internship.library.entities.operations.BookRent;
+import com.arobs.internship.library.entities.operations.RentRequest;
 import com.arobs.internship.library.util.entities.EmployeeUtil;
 import com.arobs.internship.library.util.handler.ValidationException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.arobs.internship.library.util.status.ActiveStatus;
+import com.arobs.internship.library.util.status.BookRentStatus;
+import com.arobs.internship.library.util.status.RentRequestStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +27,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private DaoFactory daoFactory;
 
-    private EmployeeDao employeeDao;
+    @Autowired
+    private RentRequestService rentRequestService;
 
-    private static final Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);
+    @Autowired
+    private BookRentService bookRentService;
+
+    private EmployeeDao employeeDao;
 
     @PostConstruct
     public void init() {
@@ -77,8 +86,38 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional
-    public int deleteEmployee(String email){
-        return employeeDao.delete(email);
+    public Employee deleteEmployee(int id) throws ValidationException {
+        Employee employee = this.findEmployeeById(id);
+        if (employee == null) {
+            throw new ValidationException("No employee with this id found");
+        }
+        validateEmployeeRemoval(id);
+        employee.setStatus(ActiveStatus.INACTIVE.name());
+        return employee;
+    }
+
+    private void validateEmployeeRemoval(int employeeID) throws ValidationException {
+        boolean brFlag = true;
+        boolean rrFlag = true;
+        List<BookRent> rentsOfEmployee = bookRentService.findBookRentsByEmployeeID(employeeID);
+        for (BookRent bookRent : rentsOfEmployee) {
+            if (!bookRent.getStatus().equals(BookRentStatus.RETURNED.name())) {
+                brFlag = false;
+            }
+        }
+        List<RentRequest> rentRequestsOfEmployee = rentRequestService.findRentRequestsByEmployeeID(employeeID);
+        for (RentRequest rentRequest : rentRequestsOfEmployee) {
+            if (!(rentRequest.getStatus().equals(RentRequestStatus.DECLINED.name())
+                    || rentRequest.getStatus().equals(RentRequestStatus.GRANTED.name()))) {
+                rrFlag = false;
+            }
+        }
+        if (!brFlag) {
+            throw new ValidationException("Cannot delete employee, as he has unfinished book rents");
+        }
+        if (!rrFlag) {
+            throw new ValidationException("Cannot delete employee, as he has unfinished rent requests");
+        }
     }
 
 

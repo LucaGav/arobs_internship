@@ -12,8 +12,6 @@ public interface PendingRequestDao {
 
     PendingRequest findById(int id);
 
-    PendingRequest findByRentRequestID(int id);
-
     int delete(int id);
 
 }

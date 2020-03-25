@@ -16,6 +16,4 @@ public interface CopyDao {
 
     Copy findById(int id);
 
-    int delete(int id);
-
 }

@@ -1,7 +1,5 @@
 package com.arobs.internship.library.dtos.operations;
 
-import java.util.Date;
-
 public class BookRentDTO {
 
     private int employeeID;
