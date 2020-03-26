@@ -46,10 +46,10 @@ public class BookServiceTest {
     private Book bookMock;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
 
-        bookMock = new Book(800,"Asculta","Corona","Pswo",new Date());
-        copy = new Copy(true,"AVAILABLE",bookMock);
+        bookMock = new Book(800, "Asculta", "Corona", "Pswo", new Date());
+        copy = new Copy(true, "AVAILABLE", bookMock);
         when(daoFactory.getInstance()).thenReturn(hibernateDaoFactory);
         when(daoFactory.getInstance().getBookDao()).thenReturn(bookDao);
         this.bookService.init();
@@ -60,8 +60,8 @@ public class BookServiceTest {
     void whenInsertBook_givenBook_returnBook() throws ValidationException {
 
         when(bookDao.insert(any(Book.class))).thenReturn(bookMock);
-        Book book = bookService.insertBook(new Book(800,"Asculta","Corona","Pswo", new Date()));
-        assertEquals(book,bookMock);
+        Book book = bookService.insertBook(new Book(800, "Asculta", "Corona", "Pswo", new Date()));
+        assertEquals(book, bookMock);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class BookServiceTest {
         when(copyService.insertCopy(any(Copy.class))).thenReturn(copy);
         final Method privateMethod = BookServiceImpl.class.getDeclaredMethod("createBookCopy", Book.class);
         privateMethod.setAccessible(true);
-        Copy c = (Copy) privateMethod.invoke(bookService,bookMock);
+        Copy c = (Copy) privateMethod.invoke(bookService, bookMock);
         assertEquals(c, copy);
     }
 }

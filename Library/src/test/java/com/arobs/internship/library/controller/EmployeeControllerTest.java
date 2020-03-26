@@ -34,19 +34,18 @@ public class EmployeeControllerTest {
     @BeforeEach
     public void setUp() {
         employeeList = new ArrayList<>();
-        Employee employee = new Employee(1,"Luca","Gavril","ADMIN","1234","pritata@gmail.com");
-        Employee employee1 = new Employee(2,"Luca","Gfavril","ADMIN","1234","postup@gmail.com");
+        Employee employee = new Employee(1, "Luca", "Gavril", "ADMIN", "1234", "pritata@gmail.com");
+        Employee employee1 = new Employee(2, "Luca", "Gfavril", "ADMIN", "1234", "postup@gmail.com");
         employeeList.add(employee);
         employeeList.add(employee1);
     }
 
     @Test
-    public void whenFindEmployees_given_returnResponseEntity(){
+    public void whenFindEmployees_given_returnResponseEntity() {
 
         when(employeeService.findEmployees()).thenReturn(employeeList);
         ResponseEntity responseEntity = employeeController.findEmployees();
-        System.out.println(responseEntity.getStatusCodeValue());
-        assertEquals(responseEntity.getStatusCodeValue(),200);
+        assertEquals(responseEntity.getStatusCodeValue(), 200);
 
     }
 }

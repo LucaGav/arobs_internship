@@ -27,12 +27,12 @@ public class SchedulerComponent {
         pendingRequestService.checkPendingRentRequests();
     }
 
-    @Scheduled(cron = "30 48 11 * * *")
+    @Scheduled(cron = "30 23 12 * * *")
     private void lateRentsScheduler() {
         bookRentService.checkLateBookRents();
     }
 
-    @Scheduled(cron = "30 42 14 * * *")
+    @Scheduled(cron = "30 28 12 * * *")
     private void checkSuspensionsScheduler() {
         suspendedEmployeeService.checkSuspensionDates();
     }

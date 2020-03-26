@@ -36,7 +36,7 @@ public class CopyController {
         }
         try {
             Copy copy = copyService.insertCopy(copyDTOConverter.dtoToCopy(copyDTO));
-            logger.info("addCopy: Copy with id " + copy.getCopyID() + " inserted successfully");
+            logger.info("addCopy: Copy with status " + copy.getCopyID() + " inserted successfully");
             return new ResponseEntity<>(copyDTOConverter.copyToDTO(copy), HttpStatus.OK);
         } catch (ValidationException ex) {
             logger.error("addCopy: " + ex.getMessage());
@@ -49,7 +49,7 @@ public class CopyController {
         List<Copy> copies = copyService.findCopies();
         if (copies.isEmpty()) {
             logger.info("findCopies: No copies in the database");
-            return new ResponseEntity<>("No copies present in the db", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No copies present in the db", HttpStatus.ACCEPTED);
         }
         List<CopyDTO> copyDTOS = copyDTOConverter.listCopyToDTO(copies);
         logger.info("findCopies: List of copies sent as response");
@@ -61,7 +61,7 @@ public class CopyController {
         List<Copy> copies = copyService.findCopiesOfBook(bookId);
         if (copies.isEmpty()) {
             logger.info("findCopiesOfBook: No copies of this book in the database");
-            return new ResponseEntity<>("No copies of this book present in the db", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No copies of this book present in the db", HttpStatus.ACCEPTED);
         }
         List<CopyDTO> copyDTOS = copyDTOConverter.listCopyToDTO(copies);
         logger.info("findCopiesOfBook: List of copies sent as response");
@@ -73,7 +73,7 @@ public class CopyController {
         Copy copy = copyService.findAvailableCopyOfBook(bookId);
         if (copy == null) {
             logger.info("checkAvailableCopy: No available copies of book with id " + bookId + " in the database");
-            return new ResponseEntity<>("No available copies of this book present in the db", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No available copies of this book present in the db", HttpStatus.ACCEPTED);
         } else {
             logger.info("checkAvailableCopy: At least one available copy of book with id " + bookId + " in the database");
             return new ResponseEntity<>("Book with this id has at least one available copy", HttpStatus.OK);
@@ -85,7 +85,7 @@ public class CopyController {
         Copy copy = copyService.findCopyById(id);
         if (copy == null) {
             logger.info("getCopy: No copy with id " + id + " in the database");
-            return new ResponseEntity<>("No copy with this id found", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No copy with this id found", HttpStatus.ACCEPTED);
         }
         logger.info("getCopy: Copy with id " + id + " found and sent in response");
         return new ResponseEntity<>(copyDTOConverter.copyToDTO(copy), HttpStatus.OK);

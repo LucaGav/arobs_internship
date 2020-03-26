@@ -50,7 +50,7 @@ public class RentRequestController {
         List<RentRequest> rentRequests = rentRequestService.findRentRequests();
         if (rentRequests.isEmpty()) {
             logger.info("findRentRequests: No rent requests present in the db");
-            return new ResponseEntity<>("No rent requests present in the db", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No rent requests present in the db", HttpStatus.ACCEPTED);
         }
         List<RentRequestDTO> rentDTOS = rentReqDTOConverter.listRentRequestToDTO(rentRequests);
         logger.info("findRentRequests: List of rent requests sent as response");
@@ -63,7 +63,7 @@ public class RentRequestController {
         RentRequest rentRequest = rentRequestService.findRentRequestById(id);
         if (rentRequest == null) {
             logger.info("getRentRequest: No rent request with id " + id + " found");
-            return new ResponseEntity<>("getRentRequest: No rent request with this id found", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("getRentRequest: No rent request with this id found", HttpStatus.ACCEPTED);
         }
         logger.info("getRentRequest: Rent request with id " + id + " found and sent in response");
         return new ResponseEntity<>(rentReqDTOConverter.rentRequestToDTO(rentRequest), HttpStatus.OK);

@@ -29,16 +29,16 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public List<TopRentedBook> topXRentedBooks(int top, Date startDate, Date endDate) throws ValidationException {
-        if (startDate.compareTo(endDate) < 0) {
-            throw new ValidationException("Start date of period cannot be anterior to ending date");
+        if (endDate.compareTo(startDate) < 0) {
+            throw new ValidationException("Ending date of period cannot be anterior to starting date");
         }
         return statisticsDao.getTopXRentedBooks(top, startDate, endDate);
     }
 
     @Override
     public List<TopReadingEmployee> topXReadingEmployees(int top, Date startDate, Date endDate) throws ValidationException {
-        if (startDate.compareTo(endDate) < 0) {
-            throw new ValidationException("Start date of period cannot be anterior to ending date");
+        if (endDate.compareTo(startDate) < 0) {
+            throw new ValidationException("Ending date of period cannot be anterior to starting date");
         }
         return statisticsDao.getTopXReadingEmployees(top, startDate, endDate);
     }

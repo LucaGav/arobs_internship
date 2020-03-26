@@ -156,7 +156,9 @@ public class BookRentServiceImpl implements BookRentService {
 
     private void extendBookRent(BookRent bookRent) throws ValidationException {
         Date rentalDate = bookRent.getRentalDate();
-        System.out.println(DateUtil.getDaysBetween(bookRent.getRentalDate(), bookRent.getReturnDate()));
+        if (DateUtil.getDaysBetween(bookRent.getReturnDate(), new Date()) > 5) {
+            throw new ValidationException("Book rent can only be extended <= 5 days prior to due date");
+        }
         if (DateUtil.getDaysBetween(rentalDate, bookRent.getReturnDate()) >= 90) {
             throw new ValidationException("This book can no longer be extended");
         }
@@ -165,7 +167,6 @@ public class BookRentServiceImpl implements BookRentService {
             newReturnDate = DateUtil.addDays(rentalDate, 90);
         }
         bookRent.setReturnDate(newReturnDate);
-        System.out.println(DateUtil.getDaysBetween(bookRent.getRentalDate(), bookRent.getReturnDate()));
     }
 
     @Transactional

@@ -48,7 +48,7 @@ public class StatisticsController {
         }
         if (rentedBooks == null) {
             logger.info("getTopRentedBooks: No books rented in this period of time");
-            return new ResponseEntity<>("No books rented in this period of time", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No books rented in this period of time", HttpStatus.ACCEPTED);
         }
         logger.info("getTopRentedBooks: Rented books sent in response");
         return new ResponseEntity<>(rentedBooks, HttpStatus.OK);
@@ -66,7 +66,7 @@ public class StatisticsController {
         }
         if (readingEmployees == null) {
             logger.info("getTopReadingEmployees: No books read and returned in this period of time");
-            return new ResponseEntity<>("No books read and returned in this period of time", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No books read and returned in this period of time", HttpStatus.ACCEPTED);
         }
         logger.info("getTopReadingEmployees: Reading employees sent in response");
         return new ResponseEntity<>(readingEmployees, HttpStatus.OK);
@@ -77,9 +77,9 @@ public class StatisticsController {
         List<SuspendedEmployee> suspendedEmployees = suspendedEmployeeService.findSuspendedEmployees();
         if (suspendedEmployees.isEmpty()) {
             logger.info("getSuspendedEmployees: No suspended employees in the database");
-            return new ResponseEntity<>("No suspended employees in the database", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No suspended employees in the database", HttpStatus.ACCEPTED);
         }
-        logger.info("getSuspendedEmployees: No suspended employees sent in response");
+        logger.info("getSuspendedEmployees: Suspended employees list sent in response");
         return new ResponseEntity<>(suspendedEmployeeDTOConverter.listSuspendedEmployeeToDTO(suspendedEmployees), HttpStatus.OK);
     }
 }

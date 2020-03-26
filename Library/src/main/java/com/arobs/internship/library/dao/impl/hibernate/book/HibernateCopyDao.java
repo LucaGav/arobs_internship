@@ -22,7 +22,6 @@ public class HibernateCopyDao implements CopyDao {
     @Override
     public Copy insert(Copy copy) {
         Session session = this.sessionFactory.getCurrentSession();
-        copy.setStatus(ActiveStatus.ACTIVE.name());
         session.save(copy);
         return copy;
     }

@@ -50,7 +50,7 @@ public class TagController {
         List<Tag> tags = tagService.findTags();
         if (tags.isEmpty()) {
             logger.info("findTags: No tags present in the database");
-            return new ResponseEntity<>("No tags present in the db", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No tags present in the db", HttpStatus.ACCEPTED);
         }
         List<TagDTO> tagDTOS = tagDTOConverter.listTagToDTO(tags);
         logger.info("findTags: List of tags found and sent in body");
@@ -62,7 +62,7 @@ public class TagController {
         Tag tag = tagService.findTagByName(tagName);
         if (tag == null) {
             logger.info("getTag: No tag with name " + tagName + " found");
-            return new ResponseEntity<>("No tag with this name found", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No tag with this name found", HttpStatus.ACCEPTED);
         }
         logger.info("getTag: Tag with name " + tag.getTagName() + "found and sent");
         return new ResponseEntity<>(tagDTOConverter.tagToDTO(tag), HttpStatus.OK);

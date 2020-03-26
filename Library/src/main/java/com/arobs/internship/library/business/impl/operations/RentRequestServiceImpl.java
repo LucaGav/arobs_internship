@@ -39,10 +39,8 @@ public class RentRequestServiceImpl implements RentRequestService {
     }
 
     private void verifyRentRequest(Book book, Employee employee) throws ValidationException {
-        RentRequest rrCheck = this.findRentRequestByEmployeeAndBookID(employee.getEmployeeID(),
-                book.getBookID());
+        RentRequest rrCheck = this.findRentRequestByEmployeeAndBookID(employee.getEmployeeID(), book.getBookID());
         if (rrCheck != null) {
-            System.out.println("This employee has already requested this book");
             throw new ValidationException("This employee has already requested this book");
         }
     }

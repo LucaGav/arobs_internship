@@ -54,7 +54,7 @@ public class BookRentController {
         List<BookRent> bookRents = bookRentService.findBookRents();
         if (bookRents.isEmpty()) {
             logger.info("findBookRents: No book rents found in the database");
-            return new ResponseEntity<>("No book rents present in the db", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No book rents present in the db", HttpStatus.ACCEPTED);
         }
         List<BookRentDTO> rentDTOS = bookRentDTOConverter.listBookRentToDTO(bookRents);
         logger.info("findBookRents: List of book rents sent as response");
@@ -67,7 +67,7 @@ public class BookRentController {
         BookRent bookRent = bookRentService.findBookRentById(id);
         if (bookRent == null) {
             logger.info("getBookRent: No book rent with id " + id + " in the database");
-            return new ResponseEntity<>("No book rent with this id found", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No book rent with this id found", HttpStatus.ACCEPTED);
         }
         logger.info("getBookRent: Book rent with id " + id + " found and sent in response");
         return new ResponseEntity<>(bookRentDTOConverter.bookRentToDTO(bookRent), HttpStatus.OK);

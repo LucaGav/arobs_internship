@@ -49,7 +49,7 @@ public class BookRequestController {
         List<BookRequest> bookRequests = bookRequestService.findBookRequests();
         if (bookRequests.isEmpty()) {
             logger.info("findBookRequests: No book requests in the database");
-            return new ResponseEntity<>("No book requests present in the db", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No book requests present in the db", HttpStatus.ACCEPTED);
         }
         List<BookRequestDTO> bookRequestDTOS = bookReqDTOConverter.listBookRequestToDTO(bookRequests);
         logger.info("findBookRequests: List of book requests sent as response");
@@ -61,7 +61,7 @@ public class BookRequestController {
         BookRequest bookRequest = bookRequestService.findBookRequestById(id);
         if (bookRequest == null) {
             logger.info("getBookRequest: No book request with id + " + id + " in the database");
-            return new ResponseEntity<>("No book request with this id found", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No book request with this id found", HttpStatus.ACCEPTED);
         }
         logger.info("getBookRequest: Book request with id " + id + " found and sent in response");
         return new ResponseEntity<>(bookReqDTOConverter.bookRequestToDTO(bookRequest), HttpStatus.OK);

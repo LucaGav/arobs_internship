@@ -60,7 +60,7 @@ public class EmployeeController {
         List<Employee> employees = employeeService.findEmployees();
         if (employees.isEmpty()) {
             logger.info("findEmployees: No employees in the database");
-            return new ResponseEntity<>("No employees present in the db", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No employees present in the db", HttpStatus.ACCEPTED);
         }
         List<EmployeeDTO> employeeDTOS = employeeDTOConverter.listEmployeeToDTO(employees);
         logger.info("findEmployees: List of employees sent as response");
@@ -72,7 +72,7 @@ public class EmployeeController {
         Employee employee = employeeService.findEmployeeById(id);
         if (employee == null) {
             logger.info("getEmployee: No employee with id " + id + " in the database");
-            return new ResponseEntity<>("No employee with this id found", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No employee with this id found", HttpStatus.ACCEPTED);
         }
         logger.info("getEmployee: Employee with id " + id + " found and sent in response");
         return new ResponseEntity<>(employeeDTOConverter.employeeToDTO(employee), HttpStatus.OK);

@@ -3,6 +3,7 @@ package com.arobs.internship.library.converters.impl.book;
 import com.arobs.internship.library.business.BookService;
 import com.arobs.internship.library.converters.CopyDTOConverter;
 import com.arobs.internship.library.dtos.book.CopyDTO;
+import com.arobs.internship.library.entities.book.Book;
 import com.arobs.internship.library.entities.book.Copy;
 import com.arobs.internship.library.util.status.CopyStatus;
 import com.arobs.internship.library.util.handler.ValidationException;
@@ -40,7 +41,11 @@ public class CopyDTOConverterImpl implements CopyDTOConverter {
         ModelMapper modelMapper = objectMapper.getMapper();
         Copy copy = modelMapper.map(copyDTO, Copy.class);
         copy.setStatus(CopyStatus.AVAILABLE.name());
-        copy.setBook(bookService.findBookById(copyDTO.getBookID()));
+        Book book = bookService.findBookById(copyDTO.getBookID());
+        if(book == null) {
+            throw new ValidationException("No book with this id found");
+        }
+        copy.setBook(book);
         return copy;
     }
 

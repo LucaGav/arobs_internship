@@ -51,7 +51,7 @@ public class BookController {
         List<Book> books = bookService.findBooks();
         if (books.isEmpty()) {
             logger.info("findBooks: No books in the database");
-            return new ResponseEntity<>("No books present in the db", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No books present in the db", HttpStatus.ACCEPTED);
         }
         List<BookDTO> bookDTOS = bookDTOConverter.listBookToDTO(books);
         logger.info("findBooks: List of books sent as response");
@@ -63,7 +63,7 @@ public class BookController {
         Book book = bookService.findBookById(id);
         if (book == null) {
             logger.info("getBook: No book with id " + id + " in the database");
-            return new ResponseEntity<>("No book with this id found", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No book with this id found", HttpStatus.ACCEPTED);
         }
         logger.info("getBook: Book with id " + id + " found and sent in response");
         return new ResponseEntity<>(bookDTOConverter.bookToDTO(book), HttpStatus.OK);

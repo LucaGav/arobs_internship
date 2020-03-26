@@ -31,15 +31,14 @@ public class BookControllerTest {
     private Book book;
 
     @BeforeEach
-    public void setUp(){
-       book = new Book(10,"Pratatata","String","Priasac", new Date());
+    public void setUp() {
+        book = new Book(10, "Pratatata", "String", "Priasac", new Date());
     }
 
     @Test
-    public void whenFindBook_givenBookID_returnResponseEntity(){
+    public void whenFindBook_givenBookID_returnResponseEntity() {
         when(bookService.findBookById(10)).thenReturn(book);
         ResponseEntity responseEntity = bookController.getBook(10);
-        System.out.println(responseEntity.getStatusCodeValue());
-        assertEquals(responseEntity.getStatusCodeValue(),200);
+        assertEquals(responseEntity.getStatusCodeValue(), 200);
     }
 }

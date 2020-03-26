@@ -33,7 +33,7 @@ public class TagServiceTest {
     private HibernateDaoFactory hibernateDaoFactory;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         when(daoFactory.getInstance()).thenReturn(hibernateDaoFactory);
         when(daoFactory.getInstance().getTagDao()).thenReturn(tagDao);
         this.tagService.init();
@@ -41,9 +41,9 @@ public class TagServiceTest {
 
     @Test
     void whenInsertTag_givenTag_returnTag() throws ValidationException {
-        Tag tagMock = new Tag(800,"Probom");
+        Tag tagMock = new Tag(800, "Probom");
         when(tagDao.insert(any(Tag.class))).thenReturn(tagMock);
-        Tag tag = tagService.insertTag(new Tag(800,"Probom"));
-        assertEquals(tag,tagMock);
+        Tag tag = tagService.insertTag(new Tag(800, "Probom"));
+        assertEquals(tag, tagMock);
     }
 }
