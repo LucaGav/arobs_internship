@@ -70,7 +70,7 @@ public class CopyServiceImpl implements CopyService {
         RentRequest rentRequest = rentRequestService.findWaitingForCopyRentRequest(book.getBookID());
         if (rentRequest != null) {
             copy.setStatus(CopyStatus.PENDING.name());
-            rentRequest.setStatus(RentRequestStatus.WAITINGCONFIRMATION.name());
+            rentRequest.setStatus(RentRequestStatus.WAITING_CONFIRMATION.name());
             PendingRequest pendingRequest = new PendingRequest(copy, rentRequest);
             pendingRequestService.insertPendingRequest(pendingRequest);
         }

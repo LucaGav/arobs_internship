@@ -3,7 +3,9 @@ package com.arobs.internship.library.business.impl.operations;
 import com.arobs.internship.library.business.BookRequestService;
 import com.arobs.internship.library.dao.BookRequestDao;
 import com.arobs.internship.library.dao.factory.DaoFactory;
+import com.arobs.internship.library.entities.employee.Employee;
 import com.arobs.internship.library.entities.operations.BookRequest;
+import com.arobs.internship.library.util.status.ActiveStatus;
 import com.arobs.internship.library.util.status.RequestStatus;
 import com.arobs.internship.library.util.handler.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,11 @@ public class BookRequestServiceImpl implements BookRequestService {
 
     @Override
     @Transactional
-    public BookRequest insertBookRequest(BookRequest bookRequest) {
+    public BookRequest insertBookRequest(BookRequest bookRequest) throws ValidationException {
+        Employee employee = bookRequest.getEmployee();
+        if (employee.getStatus().equals(ActiveStatus.INACTIVE.name())) {
+            throw new ValidationException("This employee is no longer active in the library");
+        }
         bookRequest.setStatus(RequestStatus.PENDING.name());
         return bookRequestDao.insert(bookRequest);
     }

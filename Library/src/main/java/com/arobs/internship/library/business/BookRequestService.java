@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BookRequestService {
 
-    BookRequest insertBookRequest(BookRequest bookRequest);
+    BookRequest insertBookRequest(BookRequest bookRequest) throws ValidationException;
 
     List<BookRequest> findBookRequests();
 

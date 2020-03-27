@@ -67,7 +67,7 @@ public class PendingRequestServiceImpl implements PendingRequestService {
                 pendingRequestDao.delete(pendingRequest.getPendingreqID());
 
             } else {
-                if (!rentRequest.getStatus().equals(RentRequestStatus.WAITINGCONFIRMATION.name())) {
+                if (!rentRequest.getStatus().equals(RentRequestStatus.WAITING_CONFIRMATION.name())) {
                     this.finalizePending(pendingRequest, rentRequest);
                 }
             }

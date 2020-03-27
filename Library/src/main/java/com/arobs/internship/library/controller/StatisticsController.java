@@ -72,14 +72,14 @@ public class StatisticsController {
         return new ResponseEntity<>(readingEmployees, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/getSuspendedEmployees")
-    public ResponseEntity<?> getSuspendedEmployees() {
-        List<SuspendedEmployee> suspendedEmployees = suspendedEmployeeService.findSuspendedEmployees();
-        if (suspendedEmployees.isEmpty()) {
-            logger.info("getSuspendedEmployees: No suspended employees in the database");
-            return new ResponseEntity<>("No suspended employees in the database", HttpStatus.ACCEPTED);
+    @GetMapping(path = "/getLateEmployees")
+    public ResponseEntity<?> getLateEmployees() {
+        List<SuspendedEmployee> lateEmployees = suspendedEmployeeService.findLateEmployees();
+        if (lateEmployees.isEmpty()) {
+            logger.info("getLateEmployees: No suspended employees in the database");
+            return new ResponseEntity<>("No late employees in the database", HttpStatus.ACCEPTED);
         }
-        logger.info("getSuspendedEmployees: Suspended employees list sent in response");
-        return new ResponseEntity<>(suspendedEmployeeDTOConverter.listSuspendedEmployeeToDTO(suspendedEmployees), HttpStatus.OK);
+        logger.info("getLateEmployees: Suspended employees list sent in response");
+        return new ResponseEntity<>(suspendedEmployeeDTOConverter.listSuspendedEmployeeToDTO(lateEmployees), HttpStatus.OK);
     }
 }

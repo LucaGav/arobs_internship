@@ -22,7 +22,7 @@ public class HibernateRentRequestDao implements RentRequestDao {
     @Override
     public RentRequest insert(RentRequest rentRequest) {
         Session session = this.sessionFactory.getCurrentSession();
-        rentRequest.setStatus(RentRequestStatus.WAITINGAVAILABLECOPY.name());
+        rentRequest.setStatus(RentRequestStatus.WAITING_AVAILABLE_COPY.name());
         rentRequest.setRequestDate(new Date());
         session.save(rentRequest);
         return rentRequest;
@@ -78,7 +78,7 @@ public class HibernateRentRequestDao implements RentRequestDao {
         Session session = this.sessionFactory.getCurrentSession();
         Query query = session.createQuery("from RentRequest WHERE bookID =: id AND status =: status").setMaxResults(1);
         query.setParameter("id", bookID);
-        query.setParameter("status", RentRequestStatus.WAITINGAVAILABLECOPY.name());
+        query.setParameter("status", RentRequestStatus.WAITING_AVAILABLE_COPY.name());
         return QueryUtil.safeGetUniqueResult(query.getResultList());
     }
 
@@ -88,7 +88,7 @@ public class HibernateRentRequestDao implements RentRequestDao {
         Session session = this.sessionFactory.getCurrentSession();
         Query query = session.createQuery("from RentRequest WHERE bookID =: id AND status =: status");
         query.setParameter("id", bookID);
-        query.setParameter("status", RentRequestStatus.WAITINGAVAILABLECOPY.name());
+        query.setParameter("status", RentRequestStatus.WAITING_AVAILABLE_COPY.name());
         rentRequests = query.getResultList();
         return rentRequests;
     }

@@ -42,7 +42,9 @@ public class BookRentController {
                 return new ResponseEntity<>("Rent request created, no available or rentable copies", HttpStatus.ACCEPTED);
             }
             logger.info("addBookRent: BookRent of book with id: " + bookRent.getBook().getBookID() + " inserted successfully");
-            return new ResponseEntity<>(bookRentDTOConverter.bookRentToDTO(bookRent), HttpStatus.OK);
+            return new ResponseEntity<>("Book rent of book with id: " + bookRent.getBook().getBookID() + " created for employee with id: " +
+                    bookRent.getEmployee().getEmployeeID(), HttpStatus.OK);
+            //return new ResponseEntity<>(bookRentDTOConverter.bookRentToDTO(bookRent), HttpStatus.OK);
         } catch (ValidationException ex) {
             logger.error("addBookRent: " + ex.getMessage());
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);

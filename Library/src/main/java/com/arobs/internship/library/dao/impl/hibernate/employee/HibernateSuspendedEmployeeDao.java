@@ -25,10 +25,19 @@ public class HibernateSuspendedEmployeeDao implements SuspendedEmployeeDao {
     }
 
     @Override
+    public List<SuspendedEmployee> findLateEmployees() {
+        List<SuspendedEmployee> suspendedEmployees;
+        Session session = this.sessionFactory.getCurrentSession();
+        Query query = session.createQuery("SELECT se From SuspendedEmployee se JOIN fetch se.employee WHERE se.suspendedUntilDate is NULL ");
+        suspendedEmployees = query.getResultList();
+        return suspendedEmployees;
+    }
+
+    @Override
     public List<SuspendedEmployee> findSuspendedEmployees() {
         List<SuspendedEmployee> suspendedEmployees;
         Session session = this.sessionFactory.getCurrentSession();
-        Query query = session.createQuery("From SuspendedEmployee");
+        Query query = session.createQuery("SELECT se From SuspendedEmployee se JOIN fetch se.employee WHERE se.suspendedUntilDate is not NULL ");
         suspendedEmployees = query.getResultList();
         return suspendedEmployees;
     }

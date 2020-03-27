@@ -2,8 +2,8 @@ package com.arobs.internship.library.util.status;
 
 public enum RentRequestStatus {
 
-    WAITINGAVAILABLECOPY("waiting_available_copy"),
-    WAITINGCONFIRMATION("waiting_confirmation"),
+    WAITING_AVAILABLE_COPY("waiting_available_copy"),
+    WAITING_CONFIRMATION("waiting_confirmation"),
     DECLINED("declined"),
     GRANTED("granted");
 

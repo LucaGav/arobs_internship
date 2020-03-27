@@ -40,6 +40,12 @@ public class SuspendedEmployeeServiceImpl implements SuspendedEmployeeService {
 
     @Override
     @Transactional
+    public List<SuspendedEmployee> findLateEmployees() {
+        return suspendedEmployeeDao.findLateEmployees();
+    }
+
+    @Override
+    @Transactional
     public List<SuspendedEmployee> findSuspendedEmployees() {
         return suspendedEmployeeDao.findSuspendedEmployees();
     }

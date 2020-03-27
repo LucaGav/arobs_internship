@@ -10,6 +10,8 @@ public interface SuspendedEmployeeService {
 
     SuspendedEmployee insertSuspendedEmployee(SuspendedEmployee suspendedEmployee);
 
+    List<SuspendedEmployee> findLateEmployees();
+
     List<SuspendedEmployee> findSuspendedEmployees();
 
     SuspendedEmployee findSuspendedEmployeeByEmployeeID(int employeeID);

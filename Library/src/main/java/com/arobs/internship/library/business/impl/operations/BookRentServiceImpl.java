@@ -52,11 +52,14 @@ public class BookRentServiceImpl implements BookRentService {
     @Transactional
     public BookRent insertBookRent(BookRent bookRent) throws ValidationException {
         Book book = bookRent.getBook();
-        if (book.getStatus().equals(ActiveStatus.INACTIVE.name())) {
-            throw new ValidationException("This book is no longer active in the library");
-        }
         Employee employee = bookRent.getEmployee();
-        validateEmployeeRent(employee, book);
+        if (employee == null) {
+            throw new ValidationException("No employee with this id found");
+        }
+        if (book == null) {
+            throw new ValidationException("No book with this id found");
+        }
+        validateRent(employee, book);
 
         if (bookRent.getCopy() != null) {
             return bookRentDao.insert(bookRent);
@@ -72,7 +75,13 @@ public class BookRentServiceImpl implements BookRentService {
         }
     }
 
-    private void validateEmployeeRent(Employee employee, Book book) throws ValidationException {
+    private void validateRent(Employee employee, Book book) throws ValidationException {
+        if (book.getStatus().equals(ActiveStatus.INACTIVE.name())) {
+            throw new ValidationException("This book is no longer active in the library");
+        }
+        if (employee.getStatus().equals(ActiveStatus.INACTIVE.name())) {
+            throw new ValidationException("This employee is no longer active in the library");
+        }
         SuspendedEmployee suspendedEmployee = suspendedEmployeeService.findSuspendedEmployeeByEmployeeID(employee.getEmployeeID());
         if (suspendedEmployee != null) {
             throw new ValidationException("This employee is suspended from renting books");

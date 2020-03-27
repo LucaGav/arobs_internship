@@ -1,604 +1,364 @@
-2020-03-26 11:12:11.928  INFO 10768 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 10768 (C:\Library\target\classes started by luca.gavril in C:\Library)
-2020-03-26 11:12:11.948  INFO 10768 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
-2020-03-26 11:12:17.470  INFO 10768 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-26 11:12:17.662  INFO 10768 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 165ms. Found 0 JPA repository interfaces.
-2020-03-26 11:12:18.844  INFO 10768 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-26 11:12:20.348  INFO 10768 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-03-26 11:12:20.378  INFO 10768 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-03-26 11:12:20.378  INFO 10768 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-26 11:12:20.814  INFO 10768 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
-2020-03-26 11:12:20.814  INFO 10768 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 8552 ms
-2020-03-26 11:12:21.470  INFO 10768 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-26 11:12:23.298  INFO 10768 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-26 11:12:24.914  INFO 10768 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-03-26 11:12:28.407  INFO 10768 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-26 11:12:30.791  INFO 10768 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-03-26 11:12:31.223  INFO 10768 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-26 11:12:31.609  INFO 10768 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-03-26 11:12:31.700  INFO 10768 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-03-26 11:12:31.751  INFO 10768 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-03-26 11:12:31.842  INFO 10768 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-03-26 11:12:33.468  INFO 10768 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
-2020-03-26 11:12:33.498  INFO 10768 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 23.309 seconds (JVM running for 25.522)
-2020-03-26 11:22:37.865  INFO 5824 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 5824 (C:\Library\target\classes started by luca.gavril in C:\Library)
-2020-03-26 11:22:37.916  INFO 5824 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
-2020-03-26 11:22:42.576  INFO 5824 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-26 11:22:42.737  INFO 5824 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 140ms. Found 0 JPA repository interfaces.
-2020-03-26 11:22:43.635  INFO 5824 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-26 11:22:44.761  INFO 5824 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-03-26 11:22:44.792  INFO 5824 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-03-26 11:22:44.792  INFO 5824 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-26 11:22:45.120  INFO 5824 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
-2020-03-26 11:22:45.120  INFO 5824 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 7023 ms
-2020-03-26 11:22:45.761  INFO 5824 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-26 11:22:46.167  INFO 5824 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-26 11:22:47.198  INFO 5824 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-03-26 11:22:49.979  INFO 5824 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-26 11:22:51.557  INFO 5824 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-03-26 11:22:51.838  INFO 5824 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-26 11:22:52.135  INFO 5824 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-03-26 11:22:52.213  INFO 5824 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-03-26 11:22:52.245  INFO 5824 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-03-26 11:22:52.432  INFO 5824 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-03-26 11:22:53.729  INFO 5824 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
-2020-03-26 11:22:53.745  INFO 5824 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 17.092 seconds (JVM running for 18.664)
-2020-03-26 11:23:08.037  INFO 5824 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-26 11:23:08.038  INFO 5824 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-03-26 11:23:08.057  INFO 5824 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 18 ms
-2020-03-26 11:24:02.754  INFO 5824 --- [http-nio-8080-exec-7] c.a.i.l.controller.EmployeeController    : addEmployee: Employee with email gavrilluca@gmail.com inserted successfully
-2020-03-26 11:24:30.448  INFO 5824 --- [http-nio-8080-exec-8] c.a.i.l.controller.EmployeeController    : addEmployee: Employee with email gavrillucaadmin@gmail.com inserted successfully
-2020-03-26 11:24:56.880  INFO 5824 --- [http-nio-8080-exec-9] c.a.i.l.controller.EmployeeController    : addEmployee: Employee with email corburelu@gmail.com inserted successfully
-2020-03-26 11:25:25.333  INFO 5824 --- [http-nio-8080-exec-10] c.a.i.l.controller.EmployeeController    : addEmployee: Employee with email mihaita@gmail.com inserted successfully
-2020-03-26 11:25:53.220  INFO 5824 --- [http-nio-8080-exec-1] c.a.i.l.controller.EmployeeController    : addEmployee: Employee with email bilel@gmail.com inserted successfully
-2020-03-26 11:27:02.609 ERROR 5824 --- [http-nio-8080-exec-3] c.a.i.l.c.ExceptionHandlerController     : Server has an internal error: org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Illegal unquoted character ((CTRL-CHAR, code 10)): has to be escaped using backslash to be included in name; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Illegal unquoted character ((CTRL-CHAR, code 10)): has to be escaped using backslash to be included in name
- at [Source: (PushbackInputStream); line: 8, column: 5] (through reference chain: com.arobs.internship.library.dtos.book.BookDTO["tags"]->java.util.HashSet[1])
-2020-03-26 11:27:30.741 ERROR 5824 --- [http-nio-8080-exec-4] c.a.i.l.c.ExceptionHandlerController     : Server has an internal error: org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Illegal unquoted character ((CTRL-CHAR, code 10)): has to be escaped using backslash to be included in name; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Illegal unquoted character ((CTRL-CHAR, code 10)): has to be escaped using backslash to be included in name
- at [Source: (PushbackInputStream); line: 8, column: 5] (through reference chain: com.arobs.internship.library.dtos.book.BookDTO["tags"]->java.util.HashSet[1])
-2020-03-26 11:27:55.538 ERROR 5824 --- [http-nio-8080-exec-5] c.a.i.l.c.ExceptionHandlerController     : Server has an internal error: org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('C' (code 67)): was expecting a colon to separate field name and value; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Unexpected character ('C' (code 67)): was expecting a colon to separate field name and value
- at [Source: (PushbackInputStream); line: 9, column: 7] (through reference chain: com.arobs.internship.library.dtos.book.BookDTO["tags"]->java.util.HashSet[1])
-2020-03-26 11:27:58.508 ERROR 5824 --- [http-nio-8080-exec-6] c.a.i.l.c.ExceptionHandlerController     : Server has an internal error: org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('C' (code 67)): was expecting a colon to separate field name and value; nested exception is com.fasterxml.jackson.databind.JsonMappingException: Unexpected character ('C' (code 67)): was expecting a colon to separate field name and value
- at [Source: (PushbackInputStream); line: 9, column: 7] (through reference chain: com.arobs.internship.library.dtos.book.BookDTO["tags"]->java.util.HashSet[1])
-2020-03-26 11:28:16.688  INFO 5824 --- [http-nio-8080-exec-7] c.a.i.library.controller.BookController  : addBook: Book Paul's Titleof author Paul K.K. inserted successfully
-2020-03-26 11:28:48.877  INFO 5824 --- [http-nio-8080-exec-8] c.a.i.library.controller.BookController  : addBook: Book Paul's Second Titleof author Paul K.K. inserted successfully
-2020-03-26 11:29:33.895 ERROR 5824 --- [http-nio-8080-exec-9] c.a.i.library.controller.BookController  : addBook: Book having the same title and author already exists
-2020-03-26 11:29:48.302 ERROR 5824 --- [http-nio-8080-exec-10] c.a.i.library.controller.BookController  : addBook: Book having the same title and author already exists
-2020-03-26 11:30:29.728  INFO 5824 --- [http-nio-8080-exec-1] c.a.i.library.controller.BookController  : addBook: Book Paul's Third Titleof author Paul K.K. inserted successfully
-2020-03-26 11:30:45.574  INFO 5824 --- [http-nio-8080-exec-2] c.a.i.library.controller.BookController  : addBook: Book Paul's Fourth Titleof author Paul K.K. inserted successfully
-2020-03-26 11:31:57.469  INFO 5824 --- [http-nio-8080-exec-4] c.a.i.library.controller.BookController  : addBook: Book Paul's Fifth Titleof author Paul K.K. inserted successfully
-2020-03-26 11:32:53.703  INFO 5824 --- [http-nio-8080-exec-5] c.a.i.library.controller.BookController  : addBook: Book Paul's Sixth Titleof author Paul K.K. inserted successfully
-2020-03-26 11:33:44.586  INFO 5824 --- [http-nio-8080-exec-6] c.a.i.library.controller.BookController  : addBook: Book Paul's Seventh Titleof author Paul K.K. inserted successfully
-2020-03-26 11:36:57.896  INFO 5824 --- [http-nio-8080-exec-8] c.a.i.l.c.BookRequestController          : addBookRequest: BookRequest with id 9 inserted successfully
-2020-03-26 11:37:09.778  INFO 5824 --- [http-nio-8080-exec-9] c.a.i.library.controller.BookController  : findBooks: List of books sent as response
-2020-03-26 11:37:39.113  INFO 5824 --- [http-nio-8080-exec-10] c.a.i.l.c.BookRequestController          : addBookRequest: BookRequest with id 10 inserted successfully
-2020-03-26 11:38:00.236  INFO 5824 --- [http-nio-8080-exec-1] c.a.i.l.c.BookRequestController          : updateBookRequest: Book request with id: 10 updated successfully
-2020-03-26 11:38:24.460  INFO 5824 --- [http-nio-8080-exec-2] c.a.i.l.controller.EmployeeController    : getEmployee: Employee with id 48 found and sent in response
-2020-03-26 11:38:52.888  WARN 5824 --- [http-nio-8080-exec-3] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 11:38:52.924  INFO 5824 --- [http-nio-8080-exec-3] c.a.i.library.controller.CopyController  : addCopy: Copy with id 57 inserted successfully
-2020-03-26 11:38:58.707  WARN 5824 --- [http-nio-8080-exec-4] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 11:38:58.737  INFO 5824 --- [http-nio-8080-exec-4] c.a.i.library.controller.CopyController  : addCopy: Copy with id 58 inserted successfully
-2020-03-26 11:39:03.503  WARN 5824 --- [http-nio-8080-exec-5] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 11:39:03.528  INFO 5824 --- [http-nio-8080-exec-5] c.a.i.library.controller.CopyController  : addCopy: Copy with id 59 inserted successfully
-2020-03-26 11:39:09.515  WARN 5824 --- [http-nio-8080-exec-6] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 11:39:09.547  INFO 5824 --- [http-nio-8080-exec-6] c.a.i.library.controller.CopyController  : addCopy: Copy with id 60 inserted successfully
-2020-03-26 11:39:14.664  WARN 5824 --- [http-nio-8080-exec-7] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 11:39:14.697  INFO 5824 --- [http-nio-8080-exec-7] c.a.i.library.controller.CopyController  : addCopy: Copy with id 61 inserted successfully
-2020-03-26 11:39:19.123  WARN 5824 --- [http-nio-8080-exec-8] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 11:39:19.161  INFO 5824 --- [http-nio-8080-exec-8] c.a.i.library.controller.CopyController  : addCopy: Copy with id 62 inserted successfully
-2020-03-26 11:39:24.738  WARN 5824 --- [http-nio-8080-exec-9] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 11:39:24.766  INFO 5824 --- [http-nio-8080-exec-9] c.a.i.library.controller.CopyController  : addCopy: Copy with id 63 inserted successfully
-2020-03-26 11:39:28.988  WARN 5824 --- [http-nio-8080-exec-10] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 11:39:29.022  WARN 5824 --- [http-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1048, SQLState: 23000
-2020-03-26 11:39:29.023 ERROR 5824 --- [http-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : Column 'bookID' cannot be null
-2020-03-26 11:39:29.031 ERROR 5824 --- [http-nio-8080-exec-10] c.a.i.l.c.ExceptionHandlerController     : Server has an internal error: org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [null]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
-2020-03-26 11:43:38.256  INFO 5644 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 5644 (C:\Library\target\classes started by luca.gavril in C:\Library)
-2020-03-26 11:43:38.272  INFO 5644 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
-2020-03-26 11:43:42.287  INFO 5644 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-26 11:43:42.537  INFO 5644 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 229ms. Found 0 JPA repository interfaces.
-2020-03-26 11:43:43.647  INFO 5644 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-26 11:43:44.740  INFO 5644 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-03-26 11:43:44.756  INFO 5644 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-03-26 11:43:44.803  INFO 5644 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-26 11:43:45.162  INFO 5644 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
-2020-03-26 11:43:45.162  INFO 5644 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6749 ms
-2020-03-26 11:43:45.740  INFO 5644 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-26 11:43:46.209  INFO 5644 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-26 11:43:47.350  INFO 5644 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-03-26 11:43:50.115  INFO 5644 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-26 11:43:51.615  INFO 5644 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-03-26 11:43:51.896  INFO 5644 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-26 11:43:52.193  INFO 5644 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-03-26 11:43:52.255  INFO 5644 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-03-26 11:43:52.287  INFO 5644 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-03-26 11:43:52.380  INFO 5644 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-03-26 11:43:53.443  INFO 5644 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
-2020-03-26 11:43:53.443  INFO 5644 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 16.668 seconds (JVM running for 18.519)
-2020-03-26 11:43:59.260  INFO 5644 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-26 11:43:59.262  INFO 5644 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-03-26 11:43:59.288  INFO 5644 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 22 ms
-2020-03-26 11:44:00.723  WARN 5644 --- [http-nio-8080-exec-1] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 11:44:00.763 ERROR 5644 --- [http-nio-8080-exec-1] c.a.i.library.controller.CopyController  : addCopy: No book with this id found
-2020-03-26 11:44:19.715  WARN 5644 --- [http-nio-8080-exec-2] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 11:44:19.809  WARN 5644 --- [http-nio-8080-exec-2] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 11:44:20.009  INFO 5644 --- [http-nio-8080-exec-2] c.a.i.library.controller.CopyController  : addCopy: Copy with id 64 inserted successfully
-2020-03-26 11:44:26.277  WARN 5644 --- [http-nio-8080-exec-3] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 11:44:26.312  WARN 5644 --- [http-nio-8080-exec-3] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 11:44:26.360  INFO 5644 --- [http-nio-8080-exec-3] c.a.i.library.controller.CopyController  : addCopy: Copy with id 65 inserted successfully
-2020-03-26 11:46:52.020  WARN 5644 --- [http-nio-8080-exec-5] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 11:46:52.121  INFO 5644 --- [http-nio-8080-exec-5] c.a.i.l.controller.BookRentController    : addBookRent: Rent request created, no available or rentable copies
-2020-03-26 11:49:18.820  INFO 12756 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 12756 (C:\Library\target\classes started by luca.gavril in C:\Library)
-2020-03-26 11:49:18.841  INFO 12756 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
-2020-03-26 11:49:24.071  INFO 12756 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-26 11:49:24.212  INFO 12756 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 117ms. Found 0 JPA repository interfaces.
-2020-03-26 11:49:25.330  INFO 12756 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-26 11:49:26.963  INFO 12756 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-03-26 11:49:27.052  INFO 12756 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-03-26 11:49:27.052  INFO 12756 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-26 11:49:27.720  INFO 12756 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
-2020-03-26 11:49:27.720  INFO 12756 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 8728 ms
-2020-03-26 11:49:29.938  INFO 12756 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-26 11:49:30.958  INFO 12756 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-26 11:49:32.359  INFO 12756 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-03-26 11:49:36.535  INFO 12756 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-26 11:49:40.631  INFO 12756 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-03-26 11:49:41.066  INFO 12756 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-26 11:49:41.479  INFO 12756 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-03-26 11:49:41.580  INFO 12756 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-03-26 11:49:41.671  INFO 12756 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-03-26 11:49:41.883  INFO 12756 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-03-26 11:49:43.559  INFO 12756 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
-2020-03-26 11:49:43.579  INFO 12756 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 26.355 seconds (JVM running for 27.973)
-2020-03-26 11:49:58.371  INFO 12756 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-26 11:49:58.373  INFO 12756 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-03-26 11:49:58.385  INFO 12756 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
-2020-03-26 11:49:59.080  WARN 12756 --- [http-nio-8080-exec-1] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 11:49:59.330  INFO 12756 --- [http-nio-8080-exec-1] c.a.i.library.controller.CopyController  : addCopy: Copy with id 66 inserted successfully
-2020-03-26 11:51:26.064  INFO 14480 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 14480 (C:\Library\target\classes started by luca.gavril in C:\Library)
-2020-03-26 11:51:26.064  INFO 14480 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
-2020-03-26 11:51:29.923  INFO 14480 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-26 11:51:30.063  INFO 14480 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 122ms. Found 0 JPA repository interfaces.
-2020-03-26 11:51:30.907  INFO 14480 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-26 11:51:32.032  INFO 14480 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-03-26 11:51:32.063  INFO 14480 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-03-26 11:51:32.063  INFO 14480 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-26 11:51:32.360  INFO 14480 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
-2020-03-26 11:51:32.360  INFO 14480 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6015 ms
-2020-03-26 11:51:32.891  INFO 14480 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-26 11:51:33.391  INFO 14480 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-26 11:51:34.610  INFO 14480 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-03-26 11:51:37.344  INFO 14480 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-26 11:51:39.016  INFO 14480 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-03-26 11:51:39.281  INFO 14480 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-26 11:51:39.547  INFO 14480 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-03-26 11:51:39.610  INFO 14480 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-03-26 11:51:39.656  INFO 14480 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-03-26 11:51:39.735  INFO 14480 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-03-26 11:51:40.860  INFO 14480 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
-2020-03-26 11:51:40.875  INFO 14480 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 16.069 seconds (JVM running for 17.534)
-2020-03-26 11:57:21.232  INFO 10900 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 10900 (C:\Library\target\classes started by luca.gavril in C:\Library)
-2020-03-26 11:57:21.234  INFO 10900 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
-2020-03-26 11:57:26.065  INFO 10900 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-26 11:57:26.214  INFO 10900 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 125ms. Found 0 JPA repository interfaces.
-2020-03-26 11:57:27.397  INFO 10900 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-26 11:57:28.757  INFO 10900 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-03-26 11:57:28.779  INFO 10900 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-03-26 11:57:28.779  INFO 10900 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-26 11:57:29.435  INFO 10900 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
-2020-03-26 11:57:29.435  INFO 10900 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 7929 ms
-2020-03-26 11:57:30.908  INFO 10900 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-26 11:57:31.430  INFO 10900 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-26 11:57:32.653  INFO 10900 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-03-26 11:57:35.156  INFO 10900 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-26 11:57:36.846  INFO 10900 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-03-26 11:57:37.209  INFO 10900 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-26 11:57:37.583  INFO 10900 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-03-26 11:57:37.734  INFO 10900 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-03-26 11:57:37.825  INFO 10900 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-03-26 11:57:37.956  INFO 10900 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-03-26 11:57:38.914  INFO 10900 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
-2020-03-26 11:57:38.922  INFO 10900 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 21.584 seconds (JVM running for 23.581)
-2020-03-26 11:58:00.516  INFO 10900 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-26 11:58:00.518  INFO 10900 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-03-26 11:58:00.523  INFO 10900 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
-2020-03-26 11:58:01.259  WARN 10900 --- [http-nio-8080-exec-1] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 11:58:01.529  INFO 10900 --- [http-nio-8080-exec-1] c.a.i.library.controller.CopyController  : addCopy: Copy with status ACTIVE inserted successfully
-2020-03-26 11:59:13.273  INFO 16480 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 16480 (C:\Library\target\classes started by luca.gavril in C:\Library)
-2020-03-26 11:59:13.293  INFO 16480 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
-2020-03-26 11:59:18.268  INFO 16480 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-26 11:59:18.429  INFO 16480 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 138ms. Found 0 JPA repository interfaces.
-2020-03-26 11:59:20.265  INFO 16480 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-26 11:59:22.331  INFO 16480 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-03-26 11:59:22.410  INFO 16480 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-03-26 11:59:22.410  INFO 16480 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-26 11:59:22.966  INFO 16480 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
-2020-03-26 11:59:22.966  INFO 16480 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 9451 ms
-2020-03-26 11:59:23.854  INFO 16480 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-26 11:59:24.459  INFO 16480 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-26 11:59:25.952  INFO 16480 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-03-26 11:59:29.320  INFO 16480 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-26 11:59:32.547  INFO 16480 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-03-26 11:59:32.971  INFO 16480 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-26 11:59:33.345  INFO 16480 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-03-26 11:59:33.476  INFO 16480 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-03-26 11:59:33.545  INFO 16480 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-03-26 11:59:33.668  INFO 16480 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-03-26 11:59:35.161  INFO 16480 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
-2020-03-26 11:59:35.181  INFO 16480 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 23.769 seconds (JVM running for 25.939)
-2020-03-26 11:59:51.909  INFO 16480 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-26 11:59:51.911  INFO 16480 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-03-26 11:59:51.931  INFO 16480 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 20 ms
-2020-03-26 11:59:52.651  WARN 16480 --- [http-nio-8080-exec-1] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 11:59:52.945  INFO 16480 --- [http-nio-8080-exec-1] c.a.i.library.controller.CopyController  : addCopy: Copy with status ACTIVE inserted successfully
-2020-03-26 12:01:16.182  INFO 10696 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 10696 (C:\Library\target\classes started by luca.gavril in C:\Library)
-2020-03-26 12:01:16.197  INFO 10696 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
-2020-03-26 12:01:20.197  INFO 10696 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-26 12:01:20.353  INFO 10696 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 142ms. Found 0 JPA repository interfaces.
-2020-03-26 12:01:21.275  INFO 10696 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-26 12:01:22.697  INFO 10696 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-03-26 12:01:22.728  INFO 10696 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-03-26 12:01:22.728  INFO 10696 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-26 12:01:23.088  INFO 10696 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
-2020-03-26 12:01:23.088  INFO 10696 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6625 ms
-2020-03-26 12:01:23.587  INFO 10696 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-26 12:01:23.962  INFO 10696 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-26 12:01:25.165  INFO 10696 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-03-26 12:01:27.493  INFO 10696 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-26 12:01:29.462  INFO 10696 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-03-26 12:01:29.728  INFO 10696 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-26 12:01:30.040  INFO 10696 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-03-26 12:01:30.118  INFO 10696 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-03-26 12:01:30.165  INFO 10696 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-03-26 12:01:30.275  INFO 10696 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-03-26 12:01:31.149  INFO 10696 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
-2020-03-26 12:01:31.149  INFO 10696 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 16.513 seconds (JVM running for 17.903)
-2020-03-26 12:02:19.980  INFO 10696 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-26 12:02:19.982  INFO 10696 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-03-26 12:02:19.999  INFO 10696 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 16 ms
-2020-03-26 12:02:20.719  WARN 10696 --- [http-nio-8080-exec-1] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:02:21.001  INFO 10696 --- [http-nio-8080-exec-1] c.a.i.library.controller.CopyController  : addCopy: Copy with status 69 inserted successfully
-2020-03-26 12:02:27.206  WARN 10696 --- [http-nio-8080-exec-2] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:02:27.283  INFO 10696 --- [http-nio-8080-exec-2] c.a.i.library.controller.CopyController  : addCopy: Copy with status 70 inserted successfully
-2020-03-26 12:02:42.102  WARN 10696 --- [http-nio-8080-exec-3] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:02:42.144  INFO 10696 --- [http-nio-8080-exec-3] c.a.i.library.controller.CopyController  : addCopy: Copy with status 71 inserted successfully
-2020-03-26 12:02:52.774  WARN 10696 --- [http-nio-8080-exec-4] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:02:52.812  INFO 10696 --- [http-nio-8080-exec-4] c.a.i.library.controller.CopyController  : addCopy: Copy with status 72 inserted successfully
-2020-03-26 12:02:59.301  WARN 10696 --- [http-nio-8080-exec-5] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:02:59.341  INFO 10696 --- [http-nio-8080-exec-5] c.a.i.library.controller.CopyController  : addCopy: Copy with status 73 inserted successfully
-2020-03-26 12:03:09.634  WARN 10696 --- [http-nio-8080-exec-6] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:03:09.676  INFO 10696 --- [http-nio-8080-exec-6] c.a.i.library.controller.CopyController  : addCopy: Copy with status 74 inserted successfully
-2020-03-26 12:03:12.497  WARN 10696 --- [http-nio-8080-exec-7] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:03:12.541  INFO 10696 --- [http-nio-8080-exec-7] c.a.i.library.controller.CopyController  : addCopy: Copy with status 75 inserted successfully
-2020-03-26 12:03:18.203  WARN 10696 --- [http-nio-8080-exec-8] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:03:18.244  INFO 10696 --- [http-nio-8080-exec-8] c.a.i.library.controller.CopyController  : addCopy: Copy with status 76 inserted successfully
-2020-03-26 12:03:21.941  WARN 10696 --- [http-nio-8080-exec-9] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:03:21.976  INFO 10696 --- [http-nio-8080-exec-9] c.a.i.library.controller.CopyController  : addCopy: Copy with status 77 inserted successfully
-2020-03-26 12:03:29.655  WARN 10696 --- [http-nio-8080-exec-10] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:03:29.688  INFO 10696 --- [http-nio-8080-exec-10] c.a.i.library.controller.CopyController  : addCopy: Copy with status 78 inserted successfully
-2020-03-26 12:03:33.989  WARN 10696 --- [http-nio-8080-exec-1] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:03:34.026  INFO 10696 --- [http-nio-8080-exec-1] c.a.i.library.controller.CopyController  : addCopy: Copy with status 79 inserted successfully
-2020-03-26 12:03:39.648  WARN 10696 --- [http-nio-8080-exec-2] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:03:39.681  INFO 10696 --- [http-nio-8080-exec-2] c.a.i.library.controller.CopyController  : addCopy: Copy with status 80 inserted successfully
-2020-03-26 12:03:40.729  WARN 10696 --- [http-nio-8080-exec-3] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:03:40.775  INFO 10696 --- [http-nio-8080-exec-3] c.a.i.library.controller.CopyController  : addCopy: Copy with status 81 inserted successfully
-2020-03-26 12:03:44.712  WARN 10696 --- [http-nio-8080-exec-4] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:03:44.760  INFO 10696 --- [http-nio-8080-exec-4] c.a.i.library.controller.CopyController  : addCopy: Copy with status 82 inserted successfully
-2020-03-26 12:03:46.100  WARN 10696 --- [http-nio-8080-exec-5] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:03:46.135  INFO 10696 --- [http-nio-8080-exec-5] c.a.i.library.controller.CopyController  : addCopy: Copy with status 83 inserted successfully
-2020-03-26 12:11:52.250  WARN 10696 --- [http-nio-8080-exec-7] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:11:52.371  INFO 10696 --- [http-nio-8080-exec-7] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 57 inserted successfully
-2020-03-26 12:11:55.804  WARN 10696 --- [http-nio-8080-exec-8] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:11:55.839 ERROR 10696 --- [http-nio-8080-exec-8] c.a.i.l.controller.BookRentController    : addBookRent: This employee has already rented this book
-2020-03-26 12:12:03.962  WARN 10696 --- [http-nio-8080-exec-9] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:12:04.016  INFO 10696 --- [http-nio-8080-exec-9] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 57 inserted successfully
-2020-03-26 12:12:09.014  WARN 10696 --- [http-nio-8080-exec-10] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:12:09.053  INFO 10696 --- [http-nio-8080-exec-10] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 57 inserted successfully
-2020-03-26 12:12:15.150  WARN 10696 --- [http-nio-8080-exec-1] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:12:15.186  INFO 10696 --- [http-nio-8080-exec-1] c.a.i.l.controller.BookRentController    : addBookRent: Rent request created, no available or rentable copies
-2020-03-26 12:12:28.436  WARN 10696 --- [http-nio-8080-exec-2] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:12:28.460  INFO 10696 --- [http-nio-8080-exec-2] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 58 inserted successfully
-2020-03-26 12:12:42.076  WARN 10696 --- [http-nio-8080-exec-3] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:12:42.119  INFO 10696 --- [http-nio-8080-exec-3] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 59 inserted successfully
-2020-03-26 12:12:46.498  WARN 10696 --- [http-nio-8080-exec-4] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:12:46.533 ERROR 10696 --- [http-nio-8080-exec-4] c.a.i.l.controller.BookRentController    : addBookRent: This employee has already rented this book
-2020-03-26 12:13:00.669  WARN 10696 --- [http-nio-8080-exec-5] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:13:00.703  INFO 10696 --- [http-nio-8080-exec-5] c.a.i.l.controller.BookRentController    : addBookRent: Rent request created, no available or rentable copies
-2020-03-26 12:13:07.547  WARN 10696 --- [http-nio-8080-exec-6] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:13:07.583  INFO 10696 --- [http-nio-8080-exec-6] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 58 inserted successfully
-2020-03-26 12:13:23.966  WARN 10696 --- [http-nio-8080-exec-7] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:13:24.009  INFO 10696 --- [http-nio-8080-exec-7] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 58 inserted successfully
-2020-03-26 12:14:30.553  WARN 10696 --- [http-nio-8080-exec-9] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:14:30.592  INFO 10696 --- [http-nio-8080-exec-9] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 61 inserted successfully
-2020-03-26 12:14:38.987  WARN 10696 --- [http-nio-8080-exec-10] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:14:39.036  INFO 10696 --- [http-nio-8080-exec-10] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 62 inserted successfully
-2020-03-26 12:14:49.777  WARN 10696 --- [http-nio-8080-exec-1] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:14:49.817  INFO 10696 --- [http-nio-8080-exec-1] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 62 inserted successfully
-2020-03-26 12:18:25.463  WARN 10696 --- [http-nio-8080-exec-3] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:18:25.507  INFO 10696 --- [http-nio-8080-exec-3] c.a.i.library.controller.CopyController  : addCopy: Copy with status 84 inserted successfully
-2020-03-26 12:18:50.288  INFO 10696 --- [http-nio-8080-exec-4] c.a.i.l.c.RentRequestController          : updateRequestFinalStatus: Rent request with id: 50 updated successfully
-2020-03-26 12:22:16.701  INFO 4336 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 4336 (C:\Library\target\classes started by luca.gavril in C:\Library)
-2020-03-26 12:22:16.711  INFO 4336 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
-2020-03-26 12:22:21.048  INFO 4336 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-26 12:22:21.322  INFO 4336 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 223ms. Found 0 JPA repository interfaces.
-2020-03-26 12:22:22.987  INFO 4336 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-26 12:22:24.117  INFO 4336 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-03-26 12:22:24.147  INFO 4336 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-03-26 12:22:24.155  INFO 4336 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-26 12:22:24.561  INFO 4336 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
-2020-03-26 12:22:24.561  INFO 4336 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 7577 ms
-2020-03-26 12:22:25.146  INFO 4336 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-26 12:22:25.528  INFO 4336 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-26 12:22:26.634  INFO 4336 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-03-26 12:22:29.587  INFO 4336 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-26 12:22:31.227  INFO 4336 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-03-26 12:22:31.461  INFO 4336 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-26 12:22:31.711  INFO 4336 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-03-26 12:22:31.805  INFO 4336 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-03-26 12:22:31.852  INFO 4336 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-03-26 12:22:31.930  INFO 4336 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-03-26 12:22:32.915  INFO 4336 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
-2020-03-26 12:22:32.930  INFO 4336 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 17.59 seconds (JVM running for 19.127)
-2020-03-26 12:24:41.376  INFO 4336 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-26 12:24:41.377  INFO 4336 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-03-26 12:24:41.396  INFO 4336 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 19 ms
-2020-03-26 12:24:41.780  INFO 4336 --- [http-nio-8080-exec-1] c.a.i.l.controller.BookRentController    : updateBookRentReturn: Book with id: 57 returned successfully
-2020-03-26 12:25:20.578  WARN 4336 --- [http-nio-8080-exec-2] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 12:25:20.637 ERROR 4336 --- [http-nio-8080-exec-2] c.a.i.l.controller.BookRentController    : addBookRent: This employee is suspended from renting books
-2020-03-26 12:29:28.378  INFO 4336 --- [http-nio-8080-exec-3] c.a.i.l.controller.BookRentController    : updateBookRentReturn: Book with id: 58 extended successfully
-2020-03-26 12:29:34.767  INFO 4336 --- [http-nio-8080-exec-4] c.a.i.l.controller.BookRentController    : updateBookRentReturn: Book with id: 58 extended successfully
-2020-03-26 12:32:52.507  INFO 13828 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 13828 (C:\Library\target\classes started by luca.gavril in C:\Library)
-2020-03-26 12:32:52.507  INFO 13828 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
-2020-03-26 12:32:56.694  INFO 13828 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-26 12:32:56.850  INFO 13828 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 132ms. Found 0 JPA repository interfaces.
-2020-03-26 12:32:57.725  INFO 13828 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-26 12:32:59.006  INFO 13828 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-03-26 12:32:59.037  INFO 13828 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-03-26 12:32:59.037  INFO 13828 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-26 12:32:59.397  INFO 13828 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
-2020-03-26 12:32:59.397  INFO 13828 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6718 ms
-2020-03-26 12:33:00.350  INFO 13828 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-26 12:33:00.803  INFO 13828 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-26 12:33:01.975  INFO 13828 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-03-26 12:33:04.896  INFO 13828 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-26 12:33:06.615  INFO 13828 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-03-26 12:33:06.881  INFO 13828 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-26 12:33:07.178  INFO 13828 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-03-26 12:33:07.240  INFO 13828 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-03-26 12:33:07.287  INFO 13828 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-03-26 12:33:07.365  INFO 13828 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-03-26 12:33:09.006  INFO 13828 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
-2020-03-26 12:33:09.006  INFO 13828 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 17.635 seconds (JVM running for 19.08)
-2020-03-26 12:33:23.005  INFO 13828 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-26 12:33:23.006  INFO 13828 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-03-26 12:33:23.024  INFO 13828 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 18 ms
-2020-03-26 12:33:23.596  INFO 13828 --- [http-nio-8080-exec-1] c.a.i.l.controller.BookRentController    : updateBookRentReturn: Book with id: 58 extended successfully
-2020-03-26 12:34:52.874  INFO 11984 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 11984 (C:\Library\target\classes started by luca.gavril in C:\Library)
-2020-03-26 12:34:52.890  INFO 11984 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
-2020-03-26 12:34:57.405  INFO 11984 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-26 12:34:57.577  INFO 11984 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 138ms. Found 0 JPA repository interfaces.
-2020-03-26 12:34:58.530  INFO 11984 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-26 12:34:59.499  INFO 11984 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-03-26 12:34:59.530  INFO 11984 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-03-26 12:34:59.530  INFO 11984 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-26 12:34:59.827  INFO 11984 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
-2020-03-26 12:34:59.827  INFO 11984 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6765 ms
-2020-03-26 12:35:00.499  INFO 11984 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-26 12:35:00.905  INFO 11984 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-26 12:35:02.014  INFO 11984 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-03-26 12:35:04.811  INFO 11984 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-26 12:35:06.389  INFO 11984 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-03-26 12:35:06.623  INFO 11984 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-26 12:35:06.904  INFO 11984 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-03-26 12:35:06.982  INFO 11984 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-03-26 12:35:07.029  INFO 11984 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-03-26 12:35:07.186  INFO 11984 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-03-26 12:35:08.264  INFO 11984 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
-2020-03-26 12:35:08.279  INFO 11984 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 16.61 seconds (JVM running for 18.653)
-2020-03-26 12:35:20.302  INFO 11984 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-26 12:35:20.303  INFO 11984 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-03-26 12:35:20.317  INFO 11984 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 13 ms
-2020-03-26 12:35:20.791  INFO 11984 --- [http-nio-8080-exec-1] c.a.i.l.controller.BookRentController    : updateBookRentReturn: Book with id: 58 extended successfully
-2020-03-26 12:35:57.656  INFO 11176 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 11176 (C:\Library\target\classes started by luca.gavril in C:\Library)
-2020-03-26 12:35:57.666  INFO 11176 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
-2020-03-26 12:36:02.710  INFO 11176 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-26 12:36:02.872  INFO 11176 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 133ms. Found 0 JPA repository interfaces.
-2020-03-26 12:36:03.891  INFO 11176 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-26 12:36:05.020  INFO 11176 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-03-26 12:36:05.048  INFO 11176 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-03-26 12:36:05.050  INFO 11176 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-26 12:36:05.443  INFO 11176 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
-2020-03-26 12:36:05.443  INFO 11176 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 7504 ms
-2020-03-26 12:36:06.189  INFO 11176 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-26 12:36:07.659  INFO 11176 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-26 12:36:09.158  INFO 11176 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-03-26 12:36:14.907  INFO 11176 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-26 12:36:17.688  INFO 11176 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-03-26 12:36:18.110  INFO 11176 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-26 12:36:18.516  INFO 11176 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-03-26 12:36:18.594  INFO 11176 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-03-26 12:36:18.641  INFO 11176 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-03-26 12:36:18.782  INFO 11176 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-03-26 12:36:20.360  INFO 11176 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
-2020-03-26 12:36:20.391  INFO 11176 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 24.098 seconds (JVM running for 26.15)
-2020-03-26 12:36:26.374  INFO 11176 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-26 12:36:26.375  INFO 11176 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-03-26 12:36:26.398  INFO 11176 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 20 ms
-2020-03-26 12:36:27.127  INFO 11176 --- [http-nio-8080-exec-1] c.a.i.l.controller.BookRentController    : updateBookRentReturn: Book with id: 58 extended successfully
-2020-03-26 12:37:07.177  INFO 14508 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 14508 (C:\Library\target\classes started by luca.gavril in C:\Library)
-2020-03-26 12:37:07.179  INFO 14508 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
-2020-03-26 12:37:12.538  INFO 14508 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-26 12:37:12.679  INFO 14508 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 120ms. Found 0 JPA repository interfaces.
-2020-03-26 12:37:13.504  INFO 14508 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-26 12:37:14.605  INFO 14508 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-03-26 12:37:14.625  INFO 14508 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-03-26 12:37:14.625  INFO 14508 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-26 12:37:14.928  INFO 14508 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
-2020-03-26 12:37:14.928  INFO 14508 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 7526 ms
-2020-03-26 12:37:15.492  INFO 14508 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-26 12:37:16.055  INFO 14508 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-26 12:37:17.741  INFO 14508 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-03-26 12:37:20.350  INFO 14508 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-26 12:37:22.678  INFO 14508 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-03-26 12:37:23.021  INFO 14508 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-26 12:37:23.443  INFO 14508 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-03-26 12:37:23.568  INFO 14508 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-03-26 12:37:23.615  INFO 14508 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-03-26 12:37:23.771  INFO 14508 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-03-26 12:37:25.006  INFO 14508 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
-2020-03-26 12:37:25.006  INFO 14508 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 19.496 seconds (JVM running for 20.962)
-2020-03-26 12:37:41.370  INFO 14508 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-26 12:37:41.371  INFO 14508 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-03-26 12:37:41.387  INFO 14508 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 15 ms
-2020-03-26 12:37:41.927 ERROR 14508 --- [http-nio-8080-exec-1] c.a.i.l.controller.BookRentController    : updateBookRentExtension: Book rent can only be extended <= 5 days prior to due date
-2020-03-26 12:38:03.753 ERROR 14508 --- [http-nio-8080-exec-2] c.a.i.l.controller.BookRentController    : updateBookRentExtension: Book rent can only be extended <= 5 days prior to due date
-2020-03-26 12:38:30.577  INFO 14508 --- [http-nio-8080-exec-3] c.a.i.l.controller.BookRentController    : updateBookRentReturn: Book with id: 58 extended successfully
-2020-03-26 12:44:10.413  INFO 3616 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 3616 (C:\Library\target\classes started by luca.gavril in C:\Library)
-2020-03-26 12:44:10.428  INFO 3616 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
-2020-03-26 12:44:14.100  INFO 3616 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-26 12:44:14.240  INFO 3616 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 134ms. Found 0 JPA repository interfaces.
-2020-03-26 12:44:15.334  INFO 3616 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-26 12:44:16.475  INFO 3616 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-03-26 12:44:16.490  INFO 3616 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-03-26 12:44:16.490  INFO 3616 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-26 12:44:16.818  INFO 3616 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
-2020-03-26 12:44:16.818  INFO 3616 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6202 ms
-2020-03-26 12:44:17.459  INFO 3616 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-26 12:44:17.850  INFO 3616 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-26 12:44:18.990  INFO 3616 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-03-26 12:44:21.881  INFO 3616 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-26 12:44:23.724  INFO 3616 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-03-26 12:44:24.005  INFO 3616 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-26 12:44:24.287  INFO 3616 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-03-26 12:44:24.349  INFO 3616 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-03-26 12:44:24.396  INFO 3616 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-03-26 12:44:24.474  INFO 3616 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-03-26 12:44:25.474  INFO 3616 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
-2020-03-26 12:44:25.474  INFO 3616 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 16.536 seconds (JVM running for 18.109)
-2020-03-26 12:49:21.278  INFO 8928 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 8928 (C:\Library\target\classes started by luca.gavril in C:\Library)
-2020-03-26 12:49:21.285  INFO 8928 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
-2020-03-26 12:49:27.183  INFO 8928 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-26 12:49:27.494  INFO 8928 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 286ms. Found 0 JPA repository interfaces.
-2020-03-26 12:49:28.993  INFO 8928 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-26 12:49:31.874  INFO 8928 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-03-26 12:49:31.916  INFO 8928 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-03-26 12:49:31.918  INFO 8928 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-26 12:49:32.542  INFO 8928 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
-2020-03-26 12:49:32.543  INFO 8928 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 10915 ms
-2020-03-26 12:49:34.575  INFO 8928 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-26 12:49:35.023  INFO 8928 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-26 12:49:37.185  INFO 8928 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-03-26 12:49:41.082  INFO 8928 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-26 12:49:44.386  INFO 8928 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-03-26 12:49:44.818  INFO 8928 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-26 12:49:45.311  INFO 8928 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-03-26 12:49:45.423  INFO 8928 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-03-26 12:49:45.511  INFO 8928 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-03-26 12:49:45.799  INFO 8928 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-03-26 12:49:46.833  INFO 8928 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
-2020-03-26 12:49:46.835  INFO 8928 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 28.715 seconds (JVM running for 32.651)
-2020-03-26 12:50:10.275  INFO 8928 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-26 12:50:10.277  INFO 8928 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-03-26 12:50:10.295  INFO 8928 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 18 ms
-2020-03-26 12:57:40.122 ERROR 8928 --- [http-nio-8080-exec-9] c.a.i.l.controller.StatisticsController  : getTopReadingEmployees: Start date of period cannot be anterior to ending date
-2020-03-26 12:59:22.454  INFO 4336 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 4336 (C:\Library\target\classes started by luca.gavril in C:\Library)
-2020-03-26 12:59:22.470  INFO 4336 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
-2020-03-26 12:59:27.001  INFO 4336 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-26 12:59:27.157  INFO 4336 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 117ms. Found 0 JPA repository interfaces.
-2020-03-26 12:59:28.032  INFO 4336 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-26 12:59:29.470  INFO 4336 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-03-26 12:59:29.501  INFO 4336 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-03-26 12:59:29.501  INFO 4336 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-26 12:59:29.813  INFO 4336 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
-2020-03-26 12:59:29.813  INFO 4336 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 7171 ms
-2020-03-26 12:59:30.329  INFO 4336 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-26 12:59:30.813  INFO 4336 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-26 12:59:32.187  INFO 4336 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-03-26 12:59:35.006  INFO 4336 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-26 12:59:36.542  INFO 4336 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-03-26 12:59:36.807  INFO 4336 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-26 12:59:37.170  INFO 4336 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-03-26 12:59:37.281  INFO 4336 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-03-26 12:59:37.331  INFO 4336 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-03-26 12:59:37.462  INFO 4336 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-03-26 12:59:38.421  INFO 4336 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
-2020-03-26 12:59:38.431  INFO 4336 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 17.144 seconds (JVM running for 18.941)
-2020-03-26 13:00:16.581  INFO 4336 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-26 13:00:16.584  INFO 4336 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-03-26 13:00:16.602  INFO 4336 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 16 ms
-2020-03-26 13:00:36.237  INFO 4336 --- [http-nio-8080-exec-8] c.a.i.l.controller.StatisticsController  : getTopReadingEmployees: Reading employees sent in response
-2020-03-26 13:00:56.085  INFO 4336 --- [http-nio-8080-exec-9] c.a.i.l.controller.StatisticsController  : getTopRentedBooks: Rented books sent in response
-2020-03-26 13:01:02.133  INFO 4336 --- [http-nio-8080-exec-10] c.a.i.l.controller.StatisticsController  : getSuspendedEmployees: No suspended employees in the database
-2020-03-26 13:02:36.627  INFO 13392 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 13392 (C:\Library\target\classes started by luca.gavril in C:\Library)
-2020-03-26 13:02:36.642  INFO 13392 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
-2020-03-26 13:02:41.251  INFO 13392 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-26 13:02:41.408  INFO 13392 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 124ms. Found 0 JPA repository interfaces.
-2020-03-26 13:02:42.314  INFO 13392 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-26 13:02:43.423  INFO 13392 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-03-26 13:02:43.454  INFO 13392 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-03-26 13:02:43.454  INFO 13392 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-26 13:02:43.720  INFO 13392 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
-2020-03-26 13:02:43.720  INFO 13392 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6843 ms
-2020-03-26 13:02:44.236  INFO 13392 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-26 13:02:44.736  INFO 13392 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-26 13:02:46.110  INFO 13392 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-03-26 13:02:48.829  INFO 13392 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-26 13:02:50.579  INFO 13392 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-03-26 13:02:50.876  INFO 13392 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-26 13:02:51.157  INFO 13392 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-03-26 13:02:51.204  INFO 13392 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-03-26 13:02:51.251  INFO 13392 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-03-26 13:02:51.344  INFO 13392 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-03-26 13:02:52.395  INFO 13392 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
-2020-03-26 13:02:52.406  INFO 13392 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 17.528 seconds (JVM running for 19.48)
-2020-03-26 13:03:37.123  INFO 13392 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-26 13:03:37.124  INFO 13392 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-03-26 13:03:37.141  INFO 13392 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 14 ms
-2020-03-26 13:03:37.614  INFO 13392 --- [http-nio-8080-exec-1] c.a.i.l.controller.StatisticsController  : getSuspendedEmployees: No suspended employees in the database
-2020-03-26 13:04:30.575  INFO 15904 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 15904 (C:\Library\target\classes started by luca.gavril in C:\Library)
-2020-03-26 13:04:30.585  INFO 15904 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
-2020-03-26 13:04:35.325  INFO 15904 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-26 13:04:35.546  INFO 15904 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 181ms. Found 0 JPA repository interfaces.
-2020-03-26 13:04:36.790  INFO 15904 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-26 13:04:39.083  INFO 15904 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-03-26 13:04:39.113  INFO 15904 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-03-26 13:04:39.121  INFO 15904 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-26 13:04:39.385  INFO 15904 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
-2020-03-26 13:04:39.385  INFO 15904 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 8629 ms
-2020-03-26 13:04:39.930  INFO 15904 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-26 13:04:40.323  INFO 15904 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-26 13:04:41.662  INFO 15904 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-03-26 13:04:44.242  INFO 15904 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-26 13:04:45.737  INFO 15904 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-03-26 13:04:46.009  INFO 15904 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-26 13:04:46.312  INFO 15904 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-03-26 13:04:46.373  INFO 15904 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-03-26 13:04:46.423  INFO 15904 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-03-26 13:04:46.524  INFO 15904 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-03-26 13:04:47.696  INFO 15904 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
-2020-03-26 13:04:47.704  INFO 15904 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 18.266 seconds (JVM running for 20.096)
-2020-03-26 13:05:07.686  INFO 15904 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-03-26 13:05:07.687  INFO 15904 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-03-26 13:05:07.709  INFO 15904 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 18 ms
-2020-03-26 13:05:25.706  INFO 15904 --- [http-nio-8080-exec-8] c.a.i.l.controller.StatisticsController  : getSuspendedEmployees: No suspended employees in the database
-2020-03-26 13:06:16.318  WARN 15904 --- [http-nio-8080-exec-9] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
-2020-03-26 13:06:16.348  INFO 15904 --- [http-nio-8080-exec-9] c.a.i.library.controller.BookController  : getBook: No book with id 122 in the database
-2020-03-26 13:09:26.721  INFO 4560 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on LAPTOPCBC099 with PID 4560 (C:\Library\target\classes started by luca.gavril in C:\Library)
-2020-03-26 13:09:26.737  INFO 4560 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
-2020-03-26 13:09:31.127  INFO 4560 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-26 13:09:31.268  INFO 4560 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 117ms. Found 0 JPA repository interfaces.
-2020-03-26 13:09:32.435  INFO 4560 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-03-26 13:09:33.542  INFO 4560 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-03-26 13:09:33.564  INFO 4560 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-03-26 13:09:33.564  INFO 4560 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-03-26 13:09:33.907  INFO 4560 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
-2020-03-26 13:09:33.915  INFO 4560 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6912 ms
-2020-03-26 13:09:34.543  INFO 4560 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-26 13:09:35.138  INFO 4560 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-26 13:09:36.591  INFO 4560 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-03-26 13:09:39.196  INFO 4560 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-26 13:09:40.974  INFO 4560 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-03-26 13:09:41.267  INFO 4560 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-03-26 13:09:41.562  INFO 4560 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-03-26 13:09:41.723  INFO 4560 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-03-26 13:09:41.802  INFO 4560 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-03-26 13:09:41.905  INFO 4560 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-03-26 13:09:43.095  INFO 4560 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
-2020-03-26 13:09:43.126  INFO 4560 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 17.57 seconds (JVM running for 18.974)
+2020-03-27 09:13:05.653  INFO 14076 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on DESKTOP-90RTHF1 with PID 14076 (F:\arobs\arobs_internship\Library\target\classes started by Luca in F:\arobs\arobs_internship\Library)
+2020-03-27 09:13:05.659  INFO 14076 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
+2020-03-27 09:13:07.609  INFO 14076 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-03-27 09:13:07.648  INFO 14076 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 29ms. Found 0 JPA repository interfaces.
+2020-03-27 09:13:07.923  INFO 14076 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 09:13:08.153  INFO 14076 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-27 09:13:08.185  INFO 14076 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-27 09:13:08.185  INFO 14076 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-27 09:13:08.328  INFO 14076 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
+2020-03-27 09:13:08.328  INFO 14076 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2610 ms
+2020-03-27 09:13:08.518  INFO 14076 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
+2020-03-27 09:13:08.677  INFO 14076 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-03-27 09:13:08.942  INFO 14076 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-03-27 09:13:10.245  INFO 14076 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-03-27 09:13:10.745  INFO 14076 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-03-27 09:13:10.851  INFO 14076 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-27 09:13:10.963  INFO 14076 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-03-27 09:13:10.998  INFO 14076 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-03-27 09:13:11.011  INFO 14076 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-03-27 09:13:11.040  INFO 14076 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-03-27 09:13:11.310  INFO 14076 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
+2020-03-27 09:13:11.313  INFO 14076 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 6.138 seconds (JVM running for 7.297)
+2020-03-27 09:13:41.728  INFO 14076 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-27 09:13:41.729  INFO 14076 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-27 09:13:41.738  INFO 14076 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2020-03-27 09:13:48.986 ERROR 14076 --- [http-nio-8080-exec-1] c.a.i.l.c.ExceptionHandlerController     : Server has an internal error: org.springframework.orm.hibernate5.HibernateSystemException: Could not obtain transaction-synchronized Session for current thread; nested exception is org.hibernate.HibernateException: Could not obtain transaction-synchronized Session for current thread
+2020-03-27 09:14:17.527  INFO 8420 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on DESKTOP-90RTHF1 with PID 8420 (F:\arobs\arobs_internship\Library\target\classes started by Luca in F:\arobs\arobs_internship\Library)
+2020-03-27 09:14:17.530  INFO 8420 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
+2020-03-27 09:14:18.466  INFO 8420 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-03-27 09:14:18.499  INFO 8420 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 27ms. Found 0 JPA repository interfaces.
+2020-03-27 09:14:18.727  INFO 8420 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 09:14:18.947  INFO 8420 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-27 09:14:18.954  INFO 8420 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-27 09:14:18.955  INFO 8420 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-27 09:14:19.098  INFO 8420 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
+2020-03-27 09:14:19.098  INFO 8420 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1521 ms
+2020-03-27 09:14:19.228  INFO 8420 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
+2020-03-27 09:14:19.330  INFO 8420 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-03-27 09:14:19.513  INFO 8420 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-03-27 09:14:20.649  INFO 8420 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-03-27 09:14:21.125  INFO 8420 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-03-27 09:14:21.225  INFO 8420 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-27 09:14:21.335  INFO 8420 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-03-27 09:14:21.366  INFO 8420 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-03-27 09:14:21.377  INFO 8420 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-03-27 09:14:21.405  INFO 8420 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-03-27 09:14:21.657  INFO 8420 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
+2020-03-27 09:14:21.659  INFO 8420 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 4.48 seconds (JVM running for 5.283)
+2020-03-27 09:14:33.795  INFO 8420 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-27 09:14:33.815  INFO 8420 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-27 09:14:33.824  INFO 8420 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2020-03-27 09:15:05.098  INFO 8420 --- [http-nio-8080-exec-1] c.a.i.l.controller.StatisticsController  : getLateEmployees: Suspended employees list sent in response
+2020-03-27 11:03:44.978  INFO 1124 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on DESKTOP-90RTHF1 with PID 1124 (F:\arobs\arobs_internship\Library\target\classes started by Luca in F:\arobs\arobs_internship\Library)
+2020-03-27 11:03:44.982  INFO 1124 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
+2020-03-27 11:03:46.086  INFO 1124 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-03-27 11:03:46.125  INFO 1124 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30ms. Found 0 JPA repository interfaces.
+2020-03-27 11:03:46.404  INFO 1124 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 11:03:46.656  INFO 1124 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-27 11:03:46.670  INFO 1124 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-27 11:03:46.670  INFO 1124 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-27 11:03:46.786  INFO 1124 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
+2020-03-27 11:03:46.787  INFO 1124 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1759 ms
+2020-03-27 11:03:46.937  INFO 1124 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
+2020-03-27 11:03:47.048  INFO 1124 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-03-27 11:03:47.236  INFO 1124 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-03-27 11:03:48.510  INFO 1124 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-03-27 11:03:48.684  WARN 1124 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'schedulerComponent' defined in file [F:\arobs\arobs_internship\Library\target\classes\com\arobs\internship\library\business\impl\auxiliary\SchedulerComponent.class]: Initialization of bean failed; nested exception is java.lang.IllegalStateException: Encountered invalid @Scheduled method 'checkSuspensionsScheduler': Cron expression must consist of 6 fields (found 7 in "0 15 14 * * * *")
+2020-03-27 11:03:48.689  INFO 1124 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-03-27 11:03:48.702  INFO 1124 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-03-27 11:03:48.712 ERROR 1124 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'schedulerComponent' defined in file [F:\arobs\arobs_internship\Library\target\classes\com\arobs\internship\library\business\impl\auxiliary\SchedulerComponent.class]: Initialization of bean failed; nested exception is java.lang.IllegalStateException: Encountered invalid @Scheduled method 'checkSuspensionsScheduler': Cron expression must consist of 6 fields (found 7 in "0 15 14 * * * *")
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603) ~[spring-beans-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517) ~[spring-beans-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323) ~[spring-beans-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321) ~[spring-beans-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:879) ~[spring-beans-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:878) ~[spring-context-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550) ~[spring-context-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141) ~[spring-boot-2.2.4.RELEASE.jar:2.2.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747) ~[spring-boot-2.2.4.RELEASE.jar:2.2.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) ~[spring-boot-2.2.4.RELEASE.jar:2.2.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315) ~[spring-boot-2.2.4.RELEASE.jar:2.2.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226) ~[spring-boot-2.2.4.RELEASE.jar:2.2.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215) ~[spring-boot-2.2.4.RELEASE.jar:2.2.4.RELEASE]
+	at com.arobs.internship.library.LibraryApplication.main(LibraryApplication.java:14) ~[classes/:na]
+Caused by: java.lang.IllegalStateException: Encountered invalid @Scheduled method 'checkSuspensionsScheduler': Cron expression must consist of 6 fields (found 7 in "0 15 14 * * * *")
+	at org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor.processScheduled(ScheduledAnnotationBeanPostProcessor.java:499) ~[spring-context-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor.lambda$null$1(ScheduledAnnotationBeanPostProcessor.java:362) ~[spring-context-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor.lambda$postProcessAfterInitialization$2(ScheduledAnnotationBeanPostProcessor.java:362) ~[spring-context-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:684) ~[na:na]
+	at org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor.postProcessAfterInitialization(ScheduledAnnotationBeanPostProcessor.java:361) ~[spring-context-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsAfterInitialization(AbstractAutowireCapableBeanFactory.java:431) ~[spring-beans-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800) ~[spring-beans-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:595) ~[spring-beans-5.2.3.RELEASE.jar:5.2.3.RELEASE]
+	... 15 common frames omitted
+
+2020-03-27 11:04:33.470  INFO 7576 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on DESKTOP-90RTHF1 with PID 7576 (F:\arobs\arobs_internship\Library\target\classes started by Luca in F:\arobs\arobs_internship\Library)
+2020-03-27 11:04:33.473  INFO 7576 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
+2020-03-27 11:04:34.673  INFO 7576 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-03-27 11:04:34.716  INFO 7576 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33ms. Found 0 JPA repository interfaces.
+2020-03-27 11:04:35.006  INFO 7576 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 11:04:35.284  INFO 7576 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-27 11:04:35.318  INFO 7576 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-27 11:04:35.319  INFO 7576 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-27 11:04:35.466  INFO 7576 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
+2020-03-27 11:04:35.467  INFO 7576 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1921 ms
+2020-03-27 11:04:35.634  INFO 7576 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
+2020-03-27 11:04:35.756  INFO 7576 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-03-27 11:04:35.989  INFO 7576 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-03-27 11:04:37.470  INFO 7576 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-03-27 11:04:38.073  INFO 7576 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-03-27 11:04:38.175  INFO 7576 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-27 11:04:38.283  INFO 7576 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-03-27 11:04:38.317  INFO 7576 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-03-27 11:04:38.331  INFO 7576 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-03-27 11:04:38.361  INFO 7576 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-03-27 11:04:38.636  INFO 7576 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
+2020-03-27 11:04:38.639  INFO 7576 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 5.57 seconds (JVM running for 6.492)
+2020-03-27 11:07:37.108  INFO 13268 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on DESKTOP-90RTHF1 with PID 13268 (F:\arobs\arobs_internship\Library\target\classes started by Luca in F:\arobs\arobs_internship\Library)
+2020-03-27 11:07:37.112  INFO 13268 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
+2020-03-27 11:07:38.103  INFO 13268 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-03-27 11:07:38.139  INFO 13268 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 28ms. Found 0 JPA repository interfaces.
+2020-03-27 11:07:38.396  INFO 13268 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 11:07:38.613  INFO 13268 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-27 11:07:38.620  INFO 13268 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-27 11:07:38.636  INFO 13268 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-27 11:07:38.754  INFO 13268 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
+2020-03-27 11:07:38.754  INFO 13268 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1596 ms
+2020-03-27 11:07:38.895  INFO 13268 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
+2020-03-27 11:07:38.998  INFO 13268 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-03-27 11:07:39.177  INFO 13268 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-03-27 11:07:40.339  INFO 13268 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-03-27 11:07:40.811  INFO 13268 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-03-27 11:07:40.915  INFO 13268 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-27 11:07:41.013  INFO 13268 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-03-27 11:07:41.046  INFO 13268 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-03-27 11:07:41.057  INFO 13268 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-03-27 11:07:41.083  INFO 13268 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-03-27 11:07:41.343  INFO 13268 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
+2020-03-27 11:07:41.346  INFO 13268 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 4.603 seconds (JVM running for 5.387)
+2020-03-27 11:27:09.276  INFO 13268 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-27 11:27:09.277  INFO 13268 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-27 11:27:09.283  INFO 13268 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2020-03-27 11:36:50.022  WARN 13268 --- [http-nio-8080-exec-3] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:36:50.132  INFO 13268 --- [http-nio-8080-exec-3] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 1 inserted successfully
+2020-03-27 11:37:08.350  WARN 13268 --- [http-nio-8080-exec-10] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:37:08.363 ERROR 13268 --- [http-nio-8080-exec-10] c.a.i.l.controller.BookRentController    : addBookRent: This employee has already rented this book
+2020-03-27 11:37:20.780  WARN 13268 --- [http-nio-8080-exec-7] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:37:20.792  INFO 13268 --- [http-nio-8080-exec-7] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 1 inserted successfully
+2020-03-27 11:37:36.846  WARN 13268 --- [http-nio-8080-exec-6] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:37:36.860  INFO 13268 --- [http-nio-8080-exec-6] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 2 inserted successfully
+2020-03-27 11:37:49.629  WARN 13268 --- [http-nio-8080-exec-4] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:37:49.651  INFO 13268 --- [http-nio-8080-exec-4] c.a.i.l.controller.BookRentController    : addBookRent: Rent request created, no available or rentable copies
+2020-03-27 11:38:12.759  WARN 13268 --- [http-nio-8080-exec-9] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:38:12.774  INFO 13268 --- [http-nio-8080-exec-9] c.a.i.library.controller.CopyController  : addCopy: Copy with status 49 inserted successfully
+2020-03-27 11:38:49.972  INFO 13268 --- [http-nio-8080-exec-5] c.a.i.l.c.RentRequestController          : updateRequestFinalStatus: Rent request with id: 5 updated successfully
+2020-03-27 11:41:17.362  INFO 1832 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on DESKTOP-90RTHF1 with PID 1832 (F:\arobs\arobs_internship\Library\target\classes started by Luca in F:\arobs\arobs_internship\Library)
+2020-03-27 11:41:17.364  INFO 1832 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
+2020-03-27 11:41:18.970  INFO 1832 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-03-27 11:41:19.014  INFO 1832 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 34ms. Found 0 JPA repository interfaces.
+2020-03-27 11:41:19.346  INFO 1832 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 11:41:19.612  INFO 1832 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-27 11:41:19.640  INFO 1832 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-27 11:41:19.640  INFO 1832 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-27 11:41:19.788  INFO 1832 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
+2020-03-27 11:41:19.803  INFO 1832 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2395 ms
+2020-03-27 11:41:19.969  INFO 1832 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
+2020-03-27 11:41:20.106  INFO 1832 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-03-27 11:41:20.335  INFO 1832 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-03-27 11:41:21.900  INFO 1832 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-03-27 11:41:22.510  INFO 1832 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-03-27 11:41:22.623  INFO 1832 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-27 11:41:22.740  INFO 1832 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-03-27 11:41:22.784  INFO 1832 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-03-27 11:41:22.795  INFO 1832 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-03-27 11:41:22.837  INFO 1832 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-03-27 11:41:23.130  INFO 1832 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
+2020-03-27 11:41:23.133  INFO 1832 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 6.145 seconds (JVM running for 7.237)
+2020-03-27 11:42:37.828  INFO 1832 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-27 11:42:37.829  INFO 1832 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-27 11:42:37.838  INFO 1832 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2020-03-27 11:42:37.941  INFO 1832 --- [http-nio-8080-exec-3] c.a.i.l.controller.BookRentController    : updateBookRentReturn: Book with id: 7 returned successfully
+2020-03-27 11:44:25.794  INFO 1832 --- [http-nio-8080-exec-7] c.a.i.l.controller.StatisticsController  : getTopRentedBooks: Rented books sent in response
+2020-03-27 11:45:11.104  WARN 1832 --- [http-nio-8080-exec-8] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:45:11.122  INFO 1832 --- [http-nio-8080-exec-8] c.a.i.library.controller.CopyController  : addCopy: Copy with status 50 inserted successfully
+2020-03-27 11:45:12.561  WARN 1832 --- [http-nio-8080-exec-9] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:45:12.570  INFO 1832 --- [http-nio-8080-exec-9] c.a.i.library.controller.CopyController  : addCopy: Copy with status 51 inserted successfully
+2020-03-27 11:45:17.131  WARN 1832 --- [http-nio-8080-exec-10] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:45:17.140  INFO 1832 --- [http-nio-8080-exec-10] c.a.i.library.controller.CopyController  : addCopy: Copy with status 52 inserted successfully
+2020-03-27 11:45:18.168  WARN 1832 --- [http-nio-8080-exec-1] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:45:18.175  INFO 1832 --- [http-nio-8080-exec-1] c.a.i.library.controller.CopyController  : addCopy: Copy with status 53 inserted successfully
+2020-03-27 11:45:22.901  WARN 1832 --- [http-nio-8080-exec-2] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:45:22.913  INFO 1832 --- [http-nio-8080-exec-2] c.a.i.library.controller.CopyController  : addCopy: Copy with status 54 inserted successfully
+2020-03-27 11:45:23.902  WARN 1832 --- [http-nio-8080-exec-3] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:45:23.910  INFO 1832 --- [http-nio-8080-exec-3] c.a.i.library.controller.CopyController  : addCopy: Copy with status 55 inserted successfully
+2020-03-27 11:45:26.662  WARN 1832 --- [http-nio-8080-exec-4] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:45:26.672  INFO 1832 --- [http-nio-8080-exec-4] c.a.i.library.controller.CopyController  : addCopy: Copy with status 56 inserted successfully
+2020-03-27 11:45:27.471  WARN 1832 --- [http-nio-8080-exec-5] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:45:27.480  INFO 1832 --- [http-nio-8080-exec-5] c.a.i.library.controller.CopyController  : addCopy: Copy with status 57 inserted successfully
+2020-03-27 11:45:30.280  WARN 1832 --- [http-nio-8080-exec-6] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:45:30.289  INFO 1832 --- [http-nio-8080-exec-6] c.a.i.library.controller.CopyController  : addCopy: Copy with status 58 inserted successfully
+2020-03-27 11:45:31.130  WARN 1832 --- [http-nio-8080-exec-7] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:45:31.138  INFO 1832 --- [http-nio-8080-exec-7] c.a.i.library.controller.CopyController  : addCopy: Copy with status 59 inserted successfully
+2020-03-27 11:45:33.707  WARN 1832 --- [http-nio-8080-exec-8] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:45:33.716  INFO 1832 --- [http-nio-8080-exec-8] c.a.i.library.controller.CopyController  : addCopy: Copy with status 60 inserted successfully
+2020-03-27 11:45:34.324  WARN 1832 --- [http-nio-8080-exec-9] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:45:34.333  INFO 1832 --- [http-nio-8080-exec-9] c.a.i.library.controller.CopyController  : addCopy: Copy with status 61 inserted successfully
+2020-03-27 11:45:37.051  WARN 1832 --- [http-nio-8080-exec-10] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:45:37.061  INFO 1832 --- [http-nio-8080-exec-10] c.a.i.library.controller.CopyController  : addCopy: Copy with status 62 inserted successfully
+2020-03-27 11:45:37.696  WARN 1832 --- [http-nio-8080-exec-1] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:45:37.706  INFO 1832 --- [http-nio-8080-exec-1] c.a.i.library.controller.CopyController  : addCopy: Copy with status 63 inserted successfully
+2020-03-27 11:48:58.876  INFO 8956 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on DESKTOP-90RTHF1 with PID 8956 (F:\arobs\arobs_internship\Library\target\classes started by Luca in F:\arobs\arobs_internship\Library)
+2020-03-27 11:48:58.882  INFO 8956 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
+2020-03-27 11:49:00.185  INFO 8956 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-03-27 11:49:00.229  INFO 8956 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35ms. Found 0 JPA repository interfaces.
+2020-03-27 11:49:00.573  INFO 8956 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 11:49:00.831  INFO 8956 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-27 11:49:00.862  INFO 8956 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-27 11:49:00.862  INFO 8956 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-27 11:49:01.026  INFO 8956 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
+2020-03-27 11:49:01.026  INFO 8956 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2062 ms
+2020-03-27 11:49:01.219  INFO 8956 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
+2020-03-27 11:49:01.355  INFO 8956 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-03-27 11:49:01.589  INFO 8956 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-03-27 11:49:03.211  INFO 8956 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-03-27 11:49:03.799  INFO 8956 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-03-27 11:49:03.925  INFO 8956 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-27 11:49:04.060  INFO 8956 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-03-27 11:49:04.099  INFO 8956 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-03-27 11:49:04.115  INFO 8956 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-03-27 11:49:04.150  INFO 8956 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-03-27 11:49:04.502  INFO 8956 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
+2020-03-27 11:49:04.505  INFO 8956 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 6.136 seconds (JVM running for 7.21)
+2020-03-27 11:49:05.489  INFO 8956 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-27 11:49:05.492  INFO 8956 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-27 11:49:05.512  INFO 8956 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 19 ms
+2020-03-27 11:49:16.069  WARN 8956 --- [http-nio-8080-exec-9] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:49:16.188  INFO 8956 --- [http-nio-8080-exec-9] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 1 inserted successfully
+2020-03-27 11:49:22.152  WARN 8956 --- [http-nio-8080-exec-1] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:49:22.178 ERROR 8956 --- [http-nio-8080-exec-1] c.a.i.l.controller.BookRentController    : addBookRent: This employee has already rented this book
+2020-03-27 11:49:27.613  WARN 8956 --- [http-nio-8080-exec-3] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:49:27.628  INFO 8956 --- [http-nio-8080-exec-3] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 1 inserted successfully
+2020-03-27 11:49:33.868  WARN 8956 --- [http-nio-8080-exec-4] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:49:33.886  INFO 8956 --- [http-nio-8080-exec-4] c.a.i.l.controller.BookRentController    : addBookRent: Rent request created, no available or rentable copies
+2020-03-27 11:49:51.339  WARN 8956 --- [http-nio-8080-exec-8] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:49:51.365  INFO 8956 --- [http-nio-8080-exec-8] c.a.i.library.controller.CopyController  : addCopy: Copy with status 64 inserted successfully
+2020-03-27 11:50:15.588  INFO 8956 --- [http-nio-8080-exec-5] c.a.i.l.c.RentRequestController          : updateRequestFinalStatus: Rent request with id: 6 updated successfully
+2020-03-27 11:54:45.248  INFO 8956 --- [http-nio-8080-exec-3] c.a.i.l.controller.BookRentController    : updateBookRentReturn: Book with id: 11 returned successfully
+2020-03-27 11:55:21.502  WARN 8956 --- [http-nio-8080-exec-4] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:55:21.512  INFO 8956 --- [http-nio-8080-exec-4] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 2 inserted successfully
+2020-03-27 11:55:26.158  WARN 8956 --- [http-nio-8080-exec-8] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:55:26.169 ERROR 8956 --- [http-nio-8080-exec-8] c.a.i.l.controller.BookRentController    : addBookRent: This employee is suspended from renting books
+2020-03-27 11:55:32.711  WARN 8956 --- [http-nio-8080-exec-2] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:55:32.723  INFO 8956 --- [http-nio-8080-exec-2] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 2 inserted successfully
+2020-03-27 11:55:39.341  WARN 8956 --- [http-nio-8080-exec-7] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:55:39.354  INFO 8956 --- [http-nio-8080-exec-7] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 3 inserted successfully
+2020-03-27 11:56:06.834  INFO 8956 --- [http-nio-8080-exec-6] c.a.i.l.controller.StatisticsController  : getTopRentedBooks: Rented books sent in response
+2020-03-27 11:58:26.968  WARN 8956 --- [http-nio-8080-exec-10] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:58:26.979  INFO 8956 --- [http-nio-8080-exec-10] c.a.i.library.controller.CopyController  : addCopy: Copy with status 65 inserted successfully
+2020-03-27 11:58:27.549  WARN 8956 --- [http-nio-8080-exec-9] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:58:27.557  INFO 8956 --- [http-nio-8080-exec-9] c.a.i.library.controller.CopyController  : addCopy: Copy with status 66 inserted successfully
+2020-03-27 11:58:31.390  WARN 8956 --- [http-nio-8080-exec-1] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:58:31.400  INFO 8956 --- [http-nio-8080-exec-1] c.a.i.library.controller.CopyController  : addCopy: Copy with status 67 inserted successfully
+2020-03-27 11:58:31.938  WARN 8956 --- [http-nio-8080-exec-3] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:58:31.945  INFO 8956 --- [http-nio-8080-exec-3] c.a.i.library.controller.CopyController  : addCopy: Copy with status 68 inserted successfully
+2020-03-27 11:58:35.380  WARN 8956 --- [http-nio-8080-exec-4] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:58:35.387  INFO 8956 --- [http-nio-8080-exec-4] c.a.i.library.controller.CopyController  : addCopy: Copy with status 69 inserted successfully
+2020-03-27 11:58:35.860  WARN 8956 --- [http-nio-8080-exec-8] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:58:35.869  INFO 8956 --- [http-nio-8080-exec-8] c.a.i.library.controller.CopyController  : addCopy: Copy with status 70 inserted successfully
+2020-03-27 11:58:38.983  WARN 8956 --- [http-nio-8080-exec-2] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:58:38.991  INFO 8956 --- [http-nio-8080-exec-2] c.a.i.library.controller.CopyController  : addCopy: Copy with status 71 inserted successfully
+2020-03-27 11:58:39.467  WARN 8956 --- [http-nio-8080-exec-7] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:58:39.477  INFO 8956 --- [http-nio-8080-exec-7] c.a.i.library.controller.CopyController  : addCopy: Copy with status 72 inserted successfully
+2020-03-27 11:58:43.994  WARN 8956 --- [http-nio-8080-exec-6] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:58:44.002  INFO 8956 --- [http-nio-8080-exec-6] c.a.i.library.controller.CopyController  : addCopy: Copy with status 73 inserted successfully
+2020-03-27 11:58:44.495  WARN 8956 --- [http-nio-8080-exec-5] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:58:44.503  INFO 8956 --- [http-nio-8080-exec-5] c.a.i.library.controller.CopyController  : addCopy: Copy with status 74 inserted successfully
+2020-03-27 11:58:47.835  WARN 8956 --- [http-nio-8080-exec-10] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:58:47.842  INFO 8956 --- [http-nio-8080-exec-10] c.a.i.library.controller.CopyController  : addCopy: Copy with status 75 inserted successfully
+2020-03-27 11:58:48.346  WARN 8956 --- [http-nio-8080-exec-9] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:58:48.355  INFO 8956 --- [http-nio-8080-exec-9] c.a.i.library.controller.CopyController  : addCopy: Copy with status 76 inserted successfully
+2020-03-27 11:58:52.028  WARN 8956 --- [http-nio-8080-exec-1] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:58:52.034  INFO 8956 --- [http-nio-8080-exec-1] c.a.i.library.controller.CopyController  : addCopy: Copy with status 77 inserted successfully
+2020-03-27 11:58:52.639  WARN 8956 --- [http-nio-8080-exec-3] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 11:58:52.648  INFO 8956 --- [http-nio-8080-exec-3] c.a.i.library.controller.CopyController  : addCopy: Copy with status 78 inserted successfully
+2020-03-27 12:08:45.366  INFO 15100 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on DESKTOP-90RTHF1 with PID 15100 (F:\arobs\arobs_internship\Library\target\classes started by Luca in F:\arobs\arobs_internship\Library)
+2020-03-27 12:08:45.369  INFO 15100 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
+2020-03-27 12:08:46.535  INFO 15100 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-03-27 12:08:46.574  INFO 15100 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30ms. Found 0 JPA repository interfaces.
+2020-03-27 12:08:46.876  INFO 15100 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 12:08:47.093  INFO 15100 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-27 12:08:47.117  INFO 15100 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-27 12:08:47.117  INFO 15100 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-27 12:08:47.243  INFO 15100 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
+2020-03-27 12:08:47.243  INFO 15100 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1814 ms
+2020-03-27 12:08:47.392  INFO 15100 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
+2020-03-27 12:08:47.511  INFO 15100 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-03-27 12:08:47.713  INFO 15100 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-03-27 12:08:49.039  INFO 15100 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-03-27 12:08:49.615  INFO 15100 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-03-27 12:08:49.733  INFO 15100 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-27 12:08:49.849  INFO 15100 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-03-27 12:08:49.883  INFO 15100 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-03-27 12:08:49.895  INFO 15100 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-03-27 12:08:49.923  INFO 15100 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-03-27 12:08:50.198  INFO 15100 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
+2020-03-27 12:08:50.201  INFO 15100 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 5.281 seconds (JVM running for 6.254)
+2020-03-27 12:09:56.465  INFO 15100 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-27 12:09:56.466  INFO 15100 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-27 12:09:56.472  INFO 15100 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2020-03-27 12:09:56.593  WARN 15100 --- [http-nio-8080-exec-2] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 12:09:56.685  INFO 15100 --- [http-nio-8080-exec-2] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 1 inserted successfully
+2020-03-27 12:10:07.505  WARN 15100 --- [http-nio-8080-exec-3] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 12:10:07.516 ERROR 15100 --- [http-nio-8080-exec-3] c.a.i.l.controller.BookRentController    : addBookRent: This employee has already rented this book
+2020-03-27 12:10:16.367  WARN 15100 --- [http-nio-8080-exec-5] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 12:10:16.380  INFO 15100 --- [http-nio-8080-exec-5] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 1 inserted successfully
+2020-03-27 12:10:26.350  WARN 15100 --- [http-nio-8080-exec-4] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 12:10:26.366  INFO 15100 --- [http-nio-8080-exec-4] c.a.i.l.controller.BookRentController    : addBookRent: Rent request created, no available or rentable copies
+2020-03-27 12:10:44.468  WARN 15100 --- [http-nio-8080-exec-6] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 12:10:44.482  INFO 15100 --- [http-nio-8080-exec-6] c.a.i.library.controller.CopyController  : addCopy: Copy with status 79 inserted successfully
+2020-03-27 12:11:27.228  INFO 15100 --- [http-nio-8080-exec-7] c.a.i.l.c.RentRequestController          : updateRequestFinalStatus: Rent request with id: 7 updated successfully
+2020-03-27 12:12:49.628  INFO 10348 --- [main] c.a.i.library.LibraryApplication         : Starting LibraryApplication on DESKTOP-90RTHF1 with PID 10348 (F:\arobs\arobs_internship\Library\target\classes started by Luca in F:\arobs\arobs_internship\Library)
+2020-03-27 12:12:49.632  INFO 10348 --- [main] c.a.i.library.LibraryApplication         : No active profile set, falling back to default profiles: default
+2020-03-27 12:12:50.914  INFO 10348 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-03-27 12:12:50.957  INFO 10348 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33ms. Found 0 JPA repository interfaces.
+2020-03-27 12:12:51.214  INFO 10348 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-27 12:12:51.430  INFO 10348 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-27 12:12:51.457  INFO 10348 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-27 12:12:51.457  INFO 10348 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-27 12:12:51.579  INFO 10348 --- [main] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring embedded WebApplicationContext
+2020-03-27 12:12:51.579  INFO 10348 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1883 ms
+2020-03-27 12:12:51.727  INFO 10348 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
+2020-03-27 12:12:51.836  INFO 10348 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-03-27 12:12:52.041  INFO 10348 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-03-27 12:12:54.356  INFO 10348 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-03-27 12:12:54.875  INFO 10348 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-03-27 12:12:54.974  INFO 10348 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-27 12:12:55.089  INFO 10348 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-03-27 12:12:55.122  INFO 10348 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-03-27 12:12:55.136  INFO 10348 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-03-27 12:12:55.171  INFO 10348 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-03-27 12:12:55.496  INFO 10348 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/MyLibrary'
+2020-03-27 12:12:55.500  INFO 10348 --- [main] c.a.i.library.LibraryApplication         : Started LibraryApplication in 6.354 seconds (JVM running for 7.376)
+2020-03-27 12:13:49.760  INFO 10348 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[localhost].[/MyLibrary]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-27 12:13:49.761  INFO 10348 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-27 12:13:49.767  INFO 10348 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2020-03-27 12:13:49.863  INFO 10348 --- [http-nio-8080-exec-3] c.a.i.l.controller.BookRentController    : updateBookRentReturn: Book with id: 17 returned successfully
+2020-03-27 12:14:15.692  WARN 10348 --- [http-nio-8080-exec-4] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 12:14:15.711 ERROR 10348 --- [http-nio-8080-exec-4] c.a.i.l.controller.BookRentController    : addBookRent: This employee is suspended from renting books
+2020-03-27 12:14:24.419  WARN 10348 --- [http-nio-8080-exec-5] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 12:14:24.438  INFO 10348 --- [http-nio-8080-exec-5] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 3 inserted successfully
+2020-03-27 12:14:32.048  WARN 10348 --- [http-nio-8080-exec-6] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 12:14:32.063  INFO 10348 --- [http-nio-8080-exec-6] c.a.i.l.controller.BookRentController    : addBookRent: BookRent of book with id: 5 inserted successfully
+2020-03-27 12:14:37.261  WARN 10348 --- [http-nio-8080-exec-7] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2020-03-27 12:14:37.270 ERROR 10348 --- [http-nio-8080-exec-7] c.a.i.l.controller.BookRentController    : addBookRent: This employee has already rented this book
+2020-03-27 12:15:05.483  INFO 10348 --- [http-nio-8080-exec-9] c.a.i.l.controller.StatisticsController  : getTopRentedBooks: Rented books sent in response
+2020-03-27 12:15:21.762  INFO 10348 --- [http-nio-8080-exec-10] c.a.i.l.controller.StatisticsController  : getTopRentedBooks: Rented books sent in response
+2020-03-27 12:15:29.479  INFO 10348 --- [http-nio-8080-exec-1] c.a.i.l.controller.StatisticsController  : getTopRentedBooks: Rented books sent in response

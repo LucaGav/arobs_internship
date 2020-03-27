@@ -15,6 +15,7 @@ public class ExceptionHandlerController {
     @ExceptionHandler({Exception.class})
     public ResponseEntity<?> handleResponseError(Exception exception) {
         logger.error("Server has an internal error: " + exception.toString());
+        exception.printStackTrace();
         return new ResponseEntity<>("Server has an internal error: " + exception.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

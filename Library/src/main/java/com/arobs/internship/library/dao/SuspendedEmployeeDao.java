@@ -8,6 +8,8 @@ public interface SuspendedEmployeeDao {
 
     SuspendedEmployee insert(SuspendedEmployee suspendedEmployee);
 
+    List<SuspendedEmployee> findLateEmployees();
+
     List<SuspendedEmployee> findSuspendedEmployees();
 
     SuspendedEmployee findByEmployeeID(int employeeID);

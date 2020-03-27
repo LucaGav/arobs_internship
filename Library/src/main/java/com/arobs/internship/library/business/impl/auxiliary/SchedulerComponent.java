@@ -22,17 +22,17 @@ public class SchedulerComponent {
     @Autowired
     private SuspendedEmployeeService suspendedEmployeeService;
 
-    @Scheduled(cron = "0 0/5 * * * *")
+    @Scheduled(cron = "0 0/1 * * * *")
     private void pendingRequestsScheduler() throws ValidationException {
         pendingRequestService.checkPendingRentRequests();
     }
 
-    @Scheduled(cron = "30 23 12 * * *")
+    @Scheduled(cron = "15 13 12 * * *")
     private void lateRentsScheduler() {
         bookRentService.checkLateBookRents();
     }
 
-    @Scheduled(cron = "30 28 12 * * *")
+    @Scheduled(cron = "0 15 14 * * *")
     private void checkSuspensionsScheduler() {
         suspendedEmployeeService.checkSuspensionDates();
     }
